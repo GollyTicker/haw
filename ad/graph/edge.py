@@ -12,7 +12,7 @@ class Edge():
         self.weight = weight
 
     def __repr__(self):
-        return "e{" + str(self.name) + ", w=" + str(self.weight) +"}"
+        return "e{" + str(self.name) + ", =" + str(self.weight) + "}"
 
     # Functions
     def inBetween(self, v1, v2):

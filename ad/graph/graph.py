@@ -7,27 +7,26 @@ from edge import Edge
 class Graph():
 
     # Creation
-    def __init__(self, name, isdirected=None, edg_to_ver={}, ver_to_edg={}):
+    def __init__(self, name, direction="None"):
         self.name = name
-        self.isdirected = isdirected
-        self.edg_to_ver = edg_to_ver
-        self.ver_to_edg = ver_to_edg
+        self.direction = direction
+        self.edges = set([])
+        self.ver_to_edg = {}
 
     def __repr__(self):
         acc = ""
-        for v, e in self.ver_to_edg.items():
-            acc += "{" + str(v) + ", " + str(e) + "}\n\t"
-        dire = ""
-        if self.isdirected:
-            dire = ", directed"
-        if self.isdirected == False:
-            dire = ", undirected"
-        if self.isdirected == None:
-            dire = ", no direction"
-        return "Graph(" + str(self.name) + dire + ")\n\t" + acc
+        for edge in self.edges:
+            emap = str(edge.getWeightMap())
+            ename = str(edge.getName()) 
+            src = edge.getSrc()
+            dest = edge.getDest()
+            direction = " " if edge.isDirected() else " <"
+            str_edge = direction + "= (" + ename + ", " + emap + ") => "
+            acc += str(src.getName()) + str_edge + str(dest.getName()) + "\n\t"
+        return "Graph(" + str(self.name) + ", " + self.direction + ") <<\n\t" + acc + ">>"
 
     def empty(self):
-        return (not self.ver_to_edg) and (not self.edg_to_ver)
+        return (not self.ver_to_edg) and (not self.edges)
 
     # Mutators
     def updateWeight(self, comp, key, value):
@@ -63,8 +62,8 @@ class Graph():
 
         # Single Operations
     def removeEdge(self, edge):
-        if edge in self.edg_to_ver:
-            del self.edg_to_ver[edge]
+        if edge in self.edges:
+            self.edges.remove(edge)
         for edgelist in self.ver_to_edg.values():
             if edge in edgelist:
                 edgelist.remove(edge)
@@ -78,13 +77,9 @@ class Graph():
 
     def addEdge(self, edge):
         src, dest = edge.getSrcDest()
-        if src in self.ver_to_edg:
-            edge.setSrc(src)
-        if dest in self.ver_to_edg:
-            edge.setDest(dest)
-        self.edg_to_ver[edge] = [src, dest]
-        self.__add_key__(edge, src)
-        self.__add_key__(edge, dest)
+        self.edges.add(edge)
+        self.__add_edges__(edge, src)
+        self.__add_edges__(edge, dest)
 
     def addVertice(self, vertice):
         if vertice not in self.ver_to_edg:
@@ -93,8 +88,25 @@ class Graph():
     def setName(self, name):
         self.name = name
 
-    def setDirection(self, isdirected):
-        self.isdirected = isdirected
+    def setDirection(self, direction):
+        self.direction = direction
+
+    # Creation of Parts
+    def addCreateEdge(self, name, src, dest, isdirected=True, weight={}):
+        newedge = self.createEdge(name, src, dest, isdirected, weight)
+        self.addEdge(newedge)
+        return newedge
+
+    # String, Vertice/String, Vertice/String, Bool, Dict={Any : Any}
+    def createEdge(self, name, src, dest, isdirected=True, weight={}):
+        if not isinstance(src, Vertice):
+            src = self.createVertice(src)
+        if not isinstance(dest, Vertice):
+            dest = self.createVertice(dest)
+        return Edge(name, src, dest, isdirected, weight)
+
+    def createVertice(self, name):
+        return Vertice(name)
 
     # Functions
     def adjacent(self, vertice):
@@ -124,35 +136,15 @@ class Graph():
         edges = self.ver_to_edg[vertice]
         return any(edge.isSling() for edge in edges)
 
-    # Creation of Parts
-    def addCreateEdge(self, name, src, dest, isdirected=True, weight={}):
-        newedge = self.createEdge(name, src, dest, isdirected, weight)
-        self.addEdge(newedge)
-        return newedge
-
-    # String, Vertice/String, Vertice/String, Bool, Dict={Any : Any}
-    def createEdge(self, name, src, dest, isdirected=True, weight={}):
-        if not isinstance(src, Vertice):
-            src = self.createVertice(src)
-        if not isinstance(dest, Vertice):
-            dest = self.createVertice(dest)
-        return Edge(name, src, dest, isdirected, weight)
-
-    def createVertice(self, name):
-        return Vertice(name)
-
     # Selectors
-    def isDirected(self):
-        return self.isdirected
+    def getDirection(self):
+        return self.direction
 
     def getName(self):
         return self.name
 
     def getEdges(self):
-        edges = set([])
-        for k in self.edg_to_ver:
-            edges.add(k)
-        return edges
+        return self.edges
 
     def getVertices(self):
         vertices = set([])
@@ -160,14 +152,11 @@ class Graph():
             vertices.add(k)
         return vertices
 
-    def getEdgeDict(self):
-        return self.edg_to_ver
-
     def getVerticeDict(self):
         return self.ver_to_edg
 
     def getEdgeByName(self, name):
-        for edge in self.edg_to_ver:
+        for edge in self.edges:
             if edge.getName() == name:
                 return edge
         return None
@@ -178,6 +167,13 @@ class Graph():
                 return vertice
         return None
 
+    def getVerticesByName(self, names):
+        collect = []
+        for vertice in self.ver_to_edg:
+            if vertice.getName() in names:
+                collect.append(vertice)
+        return collect
+
     # Built in
     def __update_edges__(self, vertice):
         for edge in self.ver_to_edg[vertice]:
@@ -186,7 +182,7 @@ class Graph():
             if edge.getDest().getName() == vertice.getName():
                 edge.setDest(vertice)
 
-    def __add_key__(self, edge, vertice):
+    def __add_edges__(self, edge, vertice):
         if vertice in self.ver_to_edg:
             if edge not in self.ver_to_edg[vertice]:
                  self.ver_to_edg[vertice].append(edge) 

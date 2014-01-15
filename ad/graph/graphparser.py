@@ -8,20 +8,21 @@ class GraphParser():
 
     def __init__(self, apath, name="xxx"):
         self.path = apath
-        self.dict = {"name" : name, "directed" : "gerichtet"}
+        self.dict = {"name" : name, "direction" : "gerichtet"}
         self.isdirected = None
         self.g = Graph(self.dict["name"])
 
     def setDirection(self):
-        if self.dict["directed"] == "ungerichtet":
+        direction = self.dict["direction"]
+        if direction == "ungerichtet":
             self.isdirected = False
-        elif self.dict["directed"] == "gerichtet":
+        elif direction == "gerichtet":
             self.isdirected = True
+        self.g.setDirection(direction)
 
     def createGraph(self):
         readl = self.split()
         self.addEdges(readl)
-        self.g.setDirection(self.isdirected)
         return self.g
 
     def getGraph(self):
@@ -44,3 +45,5 @@ class GraphParser():
         self.dict["directed"] = readl[0][0][1:]
         self.setDirection()
         return readl[1:]
+
+

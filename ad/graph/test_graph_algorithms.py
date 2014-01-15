@@ -19,6 +19,7 @@ class TestGraphAlgorithms(unittest.TestCase):
         l = graph_algorithms.shortest_path(g, s, t, "d")
         shortest_path_as_names = map(lambda x: x.getName(), l)
         self.assertEqual(["y","s","x","u"], shortest_path_as_names)
+        print g
 
 
 if __name__ == '__main__':

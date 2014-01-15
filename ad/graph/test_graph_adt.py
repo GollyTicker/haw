@@ -9,9 +9,9 @@ class TestGraph(unittest.TestCase):
 
     # Workflow of a Graph
     def test_graph_integration(self):
-        g = graph.Graph("Euclid")
+        g = graph.Graph("Euclid", "multigraph")
         self.assertEqual("Euclid", g.getName())
-        self.assertEqual(None, g.isDirected())
+        self.assertEqual("multigraph", g.getDirection())
         self.assertTrue(g.empty())
         v1,v2,v3,v4,v5,v6,v7,v8 = [g.createVertice("v"+str(x)) for x in xrange(1, 8 + 1)]
         e1 = g.createEdge("e1", v1, v2, True, weight={"d" : 1})
@@ -51,6 +51,7 @@ class TestGraph(unittest.TestCase):
         g.removeVertices([v1,v2,v3,v4,v5,v6,v7,v8])
         self.assertTrue(g.empty())
 
+
     # Certain typical Edge Cases
     def test_edge_cases(self):
         pass
@@ -62,14 +63,21 @@ class TestGraph(unittest.TestCase):
         pass
 
     def test_graph_parser(self):
-        p = "/Users/sacry/dev/uni/s3/WS1314/GKA/graphs/graph1.graph"
-        gp = GraphParser(p, "graph1")
+        name = "graph1"
+        p = "/Users/sacry/dev/uni/s3/WS1314/GKA/graphs/"+name+".graph"
+        gp = GraphParser(p, name)
         g = gp.createGraph()
         self.assertTrue(not g.empty())
         hamburg = g.getVerticeByName("Hamburg")
-        print g
-        print g.getEdges()
-        self.assertEqual(g.incident(hamburg), g.adjacent(hamburg))
+        berlin = g.getVerticeByName("Berlin")
+        bremen = g.getVerticeByName("Bremen")
+        actual_adj = g.getVerticesByName(["Neumünster","Hannover","Lüneburg","Lübeck"])
+        adja_hh = g.adjacent(hamburg)
+        self.assertEqual(set(actual_adj), adja_hh)
+        actual_adj.append(berlin)
+        actual_adj.append(bremen)
+        inci_hh = g.incident(hamburg)
+        self.assertEqual(set(actual_adj), inci_hh)
         self.assertTrue("Hamburg", hamburg.getName())
 
 

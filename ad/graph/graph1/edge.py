@@ -12,7 +12,7 @@ class Edge():
         self.weight = weight
 
     def __repr__(self):
-        return "e{" + str(self.name) + ", =" + str(self.weight) + "}"
+        return "edge(" + str(self.name) + ", =" + str(self.weight) + ")"
 
     # Functions
     def inBetween(self, v1, v2):
@@ -63,6 +63,9 @@ class Edge():
 
     def setDest(self, dest):
         self.dest = dest
+
+    def resetWeight(self):
+        self.weight = {}
 
     # Selectors
     def isSling(self):

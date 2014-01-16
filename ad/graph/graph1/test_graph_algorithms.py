@@ -16,6 +16,7 @@ class TestGraphAlgorithms(unittest.TestCase):
         g = gp.createGraph()
         s = g.getVerticeByName("y")
         t = g.getVerticeByName("u")
+        print g
         l = graph_algorithms.shortest_path(g, s, t, "d")
         shortest_path_as_names = map(lambda x: x.getName(), l)
         self.assertEqual(["y","s","x","u"], shortest_path_as_names)

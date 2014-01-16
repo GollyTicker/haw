@@ -9,7 +9,7 @@ class TestGraph(unittest.TestCase):
 
     # Workflow of a Graph
     def test_graph_integration(self):
-        g = graph.Graph("Euclid", "multigraph")
+        g = graph2.Graph("Euclid", "multigraph")
         self.assertEqual("Euclid", g.getName())
         self.assertEqual("multigraph", g.getDirection())
         self.assertTrue(g.empty())
@@ -68,9 +68,9 @@ class TestGraph(unittest.TestCase):
         gp = GraphParser(p, name)
         g = gp.createGraph()
         self.assertTrue(not g.empty())
-        hamburg = g.getVerticeByName("Hamburg")
-        berlin = g.getVerticeByName("Berlin")
-        bremen = g.getVerticeByName("Bremen")
+        hamburg = g.getVertice("Hamburg")
+        berlin = g.getVertice("Berlin")
+        bremen = g.getVertice("Bremen")
         actual_adj = g.getVerticesByName(["Neumünster","Hannover","Lüneburg","Lübeck"])
         adja_hh = g.adjacent(hamburg)
         self.assertEqual(set(actual_adj), adja_hh)

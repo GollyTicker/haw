@@ -22,7 +22,9 @@ class Graph():
             dest = edge.getDest()
             direction = " " if edge.isDirected() else " <"
             str_edge = direction + "= (" + ename + ", " + emap + ") => "
-            acc += str(src.getName()) + str_edge + str(dest.getName()) + "\n\t"
+            str_src = "(" + src.getName() + ", " + str(src.getWeightMap()) + ")"
+            str_dest = "(" + dest.getName() + ", " + str(dest.getWeightMap()) + ")"
+            acc += str_src + str_edge + str_dest + "\n\t"
         return "Graph(" + str(self.name) + ", " + self.direction + ") <<\n\t" + acc + ">>"
 
     def empty(self):
@@ -190,7 +192,7 @@ class Graph():
             self.ver_to_edg[vertice] = [edge]
 
     def __eq__(self, other):
-        if isinstance(other, Vertice):
+        if isinstance(other, Graph):
             return self.name == other.name
         else:
             return False
@@ -200,6 +202,3 @@ class Graph():
 
     def __hash__(self):
         return hash(self.name)
-
-
-

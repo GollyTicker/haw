@@ -7,11 +7,22 @@ class Vertice():
     def __init__(self, name):
         self.name = name
         self.weight = {}
+        self.edges = set([])
 
     def __repr__(self):
         return "v{" + str(self.name) + "}"
 
     # Mutators
+    def addEdge(self, edge_name):
+        self.edges.add(edge_name)
+
+    def removeEdge(self, edge_name):
+        if edge_name in self.edges:
+            self.edges.remove(edge_name)
+
+    def getEdges(self):
+        return self.edges
+
     def updateWeight(self, key, value):
         if key in self.weight:
             self.weight[key] += value
@@ -32,6 +43,9 @@ class Vertice():
             
     def getName(self):
         return self.name
+
+    def resetWeight(self):
+        self.weight = {}
 
     # Built in
     def __eq__(self, other):

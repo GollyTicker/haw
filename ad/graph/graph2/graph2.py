@@ -114,7 +114,14 @@ class Graph():
         edges = self.vertices[vertice].getEdges()
         return any(self.getEdge(edge).isSling() for edge in edges)
 
-    # Selectors
+    # Selectors Graph
+    def getDirection(self):
+        return self.direction
+
+    def getName(self):
+        return self.name
+
+    # Selectors Graph Components
     def getVertice(self, name):
         if name in self.vertices:
             return self.vertices[name]
@@ -124,12 +131,6 @@ class Graph():
         if name in self.edges:
             return self.edges[name]
         return None
-
-    def getDirection(self):
-        return self.direction
-
-    def getName(self):
-        return self.name
 
     def getEdges(self):
         collect = []
@@ -162,6 +163,14 @@ class Graph():
         if not isinstance(edge, Edge):
             edge = self.getEdge(edge)
         return map(self.getVertice, edge.getSrcDest())
+
+    def getEdgeSrcDest(self, source, target):
+        edges = self.getVertice(source).getEdges()
+        for ename in edges:
+            edge = self.getEdge(ename)
+            if edge.inBetween(source, target):
+                return edge
+        return None
 
     def __eq__(self, other):
         if isinstance(other, Graph):

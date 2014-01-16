@@ -86,21 +86,22 @@ class Graph():
 
     # Functions
     def adjacent(self, vertice):
-        edges = self.vertices[vertice].getEdges()
+        edges = self.getVertice(vertice).getEdges()
         adja = set([])
         for edge in edges:
-            edgeobj = self.getEdge(edge)
-            if edgeobj.isVerticeSrc(vertice):
-                adja.add(edgeobj.getDestBySrc(vertice))
+            edge = self.getEdge(edge)
+            if edge.isVerticeSrc(vertice):
+                adja.add(edge.getDestBySrc(vertice))
         if not self.hasSling(vertice) and vertice in adja:
             adja.remove(vertice)
         return adja
 
     def incident(self, vertice):
-        edges = self.vertices[vertice].getEdges()
+        edges = self.getVertice(vertice).getEdges()
         inci = set([])
-        for edge in self.getEdgesByName(edges):
-            src, dest = edge.getSrc(), edge.getDest()
+        for edge in edges:
+            edge = self.getEdge(edge)
+            src, dest = edge.getSrcDest()
             inci.add(src)
             inci.add(dest)
         if not self.hasSling(vertice) and vertice in inci:
@@ -157,6 +158,10 @@ class Graph():
         return collect
 
     # Delegation
+    def getSrcDest(self, edge):
+        if not isinstance(edge, Edge):
+            edge = self.getEdge(edge)
+        return map(self.getVertice, edge.getSrcDest())
 
     def __eq__(self, other):
         if isinstance(other, Graph):

@@ -42,8 +42,7 @@ def bellmanFord(g, source, cmp_):
     # Step 2: relax edges repeatedly
     for _ in range(0, len(vertices)):
         for edge in edges:
-            u = g.getVertice(edge.getSrc())
-            v = g.getVertice(edge.getDest())
+            u, v = g.getSrcDest(edge)
             w = edge.getWeight(cmp_)
             if u.getWeight("d") + w < v.getWeight("d"):
                 v.setWeight("d", u.getWeight("d") + w)
@@ -51,8 +50,7 @@ def bellmanFord(g, source, cmp_):
 
    # Step 3: check for negative-weight cycles
     for edge in edges:
-        u = g.getVertice(edge.getSrc())
-        v = g.getVertice(edge.getDest())
+        u, v = g.getSrcDest(edge)
         w = edge.getWeight(cmp_)
         if u.getWeight("d") + w < v.getWeight("d"):
            print "Graph contains a negative-weight cycle"

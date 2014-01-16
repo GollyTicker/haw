@@ -4,49 +4,32 @@ from vertice import Vertice
 from edge import Edge
 import sys
 
-infinity = sys.maxint / 2 # 4611686018427387903
 
-'''
-def fordFulkerson(g, s, t, cmp_):
-    edges = g.getEdges()
-    for edge in edges:
-        edge.setWeight("ff", 0)
-        edge.setWeight("fb", 0)
-    p = initPath(g)
-    while p:
-        cf = min(p, key=lambda x: x.getWeight(cmp_))
-        for edge in p:
-            edge.updateWeight("ff", cf)
-            edge.updateWeight("fb", -cf)
-        p = nextPath(g)
-'''
+''' 4611686018427387903 '''
+infinity = sys.maxint / 2 
 
 def shortest_path(g, source, target, cmp_):
 
-    vertices = g.getVertices()
-    edges = g.getEdges()
     source = g.getVertice(source)
     target = g.getVertice(target)
-    bellmanFord(g, vertices, edges, source, cmp_)
+    bellmanFord(g, source, cmp_)
 
-    def get_shortest_path(source, target, cmp_, accu):
+    def inner_shortest(target, accu):
+        if target.getWeight(cmp_) == infinity:
+            return []
+        pred = target.getWeight("pred")
+        if pred == None:
+            accu.insert(0, source)
+            return accu
+        accu.insert(0, target)
+        return inner_shortest(pred, accu)
 
-        def inner_shortest(target, accu):
-            if target.getWeight(cmp_) == infinity:
-                return []
-            pred = target.getWeight("pred")
-            if pred == None:
-                accu.insert(0, source)
-                return accu
-            accu.insert(0, target)
-            return inner_shortest(pred, accu)
-
-        return inner_shortest(target, accu)
-
-    return get_shortest_path(source, target, cmp_, [])
+    return inner_shortest(target, [])
 
 
-def bellmanFord(g, vertices, edges, source, cmp_):
+def bellmanFord(g, source, cmp_):
+    vertices = g.getVertices()
+    edges = g.getEdges()
 
     # Step 1: initialize graph
     for vertex in vertices:
@@ -58,7 +41,7 @@ def bellmanFord(g, vertices, edges, source, cmp_):
 
     # Step 2: relax edges repeatedly
     for _ in range(0, len(vertices)):
-        for edge in edges:# with weight w in edges:
+        for edge in edges:
             u = g.getVertice(edge.getSrc())
             v = g.getVertice(edge.getDest())
             w = edge.getWeight(cmp_)
@@ -76,5 +59,19 @@ def bellmanFord(g, vertices, edges, source, cmp_):
            return None
 
 
+'''
+def fordFulkerson(g, s, t, cmp_):
+    edges = g.getEdges()
+    for edge in edges:
+        edge.setWeight("ff", 0)
+        edge.setWeight("fb", 0)
+    p = initPath(g)
+    while p:
+        cf = min(p, key=lambda x: x.getWeight(cmp_))
+        for edge in p:
+            edge.updateWeight("ff", cf)
+            edge.updateWeight("fb", -cf)
+        p = nextPath(g)
+'''
 
 

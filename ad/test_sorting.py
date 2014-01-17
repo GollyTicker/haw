@@ -13,6 +13,10 @@ class TestSorting(unittest.TestCase):
     	result = sorting.max_sort(collection)
     	is_sorted = sorting.isSorted(result)
     	self.assertEqual(True, is_sorted)
+        collection = utils.sorted_list(1, 1000)
+        result = sorting.max_sort(collection)
+        is_sorted = sorting.isSorted(result)
+        self.assertEqual(True, is_sorted)
 
     def test_max_sort_inplace(self):
         collection = utils.random_list(100, 1, 1000)
@@ -20,6 +24,10 @@ class TestSorting(unittest.TestCase):
         is_sorted = sorting.isSorted(result)
         self.assertEqual(True, is_sorted)
         collection = utils.reversed_sorted_list(1, 100)
+        result = sorting.max_sort_inplace(collection)
+        is_sorted = sorting.isSorted(result)
+        self.assertEqual(True, is_sorted)
+        collection = utils.sorted_list(1, 1000)
         result = sorting.max_sort_inplace(collection)
         is_sorted = sorting.isSorted(result)
         self.assertEqual(True, is_sorted)
@@ -33,6 +41,10 @@ class TestSorting(unittest.TestCase):
     	result = sorting.insertion_sort(collection)
     	is_sorted = sorting.isSorted(result)
     	self.assertEqual(True, is_sorted)
+        collection = utils.sorted_list(1, 1000)
+        result = sorting.insertion_sort(collection)
+        is_sorted = sorting.isSorted(result)
+        self.assertEqual(True, is_sorted)
 
     def test_bubble_sort(self):
     	collection = utils.random_list(100, 1, 1000)
@@ -43,6 +55,10 @@ class TestSorting(unittest.TestCase):
     	result = sorting.bubble_sort(collection)
     	is_sorted = sorting.isSorted(result)
     	self.assertEqual(True, is_sorted)
+        collection = utils.sorted_list(1, 10000)
+        result = sorting.bubble_sort(collection)
+        is_sorted = sorting.isSorted(result)
+        self.assertEqual(True, is_sorted)
 
     def test_heap_sort(self):
         collection = utils.random_list(10000, 1, 1000)
@@ -50,6 +66,10 @@ class TestSorting(unittest.TestCase):
         is_sorted = sorting.isSorted(result)
         self.assertEqual(True, is_sorted)
         collection = utils.reversed_sorted_list(1, 10000)
+        result = sorting.heap_sort(collection)
+        is_sorted = sorting.isSorted(result)
+        self.assertEqual(True, is_sorted)
+        collection = utils.sorted_list(1, 1000)
         result = sorting.heap_sort(collection)
         is_sorted = sorting.isSorted(result)
         self.assertEqual(True, is_sorted)
@@ -63,6 +83,10 @@ class TestSorting(unittest.TestCase):
         result = sorting.merge_sort(collection)
         is_sorted = sorting.isSorted(result)
         self.assertEqual(True, is_sorted)
+        collection = utils.sorted_list(1, 10000)
+        result = sorting.merge_sort(collection)
+        is_sorted = sorting.isSorted(result)
+        self.assertEqual(True, is_sorted)
 
     def test_quick_sort_rec(self):
         collection = utils.random_list(10000, 1, 1000)
@@ -70,6 +94,10 @@ class TestSorting(unittest.TestCase):
         is_sorted = sorting.isSorted(result)
         self.assertEqual(True, is_sorted)
         collection = utils.reversed_sorted_list(1, 10000)
+        result = sorting.quick_sort_rec(collection)
+        is_sorted = sorting.isSorted(result)
+        self.assertEqual(True, is_sorted)
+        collection = utils.sorted_list(1, 10000)
         result = sorting.quick_sort_rec(collection)
         is_sorted = sorting.isSorted(result)
         self.assertEqual(True, is_sorted)
@@ -83,6 +111,10 @@ class TestSorting(unittest.TestCase):
         sorting.qs_inplace(collection)
         is_sorted = sorting.isSorted(collection)
         self.assertEqual(True, is_sorted)
+        collection = utils.sorted_list(1, 10000)
+        sorting.qs_inplace(collection)
+        is_sorted = sorting.isSorted(collection)
+        self.assertEqual(True, is_sorted)
 
     def test_counting_sort(self):
         collection = utils.random_list(100, 1, 100)
@@ -92,6 +124,10 @@ class TestSorting(unittest.TestCase):
         collection = utils.reversed_sorted_list(1, 100)
         sorting.counting_sort(collection)
         is_sorted = sorting.isSorted(collection)
+        self.assertEqual(True, is_sorted)
+        collection = utils.sorted_list(1, 10000)
+        result = sorting.counting_sort(collection)
+        is_sorted = sorting.isSorted(result)
         self.assertEqual(True, is_sorted)
 
 

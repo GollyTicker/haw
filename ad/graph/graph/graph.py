@@ -3,11 +3,11 @@
 from vertice import Vertice
 from edge import Edge
 
-# graph_object = Graph(String, Bool=True, dict={Edge : [Vertice]}, dict={Vertice : [Edge]})
+# graph_object = Graph(String, Bool="Description", dict={String : Edge}, dict={String : Vertice})
 class Graph():
 
     # Creation
-    def __init__(self, name, direction="None"):
+    def __init__(self, name, direction="Description"):
         self.name = name
         self.direction = direction
         self.edges = {}

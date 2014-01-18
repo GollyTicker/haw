@@ -50,6 +50,9 @@ class BinTree():
 			node = node.right
 		return node.data
 
+	def tdelete(self, val):
+		pass
+
 	def tinsert(self, val):
 		z = Node(val)
 		y = None
@@ -103,6 +106,9 @@ class Node():
 
 	def setParent(self, parent):
 		self.parent = parent
+
+	def isLeaf(self):
+		return self.left == None and self.right == None
 
 	def getParent(self):
 		return self.parent

@@ -56,7 +56,7 @@ class TestHeap(unittest.TestCase):
         self.assertEqual(16, h.maximum())
         self.assertEqual(-1, h.minimum())
         # increaseKey
-        h.increaseKey(32, 19)
+        h.insert(19)
         self.assertEqual(19, h.maximum())
         self.assertEqual(True, h.isMaxHeap())
         # Merge
@@ -89,7 +89,7 @@ class TestHeap(unittest.TestCase):
 class TestBinaryTree(unittest.TestCase):
 
     def test_binary_tree(self):
-        l = utils.sorted_list(0, 15)
+        l = utils.sorted_list(0, 7)
         # Creation
         b = btree.BinTree()
         while l:

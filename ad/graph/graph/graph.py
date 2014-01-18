@@ -85,7 +85,7 @@ class Graph():
         self.direction = direction
 
     # Functions
-    def adjacent(self, vertice):
+    def neighbours(self, vertice):
         edges = self.getVertice(vertice).getEdges()
         adja = set([])
         for edge in edges:
@@ -94,19 +94,18 @@ class Graph():
                 adja.add(edge.getDestBySrc(vertice))
         if not self.hasSling(vertice) and vertice in adja:
             adja.remove(vertice)
-        return adja
+        return adja # -> Set(Vertice.name)
+
+    def adjacent(self, vertice):
+        edges = self.getVertice(vertice).getEdges()
+        adja = set([])
+        for edge in edges:
+            if self.getEdge(edge).isVerticeSrc(vertice):
+                adja.add(edge)
+        return adja # -> Set(Edge.name)
 
     def incident(self, vertice):
-        edges = self.getVertice(vertice).getEdges()
-        inci = set([])
-        for edge in edges:
-            edge = self.getEdge(edge)
-            src, dest = edge.getSrcDest()
-            inci.add(src)
-            inci.add(dest)
-        if not self.hasSling(vertice) and vertice in inci:
-            inci.remove(vertice)
-        return inci
+        return self.getVertice(vertice).getEdges() # -> Set(Edge.name)
 
     def hasSling(self, vertice):
         if not vertice in self.vertices:

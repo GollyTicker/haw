@@ -3,7 +3,7 @@
 from vertice import Vertice
 from edge import Edge
 
-# graph_object = Graph(String, Bool="Description", dict={String : Edge}, dict={String : Vertice})
+# graph_object = Graph(String, String="Description", dict={String : Edge}, dict={String : Vertice})
 class Graph():
 
     # Creation

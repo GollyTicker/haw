@@ -17,8 +17,8 @@ class Graph():
         acc = ""
         for ename, edge in self.edges.items():
             emap = str(edge.getWeightMap())
-            src = self.vertices[edge.getSrc()]
-            dest = self.vertices[edge.getDest()]
+            src = self.getVertice(edge.getSrc())
+            dest = self.getVertice(edge.getDest())
             direction = " " if edge.isDirected() else " <"
             str_edge = direction + "= (" + ename + ", " + emap + ") => "
             str_src = "(" + src.getName() + ", " + str(src.getWeightMap()) + ")"
@@ -67,10 +67,9 @@ class Graph():
     def addEdge(self, name, src, dest, isdirected=True, weight={}):
         src_name = self.addVertice(src)
         dest_name = self.addVertice(dest)
-        self.vertices[src_name].addEdge(name)
-        self.vertices[dest_name].addEdge(name)
-        e = Edge(name, src_name, dest_name, isdirected, weight)
-        self.edges[name] = e
+        self.getVertice(src_name).addEdge(name)
+        self.getVertice(dest_name).addEdge(name)
+        self.edges[name] = Edge(name, src_name, dest_name, isdirected, weight)
         return name
 
     def addVertice(self, vertice):
@@ -110,7 +109,7 @@ class Graph():
     def hasSling(self, vertice):
         if not vertice in self.vertices:
             return False
-        edges = self.vertices[vertice].getEdges()
+        edges = self.getVertice(vertice).getEdges()
         return any(self.getEdge(edge).isSling() for edge in edges)
 
     # Selectors Graph

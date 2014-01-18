@@ -24,7 +24,7 @@ class Heap():
 		return copy.deepcopy(self)
 
 	# Mutators
-	def heapify(self):
+	def buildMaxHeap(self):
 		midx = self.father(self.size)
 		while midx >= 0:
 			self.maxHeapify(midx)
@@ -148,30 +148,6 @@ class Heap():
 		return l
 		result = "\n".join(map(lambda x: "\t" + str(x), l))
 		return "Heap( \n" + result + "\n)"
-
-
-'''
-from random import shuffle
-
-shuffled = [16, 12, 15, 11, 8, 7, 13, 7, 6, 1, 2, 4, 5, 9, 0, -1]
-shuffle(shuffled)
-h = Heap(shuffled)
-h.heapify()
-
-l = h.cool_repr()
-second_highest = l[len(l)-2]
-next_2_snd = len(second_highest)*2
-
-last = ['None' for _ in range(0, next_2_snd)]
-len_last = len(last)
-
-highest = l[-1]
-highest_len = len(highest)
-
-diff = len_last - highest_len
-l[-1].extend(['None']*diff)
-'''
-
 
 
 

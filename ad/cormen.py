@@ -1,6 +1,7 @@
 import math
+import utils
 
-def inversion_of(seq):
+def inversionOf(seq):
 
 	result = []
 	for idx1, e1 in enumerate(seq):
@@ -13,7 +14,7 @@ def inversion_of(seq):
 
 	return result
 
-def subset_sum(seq, x):
+def subsetSumOfTwo(seq, x):
 	idx1 = 0
 	while idx1 < len(seq):
 		idx2 = 0
@@ -26,19 +27,20 @@ def subset_sum(seq, x):
 		idx1 += 1
 	return False
 
-def sort_and_count(l):
+
+def sortAndCount(l):
 	if len(l) <= 1:
 		return (0, l)
 	else:
 		middle = len(l) / 2
 		a = l[:middle]
 		b = l[middle:]
-		ca = sort_and_count(a)
-		cb = sort_and_count(b)
-		cl = merge_and_count(a, b)
+		ca = sortAndCount(a)
+		cb = sortAndCount(b)
+		cl = mergeAndCount(a, b)
 	return (ca[0] + cb[0] + cl[0], l)
 
-def merge_and_count(a, b):
+def mergeAndCount(a, b):
 	merged = []
 	count, a_size = 0, len(a)
 	aidx, bidx = 0, 0
@@ -73,51 +75,5 @@ def gordonGecko(A):
 	return (min_idx, max_idx, res)
 
 
-# TEST
-def assertEquPrice(expected, was):
-	a = expected
-	b = was
-	if a == b:
-		return True
-	print "Was expected: %s" % str(a)
-	print "Actually was: %s" % str(b)
-	raise Exception("False! Error")
 
-def shouldBeAnOptimalOf(expected, course):
-	assertEquPrice(expected, gordonGecko(course))
-
-def positive_test():
-	shouldBeAnOptimalOf((0,3,7), [2,5,2,9,3,4,0,2])
-
-	shouldBeAnOptimalOf((0,7,17), [3,5,7,9,4,4,7,20])
-
-	shouldBeAnOptimalOf((5,7,18), [3,19,7,9,4,2,7,20])
-
-	shouldBeAnOptimalOf((0,1,1), [1,2])
-
-	shouldBeAnOptimalOf((0,1,9), [1,10,2,2,1,1,0,0])
-	
-	shouldBeAnOptimalOf((5,6,6), [5,3,7,5,6,2,8,5,1])
-
-	shouldBeAnOptimalOf((0,4,9), [1,2,3,4,10,6,7,8,9,10])
-
-def negative_test():
-	shouldBeAnOptimalOf((-1,-1,-1), [2,1])
-
-	shouldBeAnOptimalOf((-1,-1,-1), [2,2])
-
-	shouldBeAnOptimalOf((-1,-1,-1), [3,3,2,2,1,1,0,0])
-
-
-positive_test()
-negative_test()
-
-
-
-
-
-def fun1(n):
-	if n < 3:
-		return 43
-	return 2*fun1(n-1) + 4*fun1(n-2) + 8*fun1(n-3)
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-import graph2
+import graph
 from graphparser import GraphParser
 import graph_algorithms
 
@@ -18,6 +18,8 @@ class TestGraphAlgorithms(unittest.TestCase):
         self.assertEqual(["y","s","x","u"], shortest_path_as_names)
 
     def test_ford_fulkerson(self):
+        pass
+        '''
         name = "graph9"
         p = "/Users/sacry/dev/uni/s3/WS1314/GKA/graphs/"+name+".graph"
         gp = GraphParser(p, name)
@@ -29,7 +31,7 @@ class TestGraphAlgorithms(unittest.TestCase):
         weight = map(lambda x: x.getWeight("ff"), edges)
         print edges
         print sum(weight)
-        #print g
-
+        '''
+        
 if __name__ == '__main__':
     unittest.main()

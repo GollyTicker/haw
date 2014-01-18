@@ -1,4 +1,4 @@
-from graph2 import Graph
+from graph import Graph
 from vertice import Vertice
 from edge import Edge
 

@@ -1,4 +1,4 @@
-from graph2 import Graph
+from graph import Graph
 from graphparser import GraphParser
 from vertice import Vertice
 from edge import Edge
@@ -57,22 +57,28 @@ def bellmanFord(g, source, cmp_):
            return None
 
 def fordFulkerson(g, s, t, cmp_):
-    edges = g.getEdges()
-    for edge in edges:
-        edge.setWeight("c", 10)
-        edge.setWeight("ff", 0)
-        edge.setWeight("fb", 0)
-    p = find(g, s, t, [])
-    while p:
-        cf = min(p, key=lambda x: x.getWeight("d")).getWeight("d")
-        for edge in p:
-            edge.updateWeight("ff", cf)
-            edge.updateWeight("fb", -cf)
-        p = find(g, s, t, [])
+
+    raise Error("Not Implemented!")
+    
+    def inner_ford(s_, t_,):
+        edges = g.getEdges()
+        for edge in edges:
+            edge.setWeight("c", 10)
+            edge.setWeight("ff", 0)
+            edge.setWeight("fb", 0)
+        p = find(g, s_, t_, [])
+        while p:
+            cf = min(p, key=lambda x: x.getWeight(cmp_)).getWeight(cmp_)
+            for edge in p:
+                edge.updateWeight("ff", cf)
+                edge.updateWeight("fb", -cf)
+            p = find(g, s_, t_, [])
 
 
     def find(g, s, t, p):
         return p
+
+    inner_ford(s, t)
 
 
 

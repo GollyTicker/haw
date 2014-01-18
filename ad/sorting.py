@@ -1,6 +1,5 @@
 import heap
 import time
-from operator import itemgetter
 
 DEBUG = True
 
@@ -52,7 +51,7 @@ def bubble_sort(mlist):
 
 def heap_sort(mlist):
 	h = heap.Heap(mlist)
-	h.heapify()
+	h.buildMaxHeap()
 	idx = h.getSize()-1
 	while idx > 0:
 		h.swap(0, idx)
@@ -198,6 +197,7 @@ def isSorted(mlist):
 			return False
 		idx += 1
 	return True
+
 
 
 

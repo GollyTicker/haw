@@ -2,6 +2,7 @@ import unittest
 import stack
 import queue
 import heap
+import btree
 import utils
 from random import shuffle
 from sorting import isSorted
@@ -50,7 +51,7 @@ class TestHeap(unittest.TestCase):
         # Creation
         h = heap.Heap(shuffled)
         self.assertEqual(False, h.isMaxHeap())
-        h.heapify()
+        h.buildMaxHeap()
         self.assertEqual(True, h.isMaxHeap())
         self.assertEqual(16, h.maximum())
         self.assertEqual(-1, h.minimum())
@@ -61,7 +62,7 @@ class TestHeap(unittest.TestCase):
         # Merge
         h2 = heap.Heap(shuffled)
         self.assertEqual(False, h2.isMaxHeap())
-        h2.heapify()
+        h2.buildMaxHeap()
         self.assertEqual(True, h2.isMaxHeap())
         h.merge(h2)
         self.assertEqual(True, h.isMaxHeap())
@@ -84,7 +85,33 @@ class TestHeap(unittest.TestCase):
         self.assertEqual(True, h.isMaxHeap())
         self.assertEqual(16, h.maximum())
         self.assertEqual(-1, h.minimum())
-        
+
+class TestBinaryTree(unittest.TestCase):
+
+    def test_binary_tree(self):
+        l = utils.sorted_list(0, 15)
+        # Creation
+        b = btree.BinTree()
+        while l:
+            b.tinsert(utils.takeRdm(l))
+        # Functions
+        result = b.treeSort()
+        is_sorted = isSorted(result)
+        self.assertEqual(True, is_sorted)
+        b.treeMap(b.getRoot(), lambda x: x + 1)
+        for idx, elem in enumerate(b.treeSort()):
+            self.assertTrue(result[idx] < elem)
+        # Search/Min/Max
+        b.tinsert(16)
+        searched = b.search(b.getRoot(), 16)
+        self.assertEqual(btree.Node(16), searched)
+        mi = b.minimum(b.getRoot())
+        self.assertEqual(1, mi)
+        ma = b.maximum(b.getRoot())
+        self.assertEqual(16, ma)
+        # Special To String
+        #btree.TreeRepr(b).toS()
+
 if __name__ == '__main__':
     unittest.main()
 

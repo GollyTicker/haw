@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from graph2 import Graph
+from graph import Graph
 from graphparser import GraphParser
 
 class TestGraph(unittest.TestCase):
@@ -65,7 +65,6 @@ class TestGraph(unittest.TestCase):
         p = "/Users/sacry/dev/uni/s3/WS1314/GKA/graphs/"+name+".graph"
         gp = GraphParser(p, name)
         g = gp.createGraph()
-        print g
         self.assertTrue(not g.empty())
         actual_adj = set(["Neumünster","Hannover","Lüneburg","Lübeck"])
         expected_adj = g.adjacent("Hamburg")

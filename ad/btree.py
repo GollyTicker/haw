@@ -3,8 +3,11 @@ import utils
 
 class BinTree():
 
-	def __init__(self, root):
-		self.root = root
+	def __init__(self, root_val=None):
+		if root_val != None:
+			self.root = Node(root_val)
+		else:
+			self.root = root_val
 
 	def inorderTreeWalk(self, node):
 		if node:
@@ -12,7 +15,7 @@ class BinTree():
 			print node.data
 			self.inorderTreeWalk(node.right)
 
-	def sortedList(self):
+	def treeSort(self):
 		acc = []
 		def sort_walk(node):
 			if node:
@@ -22,7 +25,7 @@ class BinTree():
 		sort_walk(self.root)
 		return acc
 
-	def tree_map(self, node, f):
+	def treeMap(self, node, f):
 		def inner_map(node):
 			if node:
 				inner_map(node.left)
@@ -40,80 +43,96 @@ class BinTree():
 	def minimum(self, node):
 		while node.left:
 			node = node.left
-		return node
+		return node.data
 
 	def maximum(self, node):
 		while node.right:
 			node = node.right
-		return node
+		return node.data
 
-	def minimum_rec(self, node):
-		if node.left:
-			return self.minimum_rec(node.left)
-		return node
-
-	def maximum_rec(self, node):
-		if node.right:
-			return self.maximum_rec(node.right)
-		return node
-
-	# parent of not working
-	def parentOf(self, node):
+	def tinsert(self, val):
+		z = Node(val)
+		y = None
 		x = self.root
-		parent = None
-		while x:
-			if node.data == x.data:
-				return parent
-			parent = x
-			if node.data < x.data:
+		while x != None:
+			y = x
+			if z.data < x.data:
 				x = x.left
 			else:
 				x = x.right
-		return parent
-
-	def insert(self, node):
-		y = self.parentOf(node)
-		if not y:
-			self.root = node
-		elif node.data < y.data:
-			temp = y.left
-			if temp != None and temp.data > node.data:
-				node.setRight(temp)
-			else:
-				node.setLeft(temp)
-			y.setLeft(node)
+		z.setParent(y)
+		if y == None:
+			self.root = z
+		elif z.data < y.data:
+			y.left = z
 		else:
-			temp = y.right
-			if temp != None and temp.data > node.data:
-				node.setRight(temp)
-			else:
-				node.setLeft(temp)
-			y.setRight(node)
+			y.right = z
 
-	def successor_tree(self, node):
+	def successorTree(self, node):
 		if node.right:
 			return self.minimum(node.right)
-		y = self.parentOf(node)
+		y = node.getParent()
 		while y and node == y.right:
 			node = y
-			y = self.parentOf(y)
-		return y
-
-	def succ(self, k):
-		node = self.search(self.root, k)
-		if node.right:
-			return self.minimum(node.right).data
-		y = self.parentOf(node)
-		while y and node == y.right:
-			node = y
-			y = self.parentOf(y)
-		return y.data
+			y = y.getParent()
+		if y:
+			return y.data
+		return None
 
 	def getRoot(self):
 		return self.root
 
 	def __repr__(self):
 		return "Root(" + str(self.root) + ")"
+
+
+class Node():
+
+	left, right, data = None, None, None
+
+	def __init__(self, data, left=None, right=None):
+		self.parent = None
+		self.left = left
+		self.data = data
+		self.right = right
+
+	def __repr__(self):
+		if self.left or self.right:
+			return "Node(" + str(self.left) + ", " + str(self.data) + ", " + str(self.right) + ")"
+		return "Leaf(" + str(self.data) + ")"
+
+	def setParent(self, parent):
+		self.parent = parent
+
+	def getParent(self):
+		return self.parent
+
+	def setLeft(self, left):
+		self.left = left
+
+	def setRight(self, right):
+		self.right = right
+
+	def setData(self, data):
+		self.data = data
+
+	def __eq__(self, other):
+		if isinstance(other, Node):
+			return (self.data == other.data and 
+				self.left == other.left and 
+				self.right == other.right)
+		return False
+
+
+class TreeRepr():
+
+	def __init__(self, btree):
+		self.root = btree.getRoot()
+		self.token = self.tokenize(str(self.root))
+		self.to_s = self.parse()
+
+	def toS(self):
+		print self.to_s
 
 	def tokenize(self, str_repr):
 		token = filter(lambda x: x, 
@@ -126,7 +145,7 @@ class BinTree():
 		return token
 
 	def parse(self):
-		token = self.tokenize(str(self.root))
+		token = self.token
 		t_count, t_offset, t_offset2 = 0, "   ", "..."
 		comma = 0
 		idx = 0
@@ -165,48 +184,4 @@ class BinTree():
 		acc += ")\n---------------"
 		return acc
 
-
-class Node():
-
-	left, right, data = None, None, None
-
-	def __init__(self, data, left=None, right=None):
-		self.left = left
-		self.data = data
-		self.right = right
-
-	def __repr__(self):
-		if self.left or self.right:
-			return "Node(" + str(self.left) + ", " + str(self.data) + ", " + str(self.right) + ")"
-		return "Leaf(" + str(self.data) + ")"
-
-	def setLeft(self, left):
-		self.left = left
-
-	def setRight(self, right):
-		self.right = right
-
-	def setData(self, data):
-		self.data = data
-
-
-
-l = Node(4, Node(2), Node(5))
-r = Node(7, Node(6), Node(8))
-root = Node(6, l, r)
-b = BinTree(root)
-print l
-#b.inorderTreeWalk(b.getRoot())
-searched = b.search(b.getRoot(), 4)
-print "search 4: " + str(searched)
-mi = b.minimum(b.getRoot())
-print "minimum: " + str(mi)
-ma = b.maximum(b.getRoot())
-print "maximum: " + str(ma)
-mi = b.minimum_rec(b.getRoot())
-print "minimum_rec: " + str(mi)
-ma = b.maximum_rec(b.getRoot())
-print "maximum_rec: " + str(ma)
-print b.parse()
-print b
 

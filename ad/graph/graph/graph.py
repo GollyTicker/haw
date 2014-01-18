@@ -131,30 +131,16 @@ class Graph():
         return None
 
     def getEdges(self):
-        collect = []
-        for _, edge in self.edges.items():
-            collect.append(edge)
-        return collect
+        return self.edges.values()
 
     def getVertices(self):
-        collect = []
-        for _, vertice in self.vertices.items():
-            collect.append(vertice)
-        return collect
+        return self.vertices.values()
 
     def getVerticesByName(self, names):
-        collect = []
-        for name, vertice in self.vertices.items():
-            if name in names:
-                collect.append(vertice)
-        return collect
+        return [v for n, v in self.vertices.items() if n in names]
 
     def getEdgesByName(self, names):
-        collect = []
-        for name, edge in self.edges.items():
-            if name in names:
-                collect.append(edge)
-        return collect
+        return [e for n, e in self.edges.items() if n in names]
 
     # Delegation
     def getSrcDest(self, edge):

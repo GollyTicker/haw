@@ -67,6 +67,7 @@ class TestGraph(unittest.TestCase):
         self.assertEqual(actual_neighbours, expected_neighbours)
         hamburg = g.getVertice("Hamburg")
         self.assertTrue("Hamburg", hamburg.getName())
+        print g
 
 
 if __name__ == '__main__':

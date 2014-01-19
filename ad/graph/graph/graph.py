@@ -13,18 +13,26 @@ class Graph():
         self.edges = {}
         self.vertices = {}
 
+    # Sorted Alphabetical Order by Vertice.name
+    # srcVertice.name, srcVertice.weightMap 
+    #       - Edge.name, Edge.weightMap -> 
+    #           destVertice.name, destVertice.weightMap
     def __repr__(self):
-        acc = ""
-        for ename, edge in self.edges.items():
-            emap = str(edge.getWeightMap())
-            src = self.getVertice(edge.getSrc())
-            dest = self.getVertice(edge.getDest())
-            direction = " " if edge.isDirected() else " <"
-            str_edge = direction + "= (" + ename + ", " + emap + ") => "
-            str_src = "(" + src.getName() + ", " + str(src.getWeightMap()) + ")"
-            str_dest = "(" + dest.getName() + ", " + str(dest.getWeightMap()) + ")"
-            acc += str_src + str_edge + str_dest + "\n\t"
-        return "Graph(" + str(self.name) + ", " + self.direction + ") <<\n\t" + acc + ">>"
+        vname_tostr = []
+        for vname, vertice in self.vertices.items():
+            edges = self.adjacent(vname)
+            for ename in edges:
+                edge = self.getEdge(ename)
+                emap = str(edge.getWeightMap())
+                src = self.getVertice(edge.getSrc())
+                dest = self.getVertice(edge.getDest())
+                direction = "  " if edge.isDirected() else "  <"
+                str_edge = direction + "--(" + ename + ", " + emap + ")-->  "
+                str_src = "(" + src.getName() + ", " + str(src.getWeightMap()) + ")"
+                str_dest = "(" + dest.getName() + ", " + str(dest.getWeightMap()) + ")"
+                vname_tostr.append((vname, str_src + str_edge + str_dest + "\n\t"))
+        sorted_by_key = map(lambda x: x[1], sorted(vname_tostr, key=lambda x: x[0]))
+        return "Graph(" + str(self.name) + ", " + self.direction + ") <<\n\t" + "".join(sorted_by_key) + ">>"
 
     def empty(self):
         return (not self.vertices) and (not self.edges)

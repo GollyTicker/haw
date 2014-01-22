@@ -14,7 +14,7 @@ class BinTree():
 			self.inorderTreeWalk(node.left)
 			print node.data
 			self.inorderTreeWalk(node.right)
-
+			
 	def treeSort(self):
 		acc = []
 		def sort_walk(node):

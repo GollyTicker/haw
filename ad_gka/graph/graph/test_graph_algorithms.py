@@ -13,7 +13,16 @@ class TestGraphAlgorithms(unittest.TestCase):
         p = "/Users/sacry/dev/uni/s3/WS1314/GKA/graphs/"+name+".graph"
         gp = GraphParser(p, name)
         g = gp.createGraph()
-        l = graph_algorithms.shortestPath(g, "y", "u", "d")
+        l = graph_algorithms.shortestBellman(g, "y", "u", "d")
+        shortest_path_as_names = map(lambda x: x.getName(), l)
+        self.assertEqual(["y","s","x","u"], shortest_path_as_names)
+
+    def test_dijkstra(self):
+        name = "graph3"
+        p = "/Users/sacry/dev/uni/s3/WS1314/GKA/graphs/"+name+".graph"
+        gp = GraphParser(p, name)
+        g = gp.createGraph()
+        l = graph_algorithms.shortestDijkstra(g, "y", "u", "d")
         shortest_path_as_names = map(lambda x: x.getName(), l)
         self.assertEqual(["y","s","x","u"], shortest_path_as_names)
 

@@ -8,7 +8,7 @@ import sys
 ''' 4611686018427387903 '''
 infinity = sys.maxint / 2 
 
-def shortestPath(g, source, target, cmp_):
+def shortestBellman(g, source, target, cmp_):
 
     source = g.getVertice(source)
     target = g.getVertice(target)
@@ -56,6 +56,42 @@ def bellmanFord(g, source, cmp_):
            print "Graph contains a negative-weight cycle"
            return None
 
+
+def shortestDijkstra(g, source, target, cmp_):
+    dijkstra(g, source, cmp_)
+    S = []
+    u = g.getVertice(target)
+    while u.getWeight("prev") != None:
+        S.insert(0, u)
+        u = g.getVertice(u.getWeight("prev"))
+    S.insert(0, g.getVertice(source))
+    return S
+
+
+def dijkstra(g, source, cmp_):
+    for vertice in g.getVertices():
+        vertice.setWeight("d", infinity)
+        vertice.setWeight("prev", None)
+    g.getVertice(source).setWeight("d", 0)
+
+    Q = g.getVertices()
+    while Q:
+        u = min(Q, key=lambda x: x.getWeight("d"))
+        Q.remove(u)
+        if u.getWeight("d") == infinity:
+            break
+        for vname in g.neighbours(u.getName()):
+            v = g.getVertice(vname)
+            dist_between = g.getEdgeSrcDest(u.getName(), vname).getWeight(cmp_)
+            alt = u.getWeight("d") + dist_between
+            if alt < v.getWeight("d"):
+                v.setWeight("d", alt)
+                v.setWeight("prev", u.getName())
+                Q.remove(v)
+                Q.append(v)
+
+
+
 def fordFulkerson(g, s, t, cmp_):
 
     raise Error("Not Implemented!")
@@ -79,7 +115,4 @@ def fordFulkerson(g, s, t, cmp_):
         return p
 
     inner_ford(s, t)
-
-
-
 

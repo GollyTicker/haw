@@ -9,6 +9,7 @@ import graph_algorithms
 class TestGraphAlgorithms(unittest.TestCase):
 
     def test_bellman_ford(self):
+        print "Bellman Ford"
         name = "graph3"
         p = "/Users/sacry/dev/uni/s3/WS1314/GKA/graphs/"+name+".graph"
         gp = GraphParser(p, name)
@@ -18,6 +19,7 @@ class TestGraphAlgorithms(unittest.TestCase):
         self.assertEqual(["y","s","x","u"], shortest_path_as_names)
 
     def test_dijkstra(self):
+        print "Dijkstra"
         name = "graph3"
         p = "/Users/sacry/dev/uni/s3/WS1314/GKA/graphs/"+name+".graph"
         gp = GraphParser(p, name)
@@ -44,3 +46,6 @@ class TestGraphAlgorithms(unittest.TestCase):
         
 if __name__ == '__main__':
     unittest.main()
+
+
+    

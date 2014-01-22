@@ -9,6 +9,7 @@ class TestGraph(unittest.TestCase):
 
     # Workflow of a Graph
     def test_graph_integration(self):
+        print "Graph Creation"
         g = Graph("Euclid", "multigraph")
         self.assertEqual("Euclid", g.getName())
         self.assertEqual("multigraph", g.getDirection())
@@ -45,6 +46,18 @@ class TestGraph(unittest.TestCase):
         g.removeVertices([v1,v2,v3,v4,v5,v6,v7,v8])
         self.assertTrue(g.empty())
 
+    def test_graph_parser(self):
+        print "Graph Parsing"
+        name = "graph1"
+        p = "/Users/sacry/dev/uni/s3/WS1314/GKA/graphs/"+name+".graph"
+        gp = GraphParser(p, name)
+        g = gp.createGraph()
+        self.assertTrue(not g.empty())
+        actual_neighbours = set(["Neumünster","Hannover","Lüneburg","Lübeck"])
+        expected_neighbours = g.neighbours("Hamburg")
+        self.assertEqual(actual_neighbours, expected_neighbours)
+        hamburg = g.getVertice("Hamburg")
+        self.assertTrue("Hamburg", hamburg.getName())
 
     # Certain typical Edge Cases
     def test_edge_cases(self):
@@ -56,18 +69,6 @@ class TestGraph(unittest.TestCase):
     def test_edge(self):
         pass
 
-    def test_graph_parser(self):
-        name = "graph1"
-        p = "/Users/sacry/dev/uni/s3/WS1314/GKA/graphs/"+name+".graph"
-        gp = GraphParser(p, name)
-        g = gp.createGraph()
-        self.assertTrue(not g.empty())
-        actual_neighbours = set(["Neumünster","Hannover","Lüneburg","Lübeck"])
-        expected_neighbours = g.neighbours("Hamburg")
-        self.assertEqual(actual_neighbours, expected_neighbours)
-        hamburg = g.getVertice("Hamburg")
-        self.assertTrue("Hamburg", hamburg.getName())
-        print g
 
 
 if __name__ == '__main__':

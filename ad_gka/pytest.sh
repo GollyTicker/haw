@@ -1,7 +1,8 @@
 #!/bin/sh
+cd graph/
 python -m unittest discover
 rm *.pyc
-cd graph/graph
+cd ../ad
 python -m unittest discover
 rm *.pyc
-cd ../../
+cd ../

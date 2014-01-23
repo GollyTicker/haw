@@ -91,7 +91,6 @@ def dijkstra(g, source, cmp_):
                 Q.append(v)
 
 
-
 def fordFulkerson(g, s, t, cmp_):
 
     raise Error("Not Implemented!")

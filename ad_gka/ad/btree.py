@@ -1,5 +1,6 @@
 import re
 import utils
+import math
 
 class BinTree():
 
@@ -14,7 +15,15 @@ class BinTree():
 			self.inorderTreeWalk(node.left)
 			print node.data
 			self.inorderTreeWalk(node.right)
-			
+	
+	def pathCount(self, node):
+		if node:
+			if node.isLeaf():
+				return 1
+			return (self.pathCount(node.left) + 
+				self.pathCount(node.right))
+		return 0
+		
 	def treeSort(self):
 		acc = []
 		def sort_walk(node):

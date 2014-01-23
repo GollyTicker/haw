@@ -35,16 +35,33 @@ class TestGraph(unittest.TestCase):
         self.assertEqual(set([v8]), g.neighbours(v7))
         v9 = g.addVertice("v9")
         e11 = g.addEdge("e11", v1, v9, True, weight={"d" : 50})
-        # removing a vertice results in removing tthis vertice from the space +
-        # removing all edges depending on it
+        # v9 should be removed from g and all edges e dependant on v9
         g.removeVertice(v9)
         self.assertEqual(None, g.getEdge("e11"))
         self.assertEqual(set([v2,v3,v4]), g.neighbours(v1))
         self.assertEqual(set([e9]), g.adjacent(v7))
         self.assertEqual(set([v8]), g.neighbours(v7))
+        # Simple Graph
+        self.assertTrue(g.isSimpleGraph())
+        e13 = g.addEdge("e13", v2, v2, True, weight={"d" : 10}) # Added a Sling 
+        self.assertTrue(not g.isSimpleGraph())
+        # Multigraph
+        self.assertTrue(not g.isMultigraph())
+        e12 = g.addEdge("e12", v5, v8, True, weight={"d" : 5}) # Add another edge bewteen v5 -> v8
+        self.assertTrue(g.isMultigraph())
         # Removing all Vertices is equal to emptyness
-        g.removeVertices([v1,v2,v3,v4,v5,v6,v7,v8])
+        g.removeEdges([e1,e2,e3,e4,e5,e6,e7,e8,e9,e12,e13])
         self.assertTrue(g.empty())
+        self.assertTrue(not g.nullgraph())
+        g.removeVertices([v1,v2,v3,v4,v5,v6,v7,v8])
+        self.assertTrue(g.nullgraph())
+        self.assertTrue(g.empty())
+        self.assertEqual([], g.getEdges())
+        self.assertEqual([], g.getVertices())
+        # Checked that g is empty, these should behave differently
+        self.assertFalse(g.isDirac())
+        self.assertFalse(g.isMultigraph())
+        self.assertTrue(g.isSimpleGraph()) # NullGraph is always simple - it doesn't break any rules
 
     def test_graph_parser(self):
         print "Graph Parsing"

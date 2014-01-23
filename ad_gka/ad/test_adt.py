@@ -111,7 +111,7 @@ class TestBinaryTree(unittest.TestCase):
         self.assertEqual(16, ma)
         # Special To String
         #btree.TreeRepr(b).toS()
-        #b.inorderTreeWalk(b.getRoot())
+        #print b.pathCount(b.getRoot())
 
 if __name__ == '__main__':
     unittest.main()

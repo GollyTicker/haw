@@ -2,71 +2,19 @@
 # -*- coding: utf-8 -*-
 from vertice import Vertice
 from edge import Edge
+from graph_string import GraphString
+from graph_character import GraphCharacter
+
 
 # graph_object = Graph(String, String="Description", dict={String : Edge}, dict={String : Vertice})
-class Graph():
+class Graph(GraphCharacter, GraphString):
 
     # Creation
-    def __init__(self, name, direction="Description"):
+    def __init__(self, name):
         self.name = name
-        self.direction = direction
+        self.description = "None"
         self.edges = {}
         self.vertices = {}
-
-    # Sorted Alphabetical Order by Vertice.name
-    # srcVertice.name, srcVertice.weightMap 
-    #       - Edge.name, Edge.weightMap -> 
-    #           destVertice.name, destVertice.weightMap
-    def __repr__(self):
-        vname_tostr = []
-        for vname, vertice in self.vertices.items():
-            edges = self.adjacent(vname)
-            for ename in edges:
-                edge = self.getEdge(ename)
-                emap = str(edge.getWeightMap())
-                src = self.getVertice(edge.getSrc())
-                dest = self.getVertice(edge.getDest())
-                direction = "  " if edge.isDirected() else "  <"
-                str_edge = direction + "--(" + ename + ", " + emap + ")-->  "
-                str_src = "(" + src.getName() + ", " + str(src.getWeightMap()) + ")"
-                str_dest = "(" + dest.getName() + ", " + str(dest.getWeightMap()) + ")"
-                vname_tostr.append((vname, str_src + str_edge + str_dest + "\n\t"))
-        sorted_by_key = map(lambda x: x[1], sorted(vname_tostr, key=lambda x: x[0]))
-        return "Graph(" + str(self.name) + ", " + self.direction + ") <<\n\t" + "".join(sorted_by_key) + ">>"
-
-    def nullgraph(self):
-        return (not self.vertices) and (not self.edges)
-
-    def empty(self):
-        return not self.edges
-
-    # Dirac - if G is a (1) simple graph with n edges, (2) with 3 <= n ∈ N and
-    # the degree of (3) each vertice v of G d(v) >= n/2 then G has the attribute 
-    # Hamiltonian.
-    def isDirac(self):
-        n = len(self.edges)
-        return (n >= 3 and 
-                self.isSimpleGraph() and 
-                all(self.verticeDegree(v) >= (n / 2) for v in self.vertices)
-                )
-
-    def isSimpleGraph(self):
-        return not (self.isMultigraph() or self.anyHasSling())
-
-    def isMultigraph(self):
-        for vname, vertice in self.vertices.items():
-            count = []
-            for ename in self.adjacent(vname):
-                edge = self.getEdge(ename)
-                dest = edge.getDest()
-                if dest in count:
-                    return True
-                else:
-                    count.append(dest)
-        return False
-
-    def verticeDegree(self, vertice):
-        return len(self.getVertice(vertice).getEdges())
 
     # Removal
     def removeEdges(self, edges):
@@ -142,7 +90,7 @@ class Graph():
         return self.getVertice(vertice).getEdges() # -> Set(Edge.name)
 
     def anyHasSling(self):
-        return any(edge.isSling() for edge in self.edges.values())
+        return any(edge.isSling() for edge in self.getEdges())
 
     def hasSling(self, vertice):
         if not vertice in self.vertices:
@@ -151,8 +99,11 @@ class Graph():
         return any(self.getEdge(edge).isSling() for edge in edges)
 
     # Selectors Graph
-    def getDirection(self):
-        return self.direction
+    def updateDescription(self):
+        self.description = self.__generateDescription__()
+
+    def getDescription(self):
+        return self.description
 
     def getName(self):
         return self.name
@@ -207,4 +158,7 @@ class Graph():
         return hash(self.name)
 
 
-    
+
+
+
+

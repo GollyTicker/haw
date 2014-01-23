@@ -10,9 +10,8 @@ class TestGraph(unittest.TestCase):
     # Workflow of a Graph
     def test_graph_integration(self):
         print "Graph Creation"
-        g = Graph("Euclid", "multigraph")
+        g = Graph("Euclid")
         self.assertEqual("Euclid", g.getName())
-        self.assertEqual("multigraph", g.getDirection())
         self.assertTrue(g.empty())
         v1,v2,v3,v4,v5,v6,v7,v8 = [g.addVertice("v"+str(x)) for x in xrange(1, 8 + 1)]
         e1 = g.addEdge("e1", v1, v2, True, weight={"d" : 1})
@@ -49,6 +48,8 @@ class TestGraph(unittest.TestCase):
         self.assertTrue(not g.isMultigraph())
         e12 = g.addEdge("e12", v5, v8, True, weight={"d" : 5}) # Add another edge bewteen v5 -> v8
         self.assertTrue(g.isMultigraph())
+        g.updateDescription()
+        print g
         # Removing all Vertices is equal to emptyness
         g.removeEdges([e1,e2,e3,e4,e5,e6,e7,e8,e9,e12,e13])
         self.assertTrue(g.empty())

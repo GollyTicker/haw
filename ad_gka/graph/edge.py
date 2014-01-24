@@ -12,7 +12,11 @@ class Edge():
         self.weight = weight
 
     def __repr__(self):
-        return "edge(" + str(self.name) + ", =" + str(self.weight) + ")"
+        return (
+            self.src + 
+            "  " if edge.isDirected() else "  <" + 
+            "--(" + str(self.name) + ", =" + str(self.weight) + 
+            ")--> " + self.dest)
 
     # Functions
     def inBetween(self, v1, v2):

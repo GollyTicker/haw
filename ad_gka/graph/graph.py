@@ -2,12 +2,10 @@
 # -*- coding: utf-8 -*-
 from vertice import Vertice
 from edge import Edge
-from graph_string import GraphString
-from graph_character import GraphCharacter
-
+from graph_module import generateDescription
 
 # graph_object = Graph(String, String="Description", dict={String : Edge}, dict={String : Vertice})
-class Graph(GraphCharacter, GraphString):
+class Graph():
 
     # Creation
     def __init__(self, name):
@@ -15,6 +13,12 @@ class Graph(GraphCharacter, GraphString):
         self.description = "None"
         self.edges = {}
         self.vertices = {}
+
+    def nullgraph(self):
+        return (not self.vertices) and (not self.edges)
+
+    def empty(self):
+        return not self.edges
 
     # Removal
     def removeEdges(self, edges):
@@ -99,16 +103,13 @@ class Graph(GraphCharacter, GraphString):
         return any(self.getEdge(edge).isSling() for edge in edges)
 
     # Selectors Graph
-    def updateDescription(self):
-        self.description = self.__generateDescription__()
-
-    def getDescription(self):
-        return self.description
-
     def getName(self):
         return self.name
 
     # Selectors Graph Components
+    def verticeDegree(self, vertice):
+        return len(self.getVertice(vertice).getEdges())
+
     def getVertice(self, name):
         if name in self.vertices:
             return self.vertices[name]
@@ -156,6 +157,44 @@ class Graph(GraphCharacter, GraphString):
 
     def __hash__(self):
         return hash(self.name)
+
+    # Sorted Alphabetical Order by Vertice.name
+    # srcVertice.name, srcVertice.weightMap 
+    #       - Edge.name, Edge.weightMap -> 
+    #           destVertice.name, destVertice.weightMap
+    def __repr__(self):
+
+        indentation = "\n\t"
+
+        def nameMap(comp):
+            return "(" + comp.getName() + ", " + str(comp.getWeightMap()) + ")"
+
+        def edge_s(edge):
+            direction = "  " if edge.isDirected() else "  <"
+            return direction + "--" + nameMap(edge) + "-->  "
+
+        # Extracting Rows from components
+        rows = []
+        for vname, vertice in self.vertices.items():
+            for ename in self.adjacent(vname):
+                edge = self.getEdge(ename)
+                src, dest = self.getSrcDest(edge)
+                row = (vname, nameMap(src) + edge_s(edge) + nameMap(dest))
+                rows.append(row)
+
+        # Sorting, Concatenation       
+        sorted_by_name = sorted(rows, key=lambda vname: vname[0])
+        reduced_string = reduce(lambda accu, row: accu + row[1] + indentation, sorted_by_name, "")
+
+        paranthesis = indentation + "<(" + indentation
+        return "Graph(" + self.description + ")" + paranthesis + reduced_string + ")>"
+
+
+    def updateDescription(self):
+        self.description = generateDescription(self)
+
+    def getDescription(self):
+        return self.description
 
 
 

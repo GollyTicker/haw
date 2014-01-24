@@ -93,9 +93,6 @@ class Graph():
     def incident(self, vertice):
         return self.getVertice(vertice).getEdges() # -> Set(Edge.name)
 
-    def anyHasSling(self):
-        return any(edge.isSling() for edge in self.getEdges())
-
     def hasSling(self, vertice):
         if not vertice in self.vertices:
             return False
@@ -145,6 +142,15 @@ class Graph():
             if edge.inBetween(source, target):
                 return edge
         return None
+
+    def getEdgeSrcDestList(self, source, target):
+        edges = self.getVertice(source).getEdges()
+        result = []
+        for ename in edges:
+            edge = self.getEdge(ename)
+            if edge.inBetween(source, target):
+                result.append(edge)
+        return result
 
     def __eq__(self, other):
         if isinstance(other, Graph):

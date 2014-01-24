@@ -39,6 +39,27 @@ def isSimpleGraph(g):
 def anyHasSling(g):
     return any(edge.isSling() for edge in g.getEdges())
 
+
+# reachability and connectibility
+def reachable(g, v1, v2):
+    pass
+
+def connected(g, v1, v2):
+    pass
+
+def stronglyConnected(g, v1, v2):
+    pass
+
+def connectedGraph(g):
+    pass
+
+def stronglyConnectedComponents(g):
+    pass
+
+def minimalSpanningTree(g):
+    pass
+
+
 # Dirac - if G is a (1) simple graph with n edges, (2) with 3 <= n ∈ N and
 # the degree of (3) each vertice v of G d(v) >= n/2 then G has the attribute 
 # Hamiltonian.

@@ -1,6 +1,5 @@
 from graph import Graph
-import graph_character 
-import graph_string
+import graph_module 
 
 class GraphFacade():
 

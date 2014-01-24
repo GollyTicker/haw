@@ -34,7 +34,10 @@ def isUndirected(g):
     return all(not edge.isDirected() for edge in g.getEdges())
 
 def isSimpleGraph(g):
-    return not (isMultigraph(g) or g.anyHasSling())
+    return not (isMultigraph(g) or anyHasSling(g))
+
+def anyHasSling(g):
+    return any(edge.isSling() for edge in g.getEdges())
 
 # Dirac - if G is a (1) simple graph with n edges, (2) with 3 <= n ∈ N and
 # the degree of (3) each vertice v of G d(v) >= n/2 then G has the attribute 

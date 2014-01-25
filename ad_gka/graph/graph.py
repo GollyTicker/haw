@@ -181,20 +181,29 @@ class Graph():
 
         # Extracting Rows from components
         rows = []
+        book_keeping = []
         for vname, vertice in self.vertices.items():
             for ename in self.adjacent(vname):
                 edge = self.getEdge(ename)
                 src, dest = self.getSrcDest(edge)
-                row = (vname, nameMap(src) + edge_s(edge) + nameMap(dest))
-                rows.append(row)
+                if not (edge, src, dest) in book_keeping:
+                    book_keeping.append((edge, src, dest))
+                    row = (vname, nameMap(src) + edge_s(edge) + nameMap(dest))
+                    rows.append(row)
 
         # Sorting, Concatenation       
-        sorted_by_name = sorted(rows, key=lambda vname: vname[0])
+        sorted_by_name = self.__unique__(sorted(rows, key=lambda vname: vname[0]))
         reduced_string = reduce(lambda accu, row: accu + row[1] + indentation, sorted_by_name, "")
 
         paranthesis = indentation + "<(" + indentation
         return "Graph(" + self.description + ")" + paranthesis + reduced_string + ")>"
-
+    
+    def __unique__(self, seq):
+        result = []
+        for elem in seq:
+            if elem not in result:
+                result.append(elem)
+        return result
 
     def updateDescription(self):
         self.description = generateDescription(self)

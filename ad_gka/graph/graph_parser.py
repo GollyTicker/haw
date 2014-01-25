@@ -57,21 +57,37 @@ class GraphParser():
 
     def __direction__(self):
         dire = str(self.tokens[0][0])
-        if re.search("(#gerichtet|directed)", dire):
+        if re.match("(#gerichtet|directed)", dire):
             return True
-        if re.search("(#ungerichtet|undirected)", dire):
+        if re.match("(#ungerichtet|undirected)", dire):
+            print dire
             return False
 
     def __undirectedDirectedParse__(self, dire):
+        vertice_regex = re.compile("(\{|\}| )")
+        edge_regex = ""
         for idx, sublist in enumerate(self.tokens[1:]):
-            src = self.sublist[1]
-            dest = self.sublist[2]
-            src_tokens = re.split("(\{|\}| )", src)
-            dest_tokens = re.split("(\{|\}| )", dest)
-            for token in sublist[3:]:
-                edge = re.split("(\{|\}| )", token)
-                # dire
-                #process edge
+
+            src = str(sublist[0])
+            dest = str(sublist[1])
+            if vertice_regex.search(src):
+                src_tokens = re.split("(\{|\}| )", src)
+
+            if vertice_regex.search(dest):
+                dest_tokens = re.split("(\{|\}| )", dest)
+
+            for token in sublist[2:]:
+                ename = str(token[0:2])
+                attrs = token[3:len(token)-1].split(" ")
+                attr_dict = {}
+                for kv in attrs:
+                    key, val = kv.split(":")
+                    try:
+                        attr_dict[str(key)] = int(val)
+                    except ValueError:
+                        attr_dict[str(key)] = str(val)
+                self.g.addEdge(ename, src, dest, dire, attr_dict)
+
 
     def __mixedParse__(self):
         for idx, sublist in enumerate(self.tokens[1:]):
@@ -103,12 +119,11 @@ class GraphSaver():
     def __save__(self):
         pass
 
+        
 
-'''
-name = "graph1"
-p = "/Users/sacry/dev/uni/s3/WS1314/GKA/graphs/"+name+".graph"
-gp = GraphParser(p, "Euclid")
-print gp
-g = gp.createGraph()
-print g
-'''
+
+
+
+
+
+

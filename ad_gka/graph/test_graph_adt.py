@@ -50,7 +50,6 @@ class TestGraph(unittest.TestCase):
         e12 = g.addEdge("e12", v5, v8, True, weight={"d" : 5}) # Add another edge bewteen v5 -> v8
         self.assertTrue(graph_module.isMultigraph(g))
         g.updateDescription()
-        print g
         # Removing all Vertices is equal to emptyness
         g.removeEdges([e1,e2,e3,e4,e5,e6,e7,e8,e9,e12,e13])
         self.assertTrue(g.empty())
@@ -72,7 +71,7 @@ class TestGraph(unittest.TestCase):
         gp = GraphParser(p, name)
         g = gp.createGraph()
         self.assertTrue(not g.empty())
-        actual_neighbours = set(["Neumünster","Hannover","Lüneburg","Lübeck"])
+        actual_neighbours = set(["Neumünster", "Bremen", "Berlin", "Hannover","Lüneburg","Lübeck"])
         expected_neighbours = g.neighbours("Hamburg")
         self.assertEqual(actual_neighbours, expected_neighbours)
         hamburg = g.getVertice("Hamburg")

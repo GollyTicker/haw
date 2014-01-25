@@ -92,6 +92,18 @@ class GraphParser():
             self.g.addEdge(ename, src, dest, dire, {"d" : w})
 
 
+class GraphSaver():
+
+    def __init__(self, g, apath, filename):
+        self.g = g
+        self.path = apath
+        self.filename = filename
+        self.__save__()
+
+    def __save__(self):
+        pass
+
+
 '''
 name = "graph1"
 p = "/Users/sacry/dev/uni/s3/WS1314/GKA/graphs/"+name+".graph"

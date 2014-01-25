@@ -1,5 +1,4 @@
 from graph import Graph
-from graphparser import GraphParser
 from vertice import Vertice
 from edge import Edge
 import sys

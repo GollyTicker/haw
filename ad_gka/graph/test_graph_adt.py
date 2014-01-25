@@ -3,7 +3,7 @@
 
 import unittest
 from graph import Graph
-from graphparser import GraphParser
+from graph_parser import GraphParser
 import graph_module
 
 class TestGraph(unittest.TestCase):

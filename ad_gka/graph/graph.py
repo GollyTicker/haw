@@ -9,152 +9,150 @@ class Graph():
 
     # Creation
     def __init__(self, name):
-        self.name = name
-        self.description = "None"
-        self.edges = {}
-        self.vertices = {}
+        self.name_ = name
+        self.description_ = "None"
+        self.edges_ = {}
+        self.vertices_ = {}
 
     def nullgraph(self):
-        return (not self.vertices) and (not self.edges)
+        return (not self.vertices_) and (not self.edges_)
 
     def empty(self):
-        return not self.edges
+        return not self.edges_
 
     # Removal
-    def removeEdges(self, edges):
-        for edge in edges:
-            self.removeEdge(edge)
+    def removeEdges(self, enames):
+        for ename in enames:
+            self.removeEdge(ename)
 
-    def removeVertices(self, vertices):
-        for vertice in vertices:
-            self.removeVertice(vertice)
+    def removeVertices(self, vnames):
+        for vname in vnames:
+            self.removeVertice(vname)
 
-    def removeEdge(self, edge):
-        if edge in self.edges:
-            for _, vertice in self.vertices.items():
-                vertice.removeEdge(edge)
-            del self.edges[edge]
+    def removeEdge(self, ename):
+        if ename in self.edges_:
+            for v in self.vertices_.values():
+                v.removeEdge(ename)
+            del self.edges_[ename]
             return True
         return False
 
-    def removeVertice(self, vertice):
-        if vertice in self.vertices:
-            for name, edge in self.edges.items():
-                if edge.getSrc() == vertice or edge.getDest() == vertice:
-                    self.removeEdge(name)
-            del self.vertices[vertice]
+    def removeVertice(self, vname):
+        if vname in self.vertices_:
+            for ename, e in self.edges_.items():
+                if e.src() == vname or e.dest() == vname:
+                    self.removeEdge(ename)
+            del self.vertices_[vname]
             return True
         return False
 
     # Creation 
-    def addVertices(self, vertices):
-        for vertice in vertices:
-            self.addVertice(vertice)
+    def addVertices(self, vnames):
+        for vname in vnames:
+            self.addVertice(vname)
 
-    def addEdge(self, name, src, dest, isdirected=True, weight={}):
-        src_name = self.addVertice(src)
-        dest_name = self.addVertice(dest)
-        self.getVertice(src_name).addEdge(name)
-        self.getVertice(dest_name).addEdge(name)
-        self.edges[name] = Edge(name, src_name, dest_name, isdirected, weight)
-        return name
+    def addEdge(self, ename, src_name, dest_name, isdirected=True, weight={}):
+        src_name = self.addVertice(src_name)
+        dest_name = self.addVertice(dest_name)
+        self.vertice(src_name).addEdge(ename)
+        self.vertice(dest_name).addEdge(ename)
+        self.edges_[ename] = Edge(ename, src_name, dest_name, isdirected, weight)
+        return ename
 
-    def addVertice(self, vertice):
-        if not vertice in self.vertices and isinstance(vertice, basestring):
-            self.vertices[vertice] = Vertice(vertice)
-        return vertice
+    def addVertice(self, vname):
+        if not vname in self.vertices_ and isinstance(vname, basestring):
+            self.vertices_[vname] = Vertice(vname)
+        return vname
 
-    def setName(self, name):
-        self.name = name
-
-    def setDirection(self, direction):
-        self.direction = direction
+    def setName(self, graph_name):
+        self.name_ = graph_name
 
     # Functions
-    def neighbours(self, vertice):
-        edges = self.getVertice(vertice).getEdges()
+    def neighbours(self, vname):
         adja = set([])
-        for edge in edges:
-            edge = self.getEdge(edge)
-            if edge.isVerticeSrc(vertice):
-                adja.add(edge.getDestBySrc(vertice))
-        if not self.hasSling(vertice) and vertice in adja:
-            adja.remove(vertice)
+        for ename in self.incident(vname):
+            e = self.edge(ename)
+            if e.isVerticeSrc(vname):
+                adja.add(e.destBySrc(vname))
+        if not self.hasSling(vname) and vname in adja:
+            adja.remove(vname)
         return adja # -> Set(Vertice.name)
 
-    def adjacent(self, vertice):
-        edges = self.getVertice(vertice).getEdges()
+    def adjacent(self, vname):
         adja = set([])
-        for edge in edges:
-            if self.getEdge(edge).isVerticeSrc(vertice):
-                adja.add(edge)
+        for e in self.incident(vname):
+            if self.edge(e).isVerticeSrc(vname):
+                adja.add(e)
         return adja # -> Set(Edge.name)
 
-    def incident(self, vertice):
-        return self.getVertice(vertice).getEdges() # -> Set(Edge.name)
+    def incident(self, vname):
+        return self.vertice(vname).edges() # -> Set(Edge.name)
 
-    def hasSling(self, vertice):
-        if not vertice in self.vertices:
+    def hasSling(self, vname):
+        if not vname in self.vertices_:
             return False
-        edges = self.getVertice(vertice).getEdges()
-        return any(self.getEdge(edge).isSling() for edge in edges)
+        return any(self.edge(ename).isSling() for ename in self.incident(vname))
 
     # Selectors Graph
-    def getName(self):
-        return self.name
+    def name(self, graph_name=None):
+        if graph_name != None:
+            self.name_ = graph_name
+        else:
+            return self.name_
 
     # Selectors Graph Components
-    def verticeDegree(self, vertice):
-        return len(self.getVertice(vertice).getEdges())
+    def verticeDegree(self, vname):
+        return len(self.incident(vname))
 
-    def getVertice(self, name):
-        if name in self.vertices:
-            return self.vertices[name]
+    def vertice(self, vname):
+        if vname in self.vertices_:
+            return self.vertices_[vname]
         return None
 
-    def getEdge(self, name):
-        if name in self.edges:
-            return self.edges[name]
+    def edge(self, ename):
+        if ename in self.edges_:
+            return self.edges_[ename]
         return None
 
-    def getEdges(self):
-        return self.edges.values()
+    def edges(self):
+        return self.edges_.values()
 
-    def getVertices(self):
-        return self.vertices.values()
+    def vertices(self):
+        return self.vertices_.values()
 
-    def getVerticesByName(self, names):
-        return [v for n, v in self.vertices.items() if n in names]
+    def edgesByName(self, enames):
+        return [v for ename, v in self.edges_.items() if ename in enames]
 
-    def getEdgesByName(self, names):
-        return [e for n, e in self.edges.items() if n in names]
+    def verticesByName(self, names):
+        return [v for vname, v in self.vertices_.items() if vname in vnames] 
 
     # Delegation
-    def getSrcDest(self, edge):
-        if not isinstance(edge, Edge):
-            edge = self.getEdge(edge)
-        return map(self.getVertice, edge.getSrcDest())
+    def srcDest(self, ename):
+        return map(self.vertice, self.edge(ename).srcDest())
 
-    def getEdgeSrcDest(self, source, target):
-        edges = self.getVertice(source).getEdges()
-        for ename in edges:
-            edge = self.getEdge(ename)
-            if edge.inBetween(source, target):
-                return edge
+    # edgeSrcDest
+    def edgeSrcDest(self, src_name, dest_name):
+        for ename in self.incident(src_name):
+            e = self.edge(ename)
+            if e.inBetween(src_name, dest_name):
+                return e
         return None
 
-    def getEdgeSrcDestList(self, source, target):
-        edges = self.getVertice(source).getEdges()
+    # edgeSrcDestList
+    def edgeSrcDestList(self, src_name, dest_name):
         result = []
-        for ename in edges:
-            edge = self.getEdge(ename)
-            if edge.inBetween(source, target):
-                result.append(edge)
+        for ename in self.incident(src_name):
+            e = self.edge(ename)
+            if e.inBetween(src_name, dest_name):
+                result.append(e)
         return result
+
+    def weightBetween(self, src_name, dest_name, cmp_):
+        return self.edgeSrcDest(src_name, dest_name).weight(cmp_)
 
     def __eq__(self, other):
         if isinstance(other, Graph):
-            return self.name == other.name
+            return self.name_ == other.name()
         else:
             return False
 
@@ -162,7 +160,7 @@ class Graph():
         return (not self.__eq__(other))
 
     def __hash__(self):
-        return hash(self.name)
+        return hash(self.name_)
 
     # Sorted Alphabetical Order by Vertice.name
     # srcVertice.name, srcVertice.weightMap 
@@ -173,7 +171,7 @@ class Graph():
         indentation = "\n\t"
 
         def nameMap(comp):
-            return "(" + comp.getName() + ", " + str(comp.getWeightMap()) + ")"
+            return "(" + comp.name() + ", " + str(comp.weightMap()) + ")"
 
         def edge_s(edge):
             direction = "  " if edge.isDirected() else "  <"
@@ -182,13 +180,13 @@ class Graph():
         # Extracting Rows from components
         rows = []
         book_keeping = []
-        for vname, vertice in self.vertices.items():
+        for vname in self.vertices:
             for ename in self.adjacent(vname):
-                edge = self.getEdge(ename)
-                src, dest = self.getSrcDest(edge)
-                if not (edge, src, dest) in book_keeping:
-                    book_keeping.append((edge, src, dest))
-                    row = (vname, nameMap(src) + edge_s(edge) + nameMap(dest))
+                e = self.edge(ename)
+                src, dest = self.srcDest(e)
+                if not (e, src_, dest_) in book_keeping:
+                    book_keeping.append((e, src_, dest_))
+                    row = (vname, nameMap(src_) + edge_s(e) + nameMap(dest_))
                     rows.append(row)
 
         # Sorting, Concatenation       
@@ -196,7 +194,7 @@ class Graph():
         reduced_string = reduce(lambda accu, row: accu + row[1] + indentation, sorted_by_name, "")
 
         paranthesis = indentation + "<(" + indentation
-        return "Graph(" + self.description + ")" + paranthesis + reduced_string + ")>"
+        return "Graph(" + self.description_ + ")" + paranthesis + reduced_string + ")>"
     
     def __unique__(self, seq):
         result = []
@@ -206,10 +204,10 @@ class Graph():
         return result
 
     def updateDescription(self):
-        self.description = generateDescription(self)
+        self.description_ = generateDescription(self)
 
-    def getDescription(self):
-        return self.description
+    def description(self):
+        return self.description_
 
 
 

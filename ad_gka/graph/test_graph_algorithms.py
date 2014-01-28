@@ -15,7 +15,7 @@ class TestGraphAlgorithms(unittest.TestCase):
         gp = GraphParser(p, name)
         g = gp.createGraph()
         l = graph_algorithms.shortestBellman(g, "y", "u", "d")
-        shortest_path_as_names = map(lambda x: x.getName(), l)
+        shortest_path_as_names = map(lambda x: x.name(), l)
         self.assertEqual(["y","s","x","u"], shortest_path_as_names)
 
     def test_dijkstra(self):
@@ -25,7 +25,7 @@ class TestGraphAlgorithms(unittest.TestCase):
         gp = GraphParser(p, name)
         g = gp.createGraph()
         l = graph_algorithms.shortestDijkstra(g, "y", "u", "d")
-        shortest_path_as_names = map(lambda x: x.getName(), l)
+        shortest_path_as_names = map(lambda x: x.name(), l)
         self.assertEqual(["y","s","x","u"], shortest_path_as_names)
 
     def test_ford_fulkerson(self):

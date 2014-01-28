@@ -5,52 +5,51 @@ class Vertice():
 
     # Creation
     def __init__(self, name):
-        self.name = name
-        self.weight = {}
-        self.edges = set([])
+        self.name_ = name
+        self.weight_ = {}
+        self.edges_ = set([])
 
     def __repr__(self):
         return "v{" + str(self.name) + "}"
 
     # Mutators
-    def addEdge(self, edge_name):
-        self.edges.add(edge_name)
+    def addEdge(self, ename):
+        self.edges_.add(ename)
 
-    def removeEdge(self, edge_name):
-        if edge_name in self.edges:
-            self.edges.remove(edge_name)
+    def removeEdge(self, ename):
+        if ename in self.edges_:
+            self.edges_.remove(ename)
 
-    def getEdges(self):
-        return self.edges
+    def edges(self):
+        return self.edges_
 
     def updateWeight(self, key, value):
-        if key in self.weight:
-            self.weight[key] += value
+        if key in self.weight_:
+            self.weight_[key] += value
         else:
-            self.setWeight(key, value)
-
-    def setWeight(self, key, value):
-        self.weight[key] = value
+            self.weight_[key] = value
 
     # Selectors
-    def getWeight(self, cmp_=""):
-        if cmp_ in self.weight:
-            return self.weight[cmp_]
+    def weight(self, cmp_, value=None):
+        if value != None:
+            self.weight_[cmp_] = value
+        if cmp_ in self.weight_:
+            return self.weight_[cmp_]
         return None
 
-    def getWeightMap(self):
-        return self.weight
+    def weightMap(self):
+        return self.weight_
             
-    def getName(self):
-        return self.name
+    def name(self):
+        return self.name_
 
     def resetWeight(self):
-        self.weight = {}
+        self.weight_ = {}
 
     # Built in
     def __eq__(self, other):
         if isinstance(other, Vertice):
-            return self.name == other.name
+            return self.name() == other.name()
         else:
             return False
 
@@ -58,5 +57,5 @@ class Vertice():
         return (not self.__eq__(other))
 
     def __hash__(self):
-        return hash(self.name)
+        return hash(self.name())
 

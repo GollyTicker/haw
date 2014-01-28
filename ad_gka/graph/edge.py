@@ -5,104 +5,103 @@
 class Edge():
 
     def __init__(self, name, src, dest, isdirected=True, weight={}):
-        self.name = name
+        self.name_ = name
         self.isdirected = isdirected
-        self.src = src
-        self.dest = dest
-        self.weight = weight
+        self.src_ = src
+        self.dest_ = dest
+        self.weight_ = weight
 
     def __repr__(self):
         return (
-            self.src + 
-            "  " if edge.isDirected() else "  <" + 
-            "--(" + str(self.name) + ", =" + str(self.weight) + 
-            ")--> " + self.dest)
+            self.src_ + 
+            "  " if self.isDirected() else "  <" + 
+            "--(" + str(self.name_) + ", =" + str(self.weight_) + 
+            ")--> " + self.dest_)
 
     # Functions
     def inBetween(self, v1, v2):
-        same_source = self.src == v1 and self.dest == v2
+        same_source = self.src_ == v1 and self.dest_ == v2
         if self.isdirected:
             return same_source
-        not_same = self.dest == v1 and self.src == v2
+        not_same = self.dest_ == v1 and self.src_ == v2
         return same_source or not_same
 
     def isVerticeSrc(self, vertice):
-        same = self.src == vertice
+        same = self.src_ == vertice
         if self.isdirected:
             return same
-        return same or self.dest == vertice
+        return same or self.dest_ == vertice
 
     def isVerticeDest(self, vertice):
-        same = self.dest == vertice
+        same = self.dest_ == vertice
         if self.isdirected:
             return same
-        return same or self.src == vertice
+        return same or self.src_ == vertice
 
-    def getDestBySrc(self, vertice):
-        if self.src == vertice:
-            return self.dest
-        if not self.isdirected and self.dest == vertice:
-            return self.src
+    def destBySrc(self, vertice):
+        if self.src_ == vertice:
+            return self.dest_
+        if not self.isdirected and self.dest_ == vertice:
+            return self.src_
         return None
 
-    def getSrcByDest(self, vertice):
-        if self.dest == vertice:
-            return self.src
-        if not self.isdirected and self.src == vertice:
-            return self.dest
+    def srcByDest(self, vertice):
+        if self.dest_ == vertice:
+            return self.src_
+        if not self.isdirected and self.src_ == vertice:
+            return self.dest_
         return None
 
-    # Mutators
+    # Weight Mutators
     def updateWeight(self, key, value):
-        if key in self.weight:
-            self.weight[key] += value
+        if key in self.weight_:
+            self.weight_[key] += value
         else:
             self.setWeight(key, value)
 
-    def setWeight(self, key, value):
-        self.weight[key] = value
+    def resetWeight(self):
+        self.weight_ = {}
 
     def setSrc(self, src):
-        self.src = src
+        self.src_ = src
 
     def setDest(self, dest):
-        self.dest = dest
-
-    def resetWeight(self):
-        self.weight = {}
+        self.dest_ = dest
 
     # Selectors
     def isSling(self):
-        return self.src == self.dest
+        return self.src_ == self.dest_
 
     def isDirected(self):
         return self.isdirected
 
-    def getSrcDest(self):
-        return (self.src, self.dest)
+    def srcDest(self):
+        return (self.src_, self.dest_)
 
-    def getSrc(self):
-        return self.src
+    def src(self):
+        return self.src_
 
-    def getDest(self):
-        return self.dest
+    def dest(self):
+        return self.dest_
 
-    def getName(self):
-        return self.name
+    def name(self):
+        return self.name_
 
-    def getWeightMap(self):
-        return self.weight
+    def weightMap(self):
+        return self.weight_
 
-    def getWeight(self, cmp_):
-        if cmp_ in self.weight:
-            return self.weight[cmp_]
+    def weight(self, cmp_, value=None):
+        if value != None:
+            self.weight_[cmp_] = value
+        if cmp_ in self.weight_:
+            return self.weight_[cmp_]
         return None
 
     # Built in
     def __eq__(self, other):
         if isinstance(other, Edge):
-            is_in = self.inBetween(other.getSrc(), other.getDest())
-            return (self.name == other.name and is_in)
+            is_in = self.inBetween(other.src(), other.dest())
+            return (self.name_ == other.name() and is_in)
         else:
             return False
 
@@ -110,6 +109,6 @@ class Edge():
         return (not self.__eq__(other))
 
     def __hash__(self):
-        return hash(self.name)
+        return hash(self.name_)
 
     

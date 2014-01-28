@@ -12,7 +12,7 @@ class TestGraph(unittest.TestCase):
     def test_graph_integration(self):
         print "Graph Creation"
         g = Graph("Euclid")
-        self.assertEqual("Euclid", g.getName())
+        self.assertEqual("Euclid", g.name())
         self.assertTrue(g.empty())
         v1,v2,v3,v4,v5,v6,v7,v8 = [g.addVertice("v"+str(x)) for x in xrange(1, 8 + 1)]
         e1 = g.addEdge("e1", v1, v2, True, weight={"d" : 1})
@@ -37,7 +37,7 @@ class TestGraph(unittest.TestCase):
         e11 = g.addEdge("e11", v1, v9, True, weight={"d" : 50})
         # v9 should be removed from g and all edges e dependant on v9
         g.removeVertice(v9)
-        self.assertEqual(None, g.getEdge("e11"))
+        self.assertEqual(None, g.edge("e11"))
         self.assertEqual(set([v2,v3,v4]), g.neighbours(v1))
         self.assertEqual(set([e9]), g.adjacent(v7))
         self.assertEqual(set([v8]), g.neighbours(v7))
@@ -57,8 +57,8 @@ class TestGraph(unittest.TestCase):
         g.removeVertices([v1,v2,v3,v4,v5,v6,v7,v8])
         self.assertTrue(g.nullgraph())
         self.assertTrue(g.empty())
-        self.assertEqual([], g.getEdges())
-        self.assertEqual([], g.getVertices())
+        self.assertEqual([], g.edges())
+        self.assertEqual([], g.vertices())
         # Checked that g is empty, these should behave differently
         self.assertFalse(graph_module.isDirac(g))
         self.assertFalse(graph_module.isMultigraph(g))
@@ -74,8 +74,8 @@ class TestGraph(unittest.TestCase):
         actual_neighbours = set(["Neumünster", "Bremen", "Berlin", "Hannover","Lüneburg","Lübeck"])
         expected_neighbours = g.neighbours("Hamburg")
         self.assertEqual(actual_neighbours, expected_neighbours)
-        hamburg = g.getVertice("Hamburg")
-        self.assertTrue("Hamburg", hamburg.getName())
+        hamburg = g.vertice("Hamburg")
+        self.assertTrue("Hamburg", hamburg.name())
 
     # Certain typical Edge Cases
     def test_edge_cases(self):

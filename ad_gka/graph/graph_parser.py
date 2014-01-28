@@ -13,7 +13,7 @@ class GraphParser():
         self.tokens = []
 
     def __repr__(self):
-        return str(self.__class__.__name__) + "(Path=" + self.path + ", GraphName=" + self.g.getName() + ")"
+        return str(self.__class__.__name__) + "(Path=" + self.path + ", GraphName=" + self.g.name() + ")"
 
     def getGraph(self):
         return self.g

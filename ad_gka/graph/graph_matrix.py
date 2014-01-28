@@ -6,7 +6,7 @@ class GraphMatrix():
     
     def __init__(self, g):
         self.g = g
-        self.vertices = sorted(self.g.getVertices(), key=lambda x: x.getName())
+        self.vertices = sorted(self.g.vertices(), key=lambda x: x.name())
         self.m = [[]]
 
     def __repr__(self):
@@ -20,8 +20,8 @@ class GraphMatrix():
         self.m = self.__initAdjacentMatrix__(len(self.vertices))
         for i, v1 in enumerate(self.vertices):
             for j, v2 in enumerate(self.vertices):
-                vn1, vn2 = v1.getName(), v2.getName()
-                e_count = len(self.g.getEdgeSrcDestList(vn1, vn2))
+                vn1, vn2 = v1.name(), v2.name()
+                e_count = len(self.g.edgeSrcDestList(vn1, vn2))
                 self.m[i][j] += e_count
         return self.m
 

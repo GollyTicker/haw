@@ -2,42 +2,42 @@
 # -*- coding: utf-8 -*-
           
 def nullgraph(g):
-    return (not g.vertices) and (not g.edges)
+    return (not g.vertices()) and (not g.edges())
 
 def empty(g):
-    return not g.edges
+    return not g.edges()
 
 def isQuiver(g):
     return isDirected(g) and isMultigraph(g)
 
 def isMixed(g):
     return len(
-        filter(lambda x: x.isDirected(), g.getEdges())
-        ) != len(g.getEdges())
+        filter(lambda x: x.isDirected(), g.edges())
+        ) != len(g.edges())
 
 def isDirected(g):
-    return all(edge.isDirected() for edge in g.getEdges())
+    return all(e.isDirected() for e in g.edges())
 
 def isMultigraph(g):
-    for vname, vertice in g.vertices.items():
+    for v in g.vertices():
         count = []
-        for ename in g.adjacent(vname):
-            edge = g.getEdge(ename)
-            dest = edge.getDest()
-            if dest in count:
+        for ename in g.adjacent(v.name()):
+            e = g.edge(ename)
+            dest_ = e.dest()
+            if dest_ in count:
                 return True
             else:
-                count.append(dest)
+                count.append(dest_)
     return False
 
 def isUndirected(g):
-    return all(not edge.isDirected() for edge in g.getEdges())
+    return all(not e.isDirected() for e in g.edges())
 
 def isSimpleGraph(g):
     return not (isMultigraph(g) or anyHasSling(g))
 
 def anyHasSling(g):
-    return any(edge.isSling() for edge in g.getEdges())
+    return any(e.isSling() for e in g.edges())
 
 
 # reachability and connectibility
@@ -64,10 +64,10 @@ def minimalSpanningTree(g):
 # the degree of (3) each vertice v of G d(v) >= n/2 then G has the attribute 
 # Hamiltonian.
 def isDirac(g):
-    n = len(g.edges)
+    n = len(g.edges())
     return (n >= 3 and 
-            g.isSimpleGraph() and 
-            all(g.verticeDegree(v) >= (n / 2) for v in g.vertices)
+            isSimpleGraph(g) and 
+            all(g.verticeDegree(v) >= (n / 2) for v in g.vertices())
             )
 
 
@@ -86,6 +86,6 @@ def generateDescription(g):
     if isSimpleGraph(g):
         calling = "SimpleGraph"
     if calling == direction:
-        return g.getName() + ", " + direction
-    return g.getName() + ", " + calling + ", " + direction
+        return g.name() + ", " + direction
+    return g.name() + ", " + calling + ", " + direction
 

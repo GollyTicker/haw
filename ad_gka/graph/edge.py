@@ -62,12 +62,6 @@ class Edge():
     def resetWeight(self):
         self.weight_ = {}
 
-    def setSrc(self, src):
-        self.src_ = src
-
-    def setDest(self, dest):
-        self.dest_ = dest
-
     # Selectors
     def isSling(self):
         return self.src_ == self.dest_

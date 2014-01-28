@@ -64,9 +64,6 @@ class Graph():
             self.vertices_[vname] = Vertice(vname)
         return vname
 
-    def setName(self, graph_name):
-        self.name_ = graph_name
-
     # Functions
     def neighbours(self, vname):
         adja = set([])

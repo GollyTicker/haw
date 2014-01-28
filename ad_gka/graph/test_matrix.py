@@ -9,6 +9,7 @@ class TestGraphMatrix(unittest.TestCase):
 
     # Workflow of a Graph
     def test_adj_undirected_matrix(self):
+        print "Adjancency Matrix undirected"
         g = Graph("Euclid")
         directed = False
         v1,v2,v3,v4,v5,v6,v7,v8 = [g.addVertice("v"+str(x)) for x in xrange(1, 8 + 1)]
@@ -30,6 +31,7 @@ class TestGraphMatrix(unittest.TestCase):
         #print inciMatrix
 
     def test_adj_directed_matrix(self):
+        print "Adjancency Matrix directed"
         g = Graph("Euclid")
         directed = True
         v1,v2,v3,v4,v5,v6,v7,v8 = [g.addVertice("v"+str(x)) for x in xrange(1, 8 + 1)]

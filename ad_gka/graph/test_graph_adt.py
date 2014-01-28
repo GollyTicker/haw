@@ -5,6 +5,7 @@ import unittest
 from graph import Graph
 from graph_parser import GraphParser
 import graph_module
+from os import getcwd
 
 class TestGraph(unittest.TestCase):
 
@@ -67,7 +68,7 @@ class TestGraph(unittest.TestCase):
     def test_graph_parser(self):
         print "Graph Parsing"
         name = "graph1"
-        p = "/Users/sacry/dev/uni/s3/WS1314/GKA/graphs/"+name+".graph"
+        p = getcwd() + "/graphs/old/" + name + ".graph"
         gp = GraphParser(p, name)
         g = gp.createGraph()
         self.assertTrue(not g.empty())
@@ -76,6 +77,7 @@ class TestGraph(unittest.TestCase):
         self.assertEqual(actual_neighbours, expected_neighbours)
         hamburg = g.vertice("Hamburg")
         self.assertTrue("Hamburg", hamburg.name())
+        print g
 
     # Certain typical Edge Cases
     def test_edge_cases(self):

@@ -60,7 +60,6 @@ class GraphParser():
         if re.match("(#gerichtet|directed)", dire):
             return True
         if re.match("(#ungerichtet|undirected)", dire):
-            print dire
             return False
 
     def __undirectedDirectedParse__(self, dire):
@@ -68,13 +67,13 @@ class GraphParser():
         edge_regex = ""
         for idx, sublist in enumerate(self.tokens[1:]):
 
-            src = str(sublist[0])
-            dest = str(sublist[1])
-            if vertice_regex.search(src):
-                src_tokens = re.split("(\{|\}| )", src)
+            src_name = str(sublist[0])
+            dest_name = str(sublist[1])
+            if vertice_regex.search(src_name):
+                src_tokens = re.split("(\{|\}| )", src_name)
 
-            if vertice_regex.search(dest):
-                dest_tokens = re.split("(\{|\}| )", dest)
+            if vertice_regex.search(dest_name):
+                dest_tokens = re.split("(\{|\}| )", dest_name)
 
             for token in sublist[2:]:
                 ename = str(token[0:2])
@@ -86,8 +85,7 @@ class GraphParser():
                         attr_dict[str(key)] = int(val)
                     except ValueError:
                         attr_dict[str(key)] = str(val)
-                self.g.addEdge(ename, src, dest, dire, attr_dict)
-
+                self.g.addEdge(ename, src_name, dest_name, dire, attr_dict)
 
     def __mixedParse__(self):
         for idx, sublist in enumerate(self.tokens[1:]):

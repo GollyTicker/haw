@@ -177,10 +177,10 @@ class Graph():
         # Extracting Rows from components
         rows = []
         book_keeping = []
-        for vname in self.vertices:
+        for vname in self.vertices_:
             for ename in self.adjacent(vname):
                 e = self.edge(ename)
-                src, dest = self.srcDest(e)
+                src_, dest_ = self.srcDest(ename)
                 if not (e, src_, dest_) in book_keeping:
                     book_keeping.append((e, src_, dest_))
                     row = (vname, nameMap(src_) + edge_s(e) + nameMap(dest_))

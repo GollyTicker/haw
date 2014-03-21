@@ -38,13 +38,45 @@ persistente Strukturen im Hintergrund liegen die dieses Vorgehen schnell verarbe
 val xs = 3 to 19 toArray
 
 // (b) slice it
-xs.slice(3,11)
+xs.slice(3, 11)
+
+// Python like slicing...
+object Slicer {
+  implicit class FancyList[A](val l: List[A]) extends AnyVal {
+    def ~>(i: Int, j: Int, k: Int = 1) = {
+      l.zipWithIndex
+        .slice(normalize(i), normalize(j))
+        .filter(_._2 % k == 0)
+        .map(_._1)
+    }
+    private def normalize(j: Int) = if (j < 0) l.size + 1 + j else j
+  }
+  val xs = ((1 to 19) toList)
+  println(xs)
+  println("-----1------")
+  println(xs ~> (1, 10))
+  println(xs ~> (0, -1))
+  println(xs ~> (0, -10))
+  println("-----2------")
+  println(xs ~> (1, 10, 2))
+  println(xs ~> (0, -1, 2))
+  println(xs ~> (0, -10, 2))
+  println("-----3------")
+  println(xs ~> (0, -1, 3))
+  println(xs ~> (-14, -10, 1))
+  println(xs ~> (-14, -10, 2))
+}
+
 
 // (c) only mod 3s
-xs filter(p => p % 3 == 0)
+xs filter(_ % 3 == 0)
 
 // (d) intermediate sum
 xs.scanLeft(0) { _+_ }
+// or
+// def add[T](a: T, b: T)(implicit n: Numeric[T]): T = n.plus(a, b)
+def add(a: Int, b: Int) = a + b
+xs.scanLeft(0)(add)
 
 // (e) elem, index from idx 10 to -1
 xs.zipWithIndex.drop(10)
@@ -58,14 +90,5 @@ xs.zipWithIndex.drop(10).map(swap)
 xs.zipWithIndex.drop(10).map(_.swap)
 // without swap
 for((e, i) <- xs.zipWithIndex if i > 9) yield (i, e)
-
-
-
-
-
-
-
-
-
 
      

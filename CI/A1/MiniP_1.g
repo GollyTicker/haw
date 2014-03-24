@@ -4,10 +4,52 @@ main 	: PROGRAM declaration+ BEGIN END
 	;
 
 declaration 
-	:	TYPE ids ';'
+	:	TYPE ids END_EXPR
 	;
 
-ids 	:	ID  (',' ID)*;
+ids 	:	ID  (COMMA ID)*;
+
+val_dec : ID DEF expression
+	;
+
+expression : ar_exp | BOOL | STRING | cmp
+	;
+
+DEF : ':='
+    ;
+    
+ar_exp	:	NUMBERCONST ar_exp_ | ID ar_exp_ | '(' ar_exp ')'
+	;
+	
+ar_exp_	:	PUNKT_OP ar_exp
+	| 	STRICH_OP ar_exp
+	| 
+	;
+
+cmp	:	'cmp'
+	;
+
+BOOL	:	'true' | 'false'
+	;
+
+CONST	:	NUMBERCONST | STRING | BOOL
+	;
+
+NUMBERCONST
+	:	INT | FLOAT
+	;
+
+PUNKT_OP : ('*' | '/')
+    ;
+    
+STRICH_OP : ('+' | '-')
+    ;
+
+AR_PRE : ('+' | '-')
+    ;
+
+RELOP : ('=' | '<>' | '<' | '<=' | '>' | '>=')
+    ;
 
 PROGRAM 	:	'program'
 ;
@@ -21,16 +63,17 @@ END 	:	'end'
 TYPE 	:	('integer' | 'string' | 'real' | 'boolean')
 	;
 
-OP 	:	('+' | '-' | '*' | '/' | ',' | ';' | ':=' | '=' | '<>' | '<' | '<=' | '>' | '>=' | '(' | ')')
+END_EXPR 	:     ';'
     ;
-    
+
+COMMA    :     ','
+    ;
+
 INT :	('0'..'9')+
     ;
 
 FLOAT
-    :   ('0'..'9')+ '.' ('0'..'9')* EXPONENT?
-    |   '.' ('0'..'9')+ EXPONENT?
-    |   ('0'..'9')+ EXPONENT
+    :   ('0'..'9')+ '.' ('0'..'9')*
     ;
 
 STRING

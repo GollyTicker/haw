@@ -1,4 +1,5 @@
-import scala.annotation.tailrec;
+import scala.annotation.tailrec
+import scala.collection.mutable.ArrayBuffer
 
 // Tail Recursive Optimized Array Version..
 def collatz(n: Int): Array[Int] = {
@@ -17,7 +18,7 @@ def collatz_arr_buffer(n: Int): Array[Int] = {
     case x if x % 2 == 0 => collatz_tail(x / 2, accu += x)
     case _ => collatz_tail(3 * x + 1, accu += x)
   }
-  collatz_tail(n, new ArrayBuffer[Int]).toArray
+  collatz_tail(n, ArrayBuffer()).toArray
 }
 
 // Simple List Recursion

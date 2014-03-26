@@ -3,7 +3,7 @@ import scala.collection.mutable.ArrayBuffer
 
 // Tail Recursive Optimized Array Version..
 def collatz(n: Int): Array[Int] = {
-	@tailrec def collatz_tail(x: Int, accu: Array[Int]): Array[Int] = x match {
+  @tailrec def collatz_tail(x: Int, accu: Array[Int]): Array[Int] = x match {
     case 1 => accu :+ 1 // O(?)
     case x if x % 2 == 0 => collatz_tail(x / 2, accu :+ x)
     case _ => collatz_tail(3 * x + 1, accu :+ x)

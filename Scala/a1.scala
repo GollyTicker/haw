@@ -5,7 +5,7 @@ val ls = List()
 's' :: ls
 2L :: ls
 2.0f :: ls
-Unit :: ls
+() :: ls
 3.0d :: ls
 "Hallo" :: ls
 
@@ -22,14 +22,14 @@ definiert wird einfach der größte tTyp "any" genommen den man in eine Liste pa
 führt zwangsweise immer zu einer neuen Liste.
 (b) Kovarianz heißt, dass ein gegebener Typ von einem Generischen Supertypen überführt werden kann.
 Somit ist Liste zuerst vom Typ Int und dann vom Typ AnyVal, weil Char und Int diesen generischen
-Typen gemeinsam haben. Ab dem Typen Unit ist die List vom Typ Any List[Any], was erlaubt ist
+Typen gemeinsam haben. Ab dem Typen String ist die List vom Typ Any List[Any], was erlaubt ist
 da es ein generischer typ zu den bisherigen ist der diese verbindet.
-Persistent.
 (c) Durch Immutability ist es von vorteil persistente Datentypen zu haben, das heißt Datentypen auf die man
-schnell vorgreifen kann damit die initialisierung nicht sonderlich lange dauert. Immutability sagt
-ja im Grunde aus, das keine Objete verändert werden sondern immer wieder neue erstellt werden.
-Daraus resultiert das die Datentypen und eventuell auch Daten schnell kopierbar sein müssen, also 
-persistente Strukturen im Hintergrund liegen die dieses Vorgehen schnell verarbeitet.
+schnell wieder zugreifen kann. Wenn bei jedem hinzufügen zu einer Liste immer eine komplett neue Liste entstehen
+würde ist dies nicht optimal. Das hinzufügen am Head, der Zugriff auf den Tail und das entfernen des Head sollten immer
+O(1) sein. Dies geht nur wenn man beispielweise wie bei Github so etwas wie eine commit Hierarchie anlegt für jedes
+Element das hinzugefügt oder entfernt wird. Damit man schnell zu einer vorherigen Liste kommt muss man schlichtweg 
+den commit reverten O(1).
 */
 
 // 2.2
@@ -40,7 +40,7 @@ val xs = 3 to 19 toArray
 // (b) slice it
 xs.slice(3, 11)
 
-// Python like slicing...
+// Python like slicing... for phuns..
 object Slicer {
   implicit class FancyList[A](val l: List[A]) extends AnyVal {
     def ~>(i: Int, j: Int, k: Int = 1) = {

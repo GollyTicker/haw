@@ -1,63 +1,60 @@
 grammar MiniP_2;
 
-main 	: PROGRAM declaration+ BEGIN statements END
-	;
+main : PROGRAM declaration+ BEGIN statements END
+;
 
 declaration 
-	:	TYPE ids SEMICOL
-	;
+:	TYPE ids SEMICOL
+;
 
-ids 	:	ID  (COMMA ID)*
-	;
+ids :	ID  (COMMA ID)*
+;
 
 var_def : ID DEF expression
-	;
+;
 
 expression :  BOOL | STRING | ar_exp
-	;
-	
-		
+;
 BOOL	:	'true' | 'false'
-	;
+;
 
 
 ifStmt	:	'if' (BOOL | cmp ) 'then' statements ('else' statements)? 'fi'
-	;
+;
 
 whileStmt
-	:	'while' (BOOL | cmp) 'do' statements 'od'
-	;
+:	'while' (BOOL | cmp) 'do' statements 'od'
+;
 
 io_stmt	:	('print' | 'println') '(' expression ')'
-	| 	'read(' expression ')'
-	;
+| 'read(' expression ')'
+;
 ar_exp
-	:	 product (STRICH_OP product)*
-	;
-	
+:	product (STRICH_OP product)*
+;
 product	:	ar_term (PUNKT_OP ar_term)*
-	;
+;
 
 ar_term	:	ID |  numberconst | '(' ar_exp ')'
-	;
+;
 
 cmp	:	ar_exp RELOP ar_exp
-	;
+;
 
 statement
-	:	ifStmt
-	|	whileStmt
-	| 	io_stmt
-	| 	var_def
-	;
+:	ifStmt
+|	whileStmt
+| io_stmt
+| var_def
+;
 
 statements
-	:	statement (SEMICOL (statements)*)?
-	;
+:	statement  (SEMICOL statement)*
+;
 
 numberconst
-	:	INT | FLOAT
-	;
+:	INT | FLOAT
+;
 
 DEF : ':='
     ;
@@ -71,19 +68,19 @@ STRICH_OP : ('+' | '-')
 RELOP : ('=' | '<>' | '<' | '<=' | '>' | '>=')
     ;
 
-PROGRAM 	:	'program'
+PROGRAM :	'program'
 ;
 
-BEGIN 	:	'begin'
+BEGIN :	'begin'
 ;
 
-END 	:	'end'
+END :	'end'
 ;
 
-TYPE 	:	('integer' | 'string' | 'real' | 'boolean')
-	;
+TYPE :	('integer' | 'string' | 'real' | 'boolean')
+;
 
-SEMICOL 	:     ';'
+SEMICOL :     ';'
     ;
 
 COMMA    :     ','
@@ -97,7 +94,7 @@ INT :	('0'..'9')+
     ;
 
 STRING
-    :  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
+    :  '"' ('a'..'z' | 'A'..'Z' | '0'..'9' | ' ')* '"'//'"' ( ESC_SEQ | ~('\\'|'"') )* '"'
     ;
 
 ID  :	('a'..'z' | 'A'..'Z') ('0'..'9' | ('a'..'z' | 'A'..'Z') |'_')*
@@ -116,7 +113,7 @@ WS  :   ( ' '
 
 fragment
 DIGIT	:	('0'..'9')
-	;
+;
 
 fragment
 LETTER :    ('a'..'z' | 'A'..'Z')

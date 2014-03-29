@@ -8,17 +8,29 @@ declaration
 	;
 
 ids 	:	ID  (COMMA ID)*
-;
+	;
 
 var_def : ID DEF expression
 	;
 
 expression :  BOOL | STRING | ar_exp
 	;
+	
+		
+BOOL	:	'true' | 'false'
+	;
 
-DEF : ':='
-    ;
 
+ifStmt	:	'if' (BOOL | cmp ) 'then' statements ('else' statements)? 'fi'
+	;
+
+whileStmt
+	:	'while' (BOOL | cmp) 'do' statements 'od'
+	;
+
+io_stmt	:	('print' | 'println') '(' expression ')'
+	| 	'read(' expression ')'
+	;
 ar_exp
 	:	 product (STRICH_OP product)*
 	;
@@ -32,35 +44,23 @@ ar_term	:	ID |  numberconst | '(' ar_exp ')'
 cmp	:	ar_exp RELOP ar_exp
 	;
 
-ifStmt	:	'if' (BOOL | cmp ) 'then' statements ('else' statements)? 'fi'
-	;
-
 statement
-	:	var_def
-	|       ifStmt
+	:	ifStmt
 	|	whileStmt
 	| 	io_stmt
+	| 	var_def
 	;
 
 statements
 	:	statement (SEMICOL (statements)*)?
 	;
 
-whileStmt
-	:	'while' (BOOL | cmp) 'do' statements 'od'
-	;
-
-io_stmt	:	('print' | 'println') '(' expression ')'
-	| 	'read(' expression ')'
-	;
-
 numberconst
 	:	INT | FLOAT
 	;
-	
-BOOL	:	'true' | 'false'
-	;
 
+DEF : ':='
+    ;
 
 PUNKT_OP : ('*' | '/')
     ;
@@ -97,7 +97,7 @@ INT :	('0'..'9')+
     ;
 
 STRING
-    :  '\'' ( ESC_SEQ | ~('\\'|'\'') )* '\''
+    :  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
     ;
 
 ID  :	('a'..'z' | 'A'..'Z') ('0'..'9' | ('a'..'z' | 'A'..'Z') |'_')*
@@ -121,10 +121,6 @@ DIGIT	:	('0'..'9')
 fragment
 LETTER :    ('a'..'z' | 'A'..'Z')
     ;
-
-fragment
-EXPONENT : ('e'|'E') ('+'|'-')? ('0'..'9')+ 
-;
 
 fragment
 HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') 

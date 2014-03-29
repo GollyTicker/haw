@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g 2014-03-29 14:45:33
+// $ANTLR 3.4 C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g 2014-03-29 16:07:56
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -10,10 +10,11 @@ import java.io.IOException;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class MiniP_2Parser extends DebugParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "BEGIN", "BOOL", "COMMA", "COMMENT", "DEF", "DIGIT", "END", "ESC_SEQ", "EXPONENT", "FLOAT", "HEX_DIGIT", "ID", "INT", "LETTER", "OCTAL_ESC", "PROGRAM", "PUNKT_OP", "RELOP", "SEMICOL", "STRICH_OP", "STRING", "TYPE", "UNICODE_ESC", "WS", "'('", "')'", "'do'", "'else'", "'fi'", "'if'", "'od'", "'print'", "'println'", "'read('", "'then'", "'while'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "BEGIN", "BOOL", "COMMA", "COMMENT", "DEF", "DIGIT", "END", "ESC_SEQ", "FLOAT", "HEX_DIGIT", "ID", "INT", "LETTER", "OCTAL_ESC", "PROGRAM", "PUNKT_OP", "RELOP", "SEMICOL", "STRICH_OP", "STRING", "TYPE", "UNICODE_ESC", "WS", "'('", "')'", "'do'", "'else'", "'fi'", "'if'", "'od'", "'print'", "'println'", "'read('", "'then'", "'while'"
     };
 
     public static final int EOF=-1;
+    public static final int T__27=27;
     public static final int T__28=28;
     public static final int T__29=29;
     public static final int T__30=30;
@@ -25,7 +26,6 @@ public class MiniP_2Parser extends DebugParser {
     public static final int T__36=36;
     public static final int T__37=37;
     public static final int T__38=38;
-    public static final int T__39=39;
     public static final int BEGIN=4;
     public static final int BOOL=5;
     public static final int COMMA=6;
@@ -34,22 +34,21 @@ public class MiniP_2Parser extends DebugParser {
     public static final int DIGIT=9;
     public static final int END=10;
     public static final int ESC_SEQ=11;
-    public static final int EXPONENT=12;
-    public static final int FLOAT=13;
-    public static final int HEX_DIGIT=14;
-    public static final int ID=15;
-    public static final int INT=16;
-    public static final int LETTER=17;
-    public static final int OCTAL_ESC=18;
-    public static final int PROGRAM=19;
-    public static final int PUNKT_OP=20;
-    public static final int RELOP=21;
-    public static final int SEMICOL=22;
-    public static final int STRICH_OP=23;
-    public static final int STRING=24;
-    public static final int TYPE=25;
-    public static final int UNICODE_ESC=26;
-    public static final int WS=27;
+    public static final int FLOAT=12;
+    public static final int HEX_DIGIT=13;
+    public static final int ID=14;
+    public static final int INT=15;
+    public static final int LETTER=16;
+    public static final int OCTAL_ESC=17;
+    public static final int PROGRAM=18;
+    public static final int PUNKT_OP=19;
+    public static final int RELOP=20;
+    public static final int SEMICOL=21;
+    public static final int STRICH_OP=22;
+    public static final int STRING=23;
+    public static final int TYPE=24;
+    public static final int UNICODE_ESC=25;
+    public static final int WS=26;
 
     // delegates
     public Parser[] getDelegates() {
@@ -60,9 +59,9 @@ public class MiniP_2Parser extends DebugParser {
 
 
 public static final String[] ruleNames = new String[] {
-    "invalidRule", "numberconst", "var_def", "statements", "whileStmt", 
-    "product", "ar_exp", "declaration", "statement", "main", "ar_term", 
-    "ifStmt", "io_stmt", "expression", "ids", "cmp"
+    "invalidRule", "ifStmt", "statement", "cmp", "statements", "expression", 
+    "var_def", "ar_term", "numberconst", "io_stmt", "declaration", "whileStmt", 
+    "main", "ar_exp", "product", "ids"
 };
 
 public static final boolean[] decisionCanBacktrack = new boolean[] {
@@ -324,7 +323,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(11, 0);
+        dbg.location(11, 1);
 
         }
         finally {
@@ -354,11 +353,11 @@ protected boolean evalPredicate(boolean result, String predicate) {
             // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:13:11: ID DEF expression
             {
             dbg.location(13,11);
-            match(input,ID,FOLLOW_ID_in_var_def64); 
+            match(input,ID,FOLLOW_ID_in_var_def65); 
             dbg.location(13,14);
-            match(input,DEF,FOLLOW_DEF_in_var_def66); 
+            match(input,DEF,FOLLOW_DEF_in_var_def67); 
             dbg.location(13,18);
-            pushFollow(FOLLOW_expression_in_var_def68);
+            pushFollow(FOLLOW_expression_in_var_def69);
             expression();
 
             state._fsp--;
@@ -417,7 +416,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
             case FLOAT:
             case ID:
             case INT:
-            case 28:
+            case 27:
                 {
                 alt3=3;
                 }
@@ -440,7 +439,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:16:15: BOOL
                     {
                     dbg.location(16,15);
-                    match(input,BOOL,FOLLOW_BOOL_in_expression79); 
+                    match(input,BOOL,FOLLOW_BOOL_in_expression80); 
 
                     }
                     break;
@@ -450,7 +449,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:16:22: STRING
                     {
                     dbg.location(16,22);
-                    match(input,STRING,FOLLOW_STRING_in_expression83); 
+                    match(input,STRING,FOLLOW_STRING_in_expression84); 
 
                     }
                     break;
@@ -460,7 +459,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:16:31: ar_exp
                     {
                     dbg.location(16,31);
-                    pushFollow(FOLLOW_ar_exp_in_expression87);
+                    pushFollow(FOLLOW_ar_exp_in_expression88);
                     ar_exp();
 
                     state._fsp--;
@@ -494,157 +493,119 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
 
 
-    // $ANTLR start "ar_exp"
-    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:22:1: ar_exp : product ( STRICH_OP product )* ;
-    public final void ar_exp() throws RecognitionException {
-        try { dbg.enterRule(getGrammarFileName(), "ar_exp");
+    // $ANTLR start "ifStmt"
+    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:24:1: ifStmt : 'if' ( BOOL | cmp ) 'then' statements ( 'else' statements )? 'fi' ;
+    public final void ifStmt() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "ifStmt");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(22, 0);
+        dbg.location(24, 0);
 
         try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:23:2: ( product ( STRICH_OP product )* )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:24:8: ( 'if' ( BOOL | cmp ) 'then' statements ( 'else' statements )? 'fi' )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:23:5: product ( STRICH_OP product )*
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:24:10: 'if' ( BOOL | cmp ) 'then' statements ( 'else' statements )? 'fi'
             {
-            dbg.location(23,5);
-            pushFollow(FOLLOW_product_in_ar_exp112);
-            product();
-
-            state._fsp--;
-
-            dbg.location(23,13);
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:23:13: ( STRICH_OP product )*
+            dbg.location(24,10);
+            match(input,32,FOLLOW_32_in_ifStmt117); 
+            dbg.location(24,15);
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:24:15: ( BOOL | cmp )
+            int alt4=2;
             try { dbg.enterSubRule(4);
+            try { dbg.enterDecision(4, decisionCanBacktrack[4]);
 
-            loop4:
-            do {
-                int alt4=2;
-                try { dbg.enterDecision(4, decisionCanBacktrack[4]);
+            int LA4_0 = input.LA(1);
 
-                int LA4_0 = input.LA(1);
+            if ( (LA4_0==BOOL) ) {
+                alt4=1;
+            }
+            else if ( (LA4_0==FLOAT||(LA4_0 >= ID && LA4_0 <= INT)||LA4_0==27) ) {
+                alt4=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 4, 0, input);
 
-                if ( (LA4_0==STRICH_OP) ) {
-                    alt4=1;
-                }
+                dbg.recognitionException(nvae);
+                throw nvae;
+
+            }
+            } finally {dbg.exitDecision(4);}
+
+            switch (alt4) {
+                case 1 :
+                    dbg.enterAlt(1);
+
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:24:16: BOOL
+                    {
+                    dbg.location(24,16);
+                    match(input,BOOL,FOLLOW_BOOL_in_ifStmt120); 
+
+                    }
+                    break;
+                case 2 :
+                    dbg.enterAlt(2);
+
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:24:23: cmp
+                    {
+                    dbg.location(24,23);
+                    pushFollow(FOLLOW_cmp_in_ifStmt124);
+                    cmp();
+
+                    state._fsp--;
 
 
-                } finally {dbg.exitDecision(4);}
+                    }
+                    break;
 
-                switch (alt4) {
-            	case 1 :
-            	    dbg.enterAlt(1);
-
-            	    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:23:14: STRICH_OP product
-            	    {
-            	    dbg.location(23,14);
-            	    match(input,STRICH_OP,FOLLOW_STRICH_OP_in_ar_exp115); 
-            	    dbg.location(23,24);
-            	    pushFollow(FOLLOW_product_in_ar_exp117);
-            	    product();
-
-            	    state._fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop4;
-                }
-            } while (true);
+            }
             } finally {dbg.exitSubRule(4);}
 
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-
-        finally {
-        	// do for sure before leaving
-        }
-        dbg.location(24, 1);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "ar_exp");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
-        return ;
-    }
-    // $ANTLR end "ar_exp"
-
-
-
-    // $ANTLR start "product"
-    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:26:1: product : ar_term ( PUNKT_OP ar_term )* ;
-    public final void product() throws RecognitionException {
-        try { dbg.enterRule(getGrammarFileName(), "product");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(26, 0);
-
-        try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:26:9: ( ar_term ( PUNKT_OP ar_term )* )
-            dbg.enterAlt(1);
-
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:26:11: ar_term ( PUNKT_OP ar_term )*
-            {
-            dbg.location(26,11);
-            pushFollow(FOLLOW_ar_term_in_product130);
-            ar_term();
+            dbg.location(24,29);
+            match(input,37,FOLLOW_37_in_ifStmt128); 
+            dbg.location(24,36);
+            pushFollow(FOLLOW_statements_in_ifStmt130);
+            statements();
 
             state._fsp--;
 
-            dbg.location(26,19);
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:26:19: ( PUNKT_OP ar_term )*
+            dbg.location(24,47);
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:24:47: ( 'else' statements )?
+            int alt5=2;
             try { dbg.enterSubRule(5);
+            try { dbg.enterDecision(5, decisionCanBacktrack[5]);
 
-            loop5:
-            do {
-                int alt5=2;
-                try { dbg.enterDecision(5, decisionCanBacktrack[5]);
+            int LA5_0 = input.LA(1);
 
-                int LA5_0 = input.LA(1);
+            if ( (LA5_0==30) ) {
+                alt5=1;
+            }
+            } finally {dbg.exitDecision(5);}
 
-                if ( (LA5_0==PUNKT_OP) ) {
-                    alt5=1;
-                }
+            switch (alt5) {
+                case 1 :
+                    dbg.enterAlt(1);
 
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:24:48: 'else' statements
+                    {
+                    dbg.location(24,48);
+                    match(input,30,FOLLOW_30_in_ifStmt133); 
+                    dbg.location(24,55);
+                    pushFollow(FOLLOW_statements_in_ifStmt135);
+                    statements();
 
-                } finally {dbg.exitDecision(5);}
-
-                switch (alt5) {
-            	case 1 :
-            	    dbg.enterAlt(1);
-
-            	    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:26:20: PUNKT_OP ar_term
-            	    {
-            	    dbg.location(26,20);
-            	    match(input,PUNKT_OP,FOLLOW_PUNKT_OP_in_product133); 
-            	    dbg.location(26,29);
-            	    pushFollow(FOLLOW_ar_term_in_product135);
-            	    ar_term();
-
-            	    state._fsp--;
+                    state._fsp--;
 
 
-            	    }
-            	    break;
+                    }
+                    break;
 
-            	default :
-            	    break loop5;
-                }
-            } while (true);
+            }
             } finally {dbg.exitSubRule(5);}
 
+            dbg.location(24,68);
+            match(input,31,FOLLOW_31_in_ifStmt139); 
 
             }
 
@@ -657,52 +618,52 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(27, 1);
+        dbg.location(25, 1);
 
         }
         finally {
-            dbg.exitRule(getGrammarFileName(), "product");
+            dbg.exitRule(getGrammarFileName(), "ifStmt");
             decRuleLevel();
             if ( getRuleLevel()==0 ) {dbg.terminate();}
         }
 
         return ;
     }
-    // $ANTLR end "product"
+    // $ANTLR end "ifStmt"
 
 
 
-    // $ANTLR start "ar_term"
-    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:29:1: ar_term : ( ID | numberconst | '(' ar_exp ')' );
-    public final void ar_term() throws RecognitionException {
-        try { dbg.enterRule(getGrammarFileName(), "ar_term");
+    // $ANTLR start "whileStmt"
+    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:27:1: whileStmt : 'while' ( BOOL | cmp ) 'do' statements 'od' ;
+    public final void whileStmt() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "whileStmt");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(29, 0);
+        dbg.location(27, 0);
 
         try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:29:9: ( ID | numberconst | '(' ar_exp ')' )
-            int alt6=3;
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:28:2: ( 'while' ( BOOL | cmp ) 'do' statements 'od' )
+            dbg.enterAlt(1);
+
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:28:4: 'while' ( BOOL | cmp ) 'do' statements 'od'
+            {
+            dbg.location(28,4);
+            match(input,38,FOLLOW_38_in_whileStmt150); 
+            dbg.location(28,12);
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:28:12: ( BOOL | cmp )
+            int alt6=2;
+            try { dbg.enterSubRule(6);
             try { dbg.enterDecision(6, decisionCanBacktrack[6]);
 
-            switch ( input.LA(1) ) {
-            case ID:
-                {
+            int LA6_0 = input.LA(1);
+
+            if ( (LA6_0==BOOL) ) {
                 alt6=1;
-                }
-                break;
-            case FLOAT:
-            case INT:
-                {
+            }
+            else if ( (LA6_0==FLOAT||(LA6_0 >= ID && LA6_0 <= INT)||LA6_0==27) ) {
                 alt6=2;
-                }
-                break;
-            case 28:
-                {
-                alt6=3;
-                }
-                break;
-            default:
+            }
+            else {
                 NoViableAltException nvae =
                     new NoViableAltException("", 6, 0, input);
 
@@ -710,106 +671,47 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 throw nvae;
 
             }
-
             } finally {dbg.exitDecision(6);}
 
             switch (alt6) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:29:11: ID
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:28:13: BOOL
                     {
-                    dbg.location(29,11);
-                    match(input,ID,FOLLOW_ID_in_ar_term147); 
+                    dbg.location(28,13);
+                    match(input,BOOL,FOLLOW_BOOL_in_whileStmt153); 
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:29:17: numberconst
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:28:20: cmp
                     {
-                    dbg.location(29,17);
-                    pushFollow(FOLLOW_numberconst_in_ar_term152);
-                    numberconst();
+                    dbg.location(28,20);
+                    pushFollow(FOLLOW_cmp_in_whileStmt157);
+                    cmp();
 
                     state._fsp--;
 
-
-                    }
-                    break;
-                case 3 :
-                    dbg.enterAlt(3);
-
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:29:31: '(' ar_exp ')'
-                    {
-                    dbg.location(29,31);
-                    match(input,28,FOLLOW_28_in_ar_term156); 
-                    dbg.location(29,35);
-                    pushFollow(FOLLOW_ar_exp_in_ar_term158);
-                    ar_exp();
-
-                    state._fsp--;
-
-                    dbg.location(29,42);
-                    match(input,29,FOLLOW_29_in_ar_term160); 
 
                     }
                     break;
 
             }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
+            } finally {dbg.exitSubRule(6);}
 
-        finally {
-        	// do for sure before leaving
-        }
-        dbg.location(30, 1);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "ar_term");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
-        return ;
-    }
-    // $ANTLR end "ar_term"
-
-
-
-    // $ANTLR start "cmp"
-    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:32:1: cmp : ar_exp RELOP ar_exp ;
-    public final void cmp() throws RecognitionException {
-        try { dbg.enterRule(getGrammarFileName(), "cmp");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(32, 0);
-
-        try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:32:5: ( ar_exp RELOP ar_exp )
-            dbg.enterAlt(1);
-
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:32:7: ar_exp RELOP ar_exp
-            {
-            dbg.location(32,7);
-            pushFollow(FOLLOW_ar_exp_in_cmp170);
-            ar_exp();
+            dbg.location(28,25);
+            match(input,29,FOLLOW_29_in_whileStmt160); 
+            dbg.location(28,30);
+            pushFollow(FOLLOW_statements_in_whileStmt162);
+            statements();
 
             state._fsp--;
 
-            dbg.location(32,14);
-            match(input,RELOP,FOLLOW_RELOP_in_cmp172); 
-            dbg.location(32,20);
-            pushFollow(FOLLOW_ar_exp_in_cmp174);
-            ar_exp();
-
-            state._fsp--;
-
+            dbg.location(28,41);
+            match(input,33,FOLLOW_33_in_whileStmt164); 
 
             }
 
@@ -822,49 +724,40 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(33, 1);
+        dbg.location(29, 1);
 
         }
         finally {
-            dbg.exitRule(getGrammarFileName(), "cmp");
+            dbg.exitRule(getGrammarFileName(), "whileStmt");
             decRuleLevel();
             if ( getRuleLevel()==0 ) {dbg.terminate();}
         }
 
         return ;
     }
-    // $ANTLR end "cmp"
+    // $ANTLR end "whileStmt"
 
 
 
-    // $ANTLR start "ifStmt"
-    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:35:1: ifStmt : 'if' ( BOOL | cmp ) 'then' statements ( 'else' statements )? 'fi' ;
-    public final void ifStmt() throws RecognitionException {
-        try { dbg.enterRule(getGrammarFileName(), "ifStmt");
+    // $ANTLR start "io_stmt"
+    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:31:1: io_stmt : ( ( 'print' | 'println' ) '(' expression ')' | 'read(' expression ')' );
+    public final void io_stmt() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "io_stmt");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(35, 0);
+        dbg.location(31, 0);
 
         try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:35:8: ( 'if' ( BOOL | cmp ) 'then' statements ( 'else' statements )? 'fi' )
-            dbg.enterAlt(1);
-
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:35:10: 'if' ( BOOL | cmp ) 'then' statements ( 'else' statements )? 'fi'
-            {
-            dbg.location(35,10);
-            match(input,33,FOLLOW_33_in_ifStmt184); 
-            dbg.location(35,15);
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:35:15: ( BOOL | cmp )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:31:9: ( ( 'print' | 'println' ) '(' expression ')' | 'read(' expression ')' )
             int alt7=2;
-            try { dbg.enterSubRule(7);
             try { dbg.enterDecision(7, decisionCanBacktrack[7]);
 
             int LA7_0 = input.LA(1);
 
-            if ( (LA7_0==BOOL) ) {
+            if ( ((LA7_0 >= 34 && LA7_0 <= 35)) ) {
                 alt7=1;
             }
-            else if ( (LA7_0==FLOAT||(LA7_0 >= ID && LA7_0 <= INT)||LA7_0==28) ) {
+            else if ( (LA7_0==36) ) {
                 alt7=2;
             }
             else {
@@ -881,75 +774,138 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:35:16: BOOL
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:31:11: ( 'print' | 'println' ) '(' expression ')'
                     {
-                    dbg.location(35,16);
-                    match(input,BOOL,FOLLOW_BOOL_in_ifStmt187); 
+                    dbg.location(31,11);
+                    if ( (input.LA(1) >= 34 && input.LA(1) <= 35) ) {
+                        input.consume();
+                        state.errorRecovery=false;
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        dbg.recognitionException(mse);
+                        throw mse;
+                    }
+
+                    dbg.location(31,33);
+                    match(input,27,FOLLOW_27_in_io_stmt182); 
+                    dbg.location(31,37);
+                    pushFollow(FOLLOW_expression_in_io_stmt184);
+                    expression();
+
+                    state._fsp--;
+
+                    dbg.location(31,48);
+                    match(input,28,FOLLOW_28_in_io_stmt186); 
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:35:23: cmp
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:32:5: 'read(' expression ')'
                     {
-                    dbg.location(35,23);
-                    pushFollow(FOLLOW_cmp_in_ifStmt191);
-                    cmp();
+                    dbg.location(32,5);
+                    match(input,36,FOLLOW_36_in_io_stmt192); 
+                    dbg.location(32,13);
+                    pushFollow(FOLLOW_expression_in_io_stmt194);
+                    expression();
 
                     state._fsp--;
 
+                    dbg.location(32,24);
+                    match(input,28,FOLLOW_28_in_io_stmt196); 
 
                     }
                     break;
 
             }
-            } finally {dbg.exitSubRule(7);}
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
 
-            dbg.location(35,29);
-            match(input,38,FOLLOW_38_in_ifStmt195); 
-            dbg.location(35,36);
-            pushFollow(FOLLOW_statements_in_ifStmt197);
-            statements();
+        finally {
+        	// do for sure before leaving
+        }
+        dbg.location(33, 1);
+
+        }
+        finally {
+            dbg.exitRule(getGrammarFileName(), "io_stmt");
+            decRuleLevel();
+            if ( getRuleLevel()==0 ) {dbg.terminate();}
+        }
+
+        return ;
+    }
+    // $ANTLR end "io_stmt"
+
+
+
+    // $ANTLR start "ar_exp"
+    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:34:1: ar_exp : product ( STRICH_OP product )* ;
+    public final void ar_exp() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "ar_exp");
+        if ( getRuleLevel()==0 ) {dbg.commence();}
+        incRuleLevel();
+        dbg.location(34, 0);
+
+        try {
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:35:2: ( product ( STRICH_OP product )* )
+            dbg.enterAlt(1);
+
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:35:5: product ( STRICH_OP product )*
+            {
+            dbg.location(35,5);
+            pushFollow(FOLLOW_product_in_ar_exp207);
+            product();
 
             state._fsp--;
 
-            dbg.location(35,47);
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:35:47: ( 'else' statements )?
-            int alt8=2;
+            dbg.location(35,13);
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:35:13: ( STRICH_OP product )*
             try { dbg.enterSubRule(8);
-            try { dbg.enterDecision(8, decisionCanBacktrack[8]);
 
-            int LA8_0 = input.LA(1);
+            loop8:
+            do {
+                int alt8=2;
+                try { dbg.enterDecision(8, decisionCanBacktrack[8]);
 
-            if ( (LA8_0==31) ) {
-                alt8=1;
-            }
-            } finally {dbg.exitDecision(8);}
+                int LA8_0 = input.LA(1);
 
-            switch (alt8) {
-                case 1 :
-                    dbg.enterAlt(1);
-
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:35:48: 'else' statements
-                    {
-                    dbg.location(35,48);
-                    match(input,31,FOLLOW_31_in_ifStmt200); 
-                    dbg.location(35,55);
-                    pushFollow(FOLLOW_statements_in_ifStmt202);
-                    statements();
-
-                    state._fsp--;
+                if ( (LA8_0==STRICH_OP) ) {
+                    alt8=1;
+                }
 
 
-                    }
-                    break;
+                } finally {dbg.exitDecision(8);}
 
-            }
+                switch (alt8) {
+            	case 1 :
+            	    dbg.enterAlt(1);
+
+            	    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:35:14: STRICH_OP product
+            	    {
+            	    dbg.location(35,14);
+            	    match(input,STRICH_OP,FOLLOW_STRICH_OP_in_ar_exp210); 
+            	    dbg.location(35,24);
+            	    pushFollow(FOLLOW_product_in_ar_exp212);
+            	    product();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop8;
+                }
+            } while (true);
             } finally {dbg.exitSubRule(8);}
 
-            dbg.location(35,68);
-            match(input,32,FOLLOW_32_in_ifStmt206); 
 
             }
 
@@ -966,87 +922,166 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
         }
         finally {
-            dbg.exitRule(getGrammarFileName(), "ifStmt");
+            dbg.exitRule(getGrammarFileName(), "ar_exp");
             decRuleLevel();
             if ( getRuleLevel()==0 ) {dbg.terminate();}
         }
 
         return ;
     }
-    // $ANTLR end "ifStmt"
+    // $ANTLR end "ar_exp"
 
 
 
-    // $ANTLR start "statement"
-    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:38:1: statement : ( var_def | ifStmt | whileStmt | io_stmt );
-    public final void statement() throws RecognitionException {
-        try { dbg.enterRule(getGrammarFileName(), "statement");
+    // $ANTLR start "product"
+    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:38:1: product : ar_term ( PUNKT_OP ar_term )* ;
+    public final void product() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "product");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
         dbg.location(38, 0);
 
         try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:39:2: ( var_def | ifStmt | whileStmt | io_stmt )
-            int alt9=4;
-            try { dbg.enterDecision(9, decisionCanBacktrack[9]);
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:38:9: ( ar_term ( PUNKT_OP ar_term )* )
+            dbg.enterAlt(1);
+
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:38:11: ar_term ( PUNKT_OP ar_term )*
+            {
+            dbg.location(38,11);
+            pushFollow(FOLLOW_ar_term_in_product225);
+            ar_term();
+
+            state._fsp--;
+
+            dbg.location(38,19);
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:38:19: ( PUNKT_OP ar_term )*
+            try { dbg.enterSubRule(9);
+
+            loop9:
+            do {
+                int alt9=2;
+                try { dbg.enterDecision(9, decisionCanBacktrack[9]);
+
+                int LA9_0 = input.LA(1);
+
+                if ( (LA9_0==PUNKT_OP) ) {
+                    alt9=1;
+                }
+
+
+                } finally {dbg.exitDecision(9);}
+
+                switch (alt9) {
+            	case 1 :
+            	    dbg.enterAlt(1);
+
+            	    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:38:20: PUNKT_OP ar_term
+            	    {
+            	    dbg.location(38,20);
+            	    match(input,PUNKT_OP,FOLLOW_PUNKT_OP_in_product228); 
+            	    dbg.location(38,29);
+            	    pushFollow(FOLLOW_ar_term_in_product230);
+            	    ar_term();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop9;
+                }
+            } while (true);
+            } finally {dbg.exitSubRule(9);}
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+
+        finally {
+        	// do for sure before leaving
+        }
+        dbg.location(39, 1);
+
+        }
+        finally {
+            dbg.exitRule(getGrammarFileName(), "product");
+            decRuleLevel();
+            if ( getRuleLevel()==0 ) {dbg.terminate();}
+        }
+
+        return ;
+    }
+    // $ANTLR end "product"
+
+
+
+    // $ANTLR start "ar_term"
+    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:41:1: ar_term : ( ID | numberconst | '(' ar_exp ')' );
+    public final void ar_term() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "ar_term");
+        if ( getRuleLevel()==0 ) {dbg.commence();}
+        incRuleLevel();
+        dbg.location(41, 0);
+
+        try {
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:41:9: ( ID | numberconst | '(' ar_exp ')' )
+            int alt10=3;
+            try { dbg.enterDecision(10, decisionCanBacktrack[10]);
 
             switch ( input.LA(1) ) {
             case ID:
                 {
-                alt9=1;
+                alt10=1;
                 }
                 break;
-            case 33:
+            case FLOAT:
+            case INT:
                 {
-                alt9=2;
+                alt10=2;
                 }
                 break;
-            case 39:
+            case 27:
                 {
-                alt9=3;
-                }
-                break;
-            case 35:
-            case 36:
-            case 37:
-                {
-                alt9=4;
+                alt10=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 9, 0, input);
+                    new NoViableAltException("", 10, 0, input);
 
                 dbg.recognitionException(nvae);
                 throw nvae;
 
             }
 
-            } finally {dbg.exitDecision(9);}
+            } finally {dbg.exitDecision(10);}
 
-            switch (alt9) {
+            switch (alt10) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:39:4: var_def
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:41:11: ID
                     {
-                    dbg.location(39,4);
-                    pushFollow(FOLLOW_var_def_in_statement217);
-                    var_def();
-
-                    state._fsp--;
-
+                    dbg.location(41,11);
+                    match(input,ID,FOLLOW_ID_in_ar_term242); 
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:40:10: ifStmt
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:41:17: numberconst
                     {
-                    dbg.location(40,10);
-                    pushFollow(FOLLOW_ifStmt_in_statement228);
-                    ifStmt();
+                    dbg.location(41,17);
+                    pushFollow(FOLLOW_numberconst_in_ar_term247);
+                    numberconst();
 
                     state._fsp--;
 
@@ -1056,11 +1091,186 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:41:4: whileStmt
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:41:31: '(' ar_exp ')'
                     {
-                    dbg.location(41,4);
-                    pushFollow(FOLLOW_whileStmt_in_statement233);
+                    dbg.location(41,31);
+                    match(input,27,FOLLOW_27_in_ar_term251); 
+                    dbg.location(41,35);
+                    pushFollow(FOLLOW_ar_exp_in_ar_term253);
+                    ar_exp();
+
+                    state._fsp--;
+
+                    dbg.location(41,42);
+                    match(input,28,FOLLOW_28_in_ar_term255); 
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+
+        finally {
+        	// do for sure before leaving
+        }
+        dbg.location(42, 1);
+
+        }
+        finally {
+            dbg.exitRule(getGrammarFileName(), "ar_term");
+            decRuleLevel();
+            if ( getRuleLevel()==0 ) {dbg.terminate();}
+        }
+
+        return ;
+    }
+    // $ANTLR end "ar_term"
+
+
+
+    // $ANTLR start "cmp"
+    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:44:1: cmp : ar_exp RELOP ar_exp ;
+    public final void cmp() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "cmp");
+        if ( getRuleLevel()==0 ) {dbg.commence();}
+        incRuleLevel();
+        dbg.location(44, 0);
+
+        try {
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:44:5: ( ar_exp RELOP ar_exp )
+            dbg.enterAlt(1);
+
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:44:7: ar_exp RELOP ar_exp
+            {
+            dbg.location(44,7);
+            pushFollow(FOLLOW_ar_exp_in_cmp265);
+            ar_exp();
+
+            state._fsp--;
+
+            dbg.location(44,14);
+            match(input,RELOP,FOLLOW_RELOP_in_cmp267); 
+            dbg.location(44,20);
+            pushFollow(FOLLOW_ar_exp_in_cmp269);
+            ar_exp();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+
+        finally {
+        	// do for sure before leaving
+        }
+        dbg.location(45, 1);
+
+        }
+        finally {
+            dbg.exitRule(getGrammarFileName(), "cmp");
+            decRuleLevel();
+            if ( getRuleLevel()==0 ) {dbg.terminate();}
+        }
+
+        return ;
+    }
+    // $ANTLR end "cmp"
+
+
+
+    // $ANTLR start "statement"
+    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:47:1: statement : ( ifStmt | whileStmt | io_stmt | var_def );
+    public final void statement() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "statement");
+        if ( getRuleLevel()==0 ) {dbg.commence();}
+        incRuleLevel();
+        dbg.location(47, 0);
+
+        try {
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:48:2: ( ifStmt | whileStmt | io_stmt | var_def )
+            int alt11=4;
+            try { dbg.enterDecision(11, decisionCanBacktrack[11]);
+
+            switch ( input.LA(1) ) {
+            case 32:
+                {
+                alt11=1;
+                }
+                break;
+            case 38:
+                {
+                alt11=2;
+                }
+                break;
+            case 34:
+            case 35:
+            case 36:
+                {
+                alt11=3;
+                }
+                break;
+            case ID:
+                {
+                alt11=4;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 11, 0, input);
+
+                dbg.recognitionException(nvae);
+                throw nvae;
+
+            }
+
+            } finally {dbg.exitDecision(11);}
+
+            switch (alt11) {
+                case 1 :
+                    dbg.enterAlt(1);
+
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:48:4: ifStmt
+                    {
+                    dbg.location(48,4);
+                    pushFollow(FOLLOW_ifStmt_in_statement280);
+                    ifStmt();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+                case 2 :
+                    dbg.enterAlt(2);
+
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:49:4: whileStmt
+                    {
+                    dbg.location(49,4);
+                    pushFollow(FOLLOW_whileStmt_in_statement285);
                     whileStmt();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+                case 3 :
+                    dbg.enterAlt(3);
+
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:50:5: io_stmt
+                    {
+                    dbg.location(50,5);
+                    pushFollow(FOLLOW_io_stmt_in_statement291);
+                    io_stmt();
 
                     state._fsp--;
 
@@ -1070,11 +1280,11 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 4 :
                     dbg.enterAlt(4);
 
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:42:5: io_stmt
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:51:5: var_def
                     {
-                    dbg.location(42,5);
-                    pushFollow(FOLLOW_io_stmt_in_statement239);
-                    io_stmt();
+                    dbg.location(51,5);
+                    pushFollow(FOLLOW_var_def_in_statement297);
+                    var_def();
 
                     state._fsp--;
 
@@ -1092,7 +1302,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(43, 1);
+        dbg.location(52, 1);
 
         }
         finally {
@@ -1108,95 +1318,95 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
 
     // $ANTLR start "statements"
-    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:45:1: statements : statement ( SEMICOL ( statements )* )? ;
+    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:54:1: statements : statement ( SEMICOL ( statements )* )? ;
     public final void statements() throws RecognitionException {
         try { dbg.enterRule(getGrammarFileName(), "statements");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(45, 0);
+        dbg.location(54, 0);
 
         try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:46:2: ( statement ( SEMICOL ( statements )* )? )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:55:2: ( statement ( SEMICOL ( statements )* )? )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:46:4: statement ( SEMICOL ( statements )* )?
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:55:4: statement ( SEMICOL ( statements )* )?
             {
-            dbg.location(46,4);
-            pushFollow(FOLLOW_statement_in_statements250);
+            dbg.location(55,4);
+            pushFollow(FOLLOW_statement_in_statements308);
             statement();
 
             state._fsp--;
 
-            dbg.location(46,14);
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:46:14: ( SEMICOL ( statements )* )?
-            int alt11=2;
-            try { dbg.enterSubRule(11);
-            try { dbg.enterDecision(11, decisionCanBacktrack[11]);
+            dbg.location(55,14);
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:55:14: ( SEMICOL ( statements )* )?
+            int alt13=2;
+            try { dbg.enterSubRule(13);
+            try { dbg.enterDecision(13, decisionCanBacktrack[13]);
 
-            int LA11_0 = input.LA(1);
+            int LA13_0 = input.LA(1);
 
-            if ( (LA11_0==SEMICOL) ) {
-                alt11=1;
+            if ( (LA13_0==SEMICOL) ) {
+                alt13=1;
             }
-            } finally {dbg.exitDecision(11);}
+            } finally {dbg.exitDecision(13);}
 
-            switch (alt11) {
+            switch (alt13) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:46:15: SEMICOL ( statements )*
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:55:15: SEMICOL ( statements )*
                     {
-                    dbg.location(46,15);
-                    match(input,SEMICOL,FOLLOW_SEMICOL_in_statements253); 
-                    dbg.location(46,23);
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:46:23: ( statements )*
-                    try { dbg.enterSubRule(10);
+                    dbg.location(55,15);
+                    match(input,SEMICOL,FOLLOW_SEMICOL_in_statements311); 
+                    dbg.location(55,23);
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:55:23: ( statements )*
+                    try { dbg.enterSubRule(12);
 
-                    loop10:
+                    loop12:
                     do {
-                        int alt10=2;
-                        try { dbg.enterDecision(10, decisionCanBacktrack[10]);
+                        int alt12=2;
+                        try { dbg.enterDecision(12, decisionCanBacktrack[12]);
 
                         switch ( input.LA(1) ) {
-                        case ID:
+                        case 32:
                             {
-                            alt10=1;
+                            alt12=1;
                             }
                             break;
-                        case 33:
+                        case 38:
                             {
-                            alt10=1;
+                            alt12=1;
                             }
                             break;
-                        case 39:
-                            {
-                            alt10=1;
-                            }
-                            break;
+                        case 34:
                         case 35:
+                            {
+                            alt12=1;
+                            }
+                            break;
                         case 36:
                             {
-                            alt10=1;
+                            alt12=1;
                             }
                             break;
-                        case 37:
+                        case ID:
                             {
-                            alt10=1;
+                            alt12=1;
                             }
                             break;
 
                         }
 
-                        } finally {dbg.exitDecision(10);}
+                        } finally {dbg.exitDecision(12);}
 
-                        switch (alt10) {
+                        switch (alt12) {
                     	case 1 :
                     	    dbg.enterAlt(1);
 
-                    	    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:46:24: statements
+                    	    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:55:24: statements
                     	    {
-                    	    dbg.location(46,24);
-                    	    pushFollow(FOLLOW_statements_in_statements256);
+                    	    dbg.location(55,24);
+                    	    pushFollow(FOLLOW_statements_in_statements314);
                     	    statements();
 
                     	    state._fsp--;
@@ -1206,17 +1416,17 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     	    break;
 
                     	default :
-                    	    break loop10;
+                    	    break loop12;
                         }
                     } while (true);
-                    } finally {dbg.exitSubRule(10);}
+                    } finally {dbg.exitSubRule(12);}
 
 
                     }
                     break;
 
             }
-            } finally {dbg.exitSubRule(11);}
+            } finally {dbg.exitSubRule(13);}
 
 
             }
@@ -1230,7 +1440,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(47, 1);
+        dbg.location(56, 1);
 
         }
         finally {
@@ -1245,232 +1455,21 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
 
 
-    // $ANTLR start "whileStmt"
-    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:49:1: whileStmt : 'while' ( BOOL | cmp ) 'do' statements 'od' ;
-    public final void whileStmt() throws RecognitionException {
-        try { dbg.enterRule(getGrammarFileName(), "whileStmt");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(49, 0);
-
-        try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:50:2: ( 'while' ( BOOL | cmp ) 'do' statements 'od' )
-            dbg.enterAlt(1);
-
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:50:4: 'while' ( BOOL | cmp ) 'do' statements 'od'
-            {
-            dbg.location(50,4);
-            match(input,39,FOLLOW_39_in_whileStmt271); 
-            dbg.location(50,12);
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:50:12: ( BOOL | cmp )
-            int alt12=2;
-            try { dbg.enterSubRule(12);
-            try { dbg.enterDecision(12, decisionCanBacktrack[12]);
-
-            int LA12_0 = input.LA(1);
-
-            if ( (LA12_0==BOOL) ) {
-                alt12=1;
-            }
-            else if ( (LA12_0==FLOAT||(LA12_0 >= ID && LA12_0 <= INT)||LA12_0==28) ) {
-                alt12=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 12, 0, input);
-
-                dbg.recognitionException(nvae);
-                throw nvae;
-
-            }
-            } finally {dbg.exitDecision(12);}
-
-            switch (alt12) {
-                case 1 :
-                    dbg.enterAlt(1);
-
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:50:13: BOOL
-                    {
-                    dbg.location(50,13);
-                    match(input,BOOL,FOLLOW_BOOL_in_whileStmt274); 
-
-                    }
-                    break;
-                case 2 :
-                    dbg.enterAlt(2);
-
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:50:20: cmp
-                    {
-                    dbg.location(50,20);
-                    pushFollow(FOLLOW_cmp_in_whileStmt278);
-                    cmp();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-            } finally {dbg.exitSubRule(12);}
-
-            dbg.location(50,25);
-            match(input,30,FOLLOW_30_in_whileStmt281); 
-            dbg.location(50,30);
-            pushFollow(FOLLOW_statements_in_whileStmt283);
-            statements();
-
-            state._fsp--;
-
-            dbg.location(50,41);
-            match(input,34,FOLLOW_34_in_whileStmt285); 
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-
-        finally {
-        	// do for sure before leaving
-        }
-        dbg.location(51, 1);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "whileStmt");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
-        return ;
-    }
-    // $ANTLR end "whileStmt"
-
-
-
-    // $ANTLR start "io_stmt"
-    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:53:1: io_stmt : ( ( 'print' | 'println' ) '(' expression ')' | 'read(' expression ')' );
-    public final void io_stmt() throws RecognitionException {
-        try { dbg.enterRule(getGrammarFileName(), "io_stmt");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(53, 0);
-
-        try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:53:9: ( ( 'print' | 'println' ) '(' expression ')' | 'read(' expression ')' )
-            int alt13=2;
-            try { dbg.enterDecision(13, decisionCanBacktrack[13]);
-
-            int LA13_0 = input.LA(1);
-
-            if ( ((LA13_0 >= 35 && LA13_0 <= 36)) ) {
-                alt13=1;
-            }
-            else if ( (LA13_0==37) ) {
-                alt13=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 13, 0, input);
-
-                dbg.recognitionException(nvae);
-                throw nvae;
-
-            }
-            } finally {dbg.exitDecision(13);}
-
-            switch (alt13) {
-                case 1 :
-                    dbg.enterAlt(1);
-
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:53:11: ( 'print' | 'println' ) '(' expression ')'
-                    {
-                    dbg.location(53,11);
-                    if ( (input.LA(1) >= 35 && input.LA(1) <= 36) ) {
-                        input.consume();
-                        state.errorRecovery=false;
-                    }
-                    else {
-                        MismatchedSetException mse = new MismatchedSetException(null,input);
-                        dbg.recognitionException(mse);
-                        throw mse;
-                    }
-
-                    dbg.location(53,33);
-                    match(input,28,FOLLOW_28_in_io_stmt303); 
-                    dbg.location(53,37);
-                    pushFollow(FOLLOW_expression_in_io_stmt305);
-                    expression();
-
-                    state._fsp--;
-
-                    dbg.location(53,48);
-                    match(input,29,FOLLOW_29_in_io_stmt307); 
-
-                    }
-                    break;
-                case 2 :
-                    dbg.enterAlt(2);
-
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:54:5: 'read(' expression ')'
-                    {
-                    dbg.location(54,5);
-                    match(input,37,FOLLOW_37_in_io_stmt313); 
-                    dbg.location(54,13);
-                    pushFollow(FOLLOW_expression_in_io_stmt315);
-                    expression();
-
-                    state._fsp--;
-
-                    dbg.location(54,24);
-                    match(input,29,FOLLOW_29_in_io_stmt317); 
-
-                    }
-                    break;
-
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-
-        finally {
-        	// do for sure before leaving
-        }
-        dbg.location(55, 1);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "io_stmt");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
-        return ;
-    }
-    // $ANTLR end "io_stmt"
-
-
-
     // $ANTLR start "numberconst"
-    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:57:1: numberconst : ( INT | FLOAT );
+    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:58:1: numberconst : ( INT | FLOAT );
     public final void numberconst() throws RecognitionException {
         try { dbg.enterRule(getGrammarFileName(), "numberconst");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(57, 0);
+        dbg.location(58, 0);
 
         try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:58:2: ( INT | FLOAT )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:59:2: ( INT | FLOAT )
             dbg.enterAlt(1);
 
             // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:
             {
-            dbg.location(58,2);
+            dbg.location(59,2);
             if ( input.LA(1)==FLOAT||input.LA(1)==INT ) {
                 input.consume();
                 state.errorRecovery=false;
@@ -1493,7 +1492,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(59, 1);
+        dbg.location(60, 1);
 
         }
         finally {
@@ -1511,64 +1510,64 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
  
 
-    public static final BitSet FOLLOW_PROGRAM_in_main11 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_declaration_in_main13 = new BitSet(new long[]{0x0000000002000010L});
-    public static final BitSet FOLLOW_BEGIN_in_main16 = new BitSet(new long[]{0x000000BA00008000L});
+    public static final BitSet FOLLOW_PROGRAM_in_main11 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_declaration_in_main13 = new BitSet(new long[]{0x0000000001000010L});
+    public static final BitSet FOLLOW_BEGIN_in_main16 = new BitSet(new long[]{0x0000005D00004000L});
     public static final BitSet FOLLOW_statements_in_main18 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_END_in_main20 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_TYPE_in_declaration32 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_ids_in_declaration34 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_TYPE_in_declaration32 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_ids_in_declaration34 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_SEMICOL_in_declaration36 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ID_in_ids47 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_COMMA_in_ids51 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_COMMA_in_ids51 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_ID_in_ids53 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_ID_in_var_def64 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_DEF_in_var_def66 = new BitSet(new long[]{0x000000001101A020L});
-    public static final BitSet FOLLOW_expression_in_var_def68 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BOOL_in_expression79 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_expression83 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ar_exp_in_expression87 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_product_in_ar_exp112 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_STRICH_OP_in_ar_exp115 = new BitSet(new long[]{0x000000001001A000L});
-    public static final BitSet FOLLOW_product_in_ar_exp117 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_ar_term_in_product130 = new BitSet(new long[]{0x0000000000100002L});
-    public static final BitSet FOLLOW_PUNKT_OP_in_product133 = new BitSet(new long[]{0x000000001001A000L});
-    public static final BitSet FOLLOW_ar_term_in_product135 = new BitSet(new long[]{0x0000000000100002L});
-    public static final BitSet FOLLOW_ID_in_ar_term147 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_numberconst_in_ar_term152 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_ar_term156 = new BitSet(new long[]{0x000000001001A000L});
-    public static final BitSet FOLLOW_ar_exp_in_ar_term158 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ar_term160 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ar_exp_in_cmp170 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_RELOP_in_cmp172 = new BitSet(new long[]{0x000000001001A000L});
-    public static final BitSet FOLLOW_ar_exp_in_cmp174 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_ifStmt184 = new BitSet(new long[]{0x000000001001A020L});
-    public static final BitSet FOLLOW_BOOL_in_ifStmt187 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_cmp_in_ifStmt191 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_ifStmt195 = new BitSet(new long[]{0x000000BA00008000L});
-    public static final BitSet FOLLOW_statements_in_ifStmt197 = new BitSet(new long[]{0x0000000180000000L});
-    public static final BitSet FOLLOW_31_in_ifStmt200 = new BitSet(new long[]{0x000000BA00008000L});
-    public static final BitSet FOLLOW_statements_in_ifStmt202 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_ifStmt206 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_var_def_in_statement217 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ifStmt_in_statement228 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_whileStmt_in_statement233 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_io_stmt_in_statement239 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_statement_in_statements250 = new BitSet(new long[]{0x0000000000400002L});
-    public static final BitSet FOLLOW_SEMICOL_in_statements253 = new BitSet(new long[]{0x000000BA00008002L});
-    public static final BitSet FOLLOW_statements_in_statements256 = new BitSet(new long[]{0x000000BA00008002L});
-    public static final BitSet FOLLOW_39_in_whileStmt271 = new BitSet(new long[]{0x000000001001A020L});
-    public static final BitSet FOLLOW_BOOL_in_whileStmt274 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_cmp_in_whileStmt278 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_whileStmt281 = new BitSet(new long[]{0x000000BA00008000L});
-    public static final BitSet FOLLOW_statements_in_whileStmt283 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_whileStmt285 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_io_stmt295 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_io_stmt303 = new BitSet(new long[]{0x000000001101A020L});
-    public static final BitSet FOLLOW_expression_in_io_stmt305 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_io_stmt307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_io_stmt313 = new BitSet(new long[]{0x000000001101A020L});
-    public static final BitSet FOLLOW_expression_in_io_stmt315 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_io_stmt317 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_var_def65 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_DEF_in_var_def67 = new BitSet(new long[]{0x000000000880D020L});
+    public static final BitSet FOLLOW_expression_in_var_def69 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BOOL_in_expression80 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_expression84 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ar_exp_in_expression88 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ifStmt117 = new BitSet(new long[]{0x000000000800D020L});
+    public static final BitSet FOLLOW_BOOL_in_ifStmt120 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_cmp_in_ifStmt124 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_37_in_ifStmt128 = new BitSet(new long[]{0x0000005D00004000L});
+    public static final BitSet FOLLOW_statements_in_ifStmt130 = new BitSet(new long[]{0x00000000C0000000L});
+    public static final BitSet FOLLOW_30_in_ifStmt133 = new BitSet(new long[]{0x0000005D00004000L});
+    public static final BitSet FOLLOW_statements_in_ifStmt135 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_ifStmt139 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_whileStmt150 = new BitSet(new long[]{0x000000000800D020L});
+    public static final BitSet FOLLOW_BOOL_in_whileStmt153 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_cmp_in_whileStmt157 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_whileStmt160 = new BitSet(new long[]{0x0000005D00004000L});
+    public static final BitSet FOLLOW_statements_in_whileStmt162 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_whileStmt164 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_io_stmt174 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_io_stmt182 = new BitSet(new long[]{0x000000000880D020L});
+    public static final BitSet FOLLOW_expression_in_io_stmt184 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_io_stmt186 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_io_stmt192 = new BitSet(new long[]{0x000000000880D020L});
+    public static final BitSet FOLLOW_expression_in_io_stmt194 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_io_stmt196 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_product_in_ar_exp207 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_STRICH_OP_in_ar_exp210 = new BitSet(new long[]{0x000000000800D000L});
+    public static final BitSet FOLLOW_product_in_ar_exp212 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_ar_term_in_product225 = new BitSet(new long[]{0x0000000000080002L});
+    public static final BitSet FOLLOW_PUNKT_OP_in_product228 = new BitSet(new long[]{0x000000000800D000L});
+    public static final BitSet FOLLOW_ar_term_in_product230 = new BitSet(new long[]{0x0000000000080002L});
+    public static final BitSet FOLLOW_ID_in_ar_term242 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_numberconst_in_ar_term247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_ar_term251 = new BitSet(new long[]{0x000000000800D000L});
+    public static final BitSet FOLLOW_ar_exp_in_ar_term253 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_ar_term255 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ar_exp_in_cmp265 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RELOP_in_cmp267 = new BitSet(new long[]{0x000000000800D000L});
+    public static final BitSet FOLLOW_ar_exp_in_cmp269 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ifStmt_in_statement280 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_whileStmt_in_statement285 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_io_stmt_in_statement291 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_var_def_in_statement297 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_statement_in_statements308 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_SEMICOL_in_statements311 = new BitSet(new long[]{0x0000005D00004002L});
+    public static final BitSet FOLLOW_statements_in_statements314 = new BitSet(new long[]{0x0000005D00004002L});
 
 }

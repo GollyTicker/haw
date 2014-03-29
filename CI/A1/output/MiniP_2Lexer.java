@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g 2014-03-29 14:45:33
+// $ANTLR 3.4 C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g 2014-03-29 16:07:56
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class MiniP_2Lexer extends Lexer {
     public static final int EOF=-1;
+    public static final int T__27=27;
     public static final int T__28=28;
     public static final int T__29=29;
     public static final int T__30=30;
@@ -19,7 +20,6 @@ public class MiniP_2Lexer extends Lexer {
     public static final int T__36=36;
     public static final int T__37=37;
     public static final int T__38=38;
-    public static final int T__39=39;
     public static final int BEGIN=4;
     public static final int BOOL=5;
     public static final int COMMA=6;
@@ -28,22 +28,21 @@ public class MiniP_2Lexer extends Lexer {
     public static final int DIGIT=9;
     public static final int END=10;
     public static final int ESC_SEQ=11;
-    public static final int EXPONENT=12;
-    public static final int FLOAT=13;
-    public static final int HEX_DIGIT=14;
-    public static final int ID=15;
-    public static final int INT=16;
-    public static final int LETTER=17;
-    public static final int OCTAL_ESC=18;
-    public static final int PROGRAM=19;
-    public static final int PUNKT_OP=20;
-    public static final int RELOP=21;
-    public static final int SEMICOL=22;
-    public static final int STRICH_OP=23;
-    public static final int STRING=24;
-    public static final int TYPE=25;
-    public static final int UNICODE_ESC=26;
-    public static final int WS=27;
+    public static final int FLOAT=12;
+    public static final int HEX_DIGIT=13;
+    public static final int ID=14;
+    public static final int INT=15;
+    public static final int LETTER=16;
+    public static final int OCTAL_ESC=17;
+    public static final int PROGRAM=18;
+    public static final int PUNKT_OP=19;
+    public static final int RELOP=20;
+    public static final int SEMICOL=21;
+    public static final int STRICH_OP=22;
+    public static final int STRING=23;
+    public static final int TYPE=24;
+    public static final int UNICODE_ESC=25;
+    public static final int WS=26;
 
     // delegates
     // delegators
@@ -60,15 +59,36 @@ public class MiniP_2Lexer extends Lexer {
     }
     public String getGrammarFileName() { return "C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g"; }
 
-    // $ANTLR start "T__28"
-    public final void mT__28() throws RecognitionException {
+    // $ANTLR start "T__27"
+    public final void mT__27() throws RecognitionException {
         try {
-            int _type = T__28;
+            int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:2:7: ( '(' )
             // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:2:9: '('
             {
             match('('); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__27"
+
+    // $ANTLR start "T__28"
+    public final void mT__28() throws RecognitionException {
+        try {
+            int _type = T__28;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:3:7: ( ')' )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:3:9: ')'
+            {
+            match(')'); 
 
             }
 
@@ -86,10 +106,12 @@ public class MiniP_2Lexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:3:7: ( ')' )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:3:9: ')'
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:4:7: ( 'do' )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:4:9: 'do'
             {
-            match(')'); 
+            match("do"); 
+
+
 
             }
 
@@ -107,10 +129,10 @@ public class MiniP_2Lexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:4:7: ( 'do' )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:4:9: 'do'
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:5:7: ( 'else' )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:5:9: 'else'
             {
-            match("do"); 
+            match("else"); 
 
 
 
@@ -130,10 +152,10 @@ public class MiniP_2Lexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:5:7: ( 'else' )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:5:9: 'else'
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:6:7: ( 'fi' )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:6:9: 'fi'
             {
-            match("else"); 
+            match("fi"); 
 
 
 
@@ -153,10 +175,10 @@ public class MiniP_2Lexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:6:7: ( 'fi' )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:6:9: 'fi'
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:7:7: ( 'if' )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:7:9: 'if'
             {
-            match("fi"); 
+            match("if"); 
 
 
 
@@ -176,10 +198,10 @@ public class MiniP_2Lexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:7:7: ( 'if' )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:7:9: 'if'
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:8:7: ( 'od' )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:8:9: 'od'
             {
-            match("if"); 
+            match("od"); 
 
 
 
@@ -199,10 +221,10 @@ public class MiniP_2Lexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:8:7: ( 'od' )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:8:9: 'od'
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:9:7: ( 'print' )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:9:9: 'print'
             {
-            match("od"); 
+            match("print"); 
 
 
 
@@ -222,10 +244,10 @@ public class MiniP_2Lexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:9:7: ( 'print' )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:9:9: 'print'
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:10:7: ( 'println' )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:10:9: 'println'
             {
-            match("print"); 
+            match("println"); 
 
 
 
@@ -245,10 +267,10 @@ public class MiniP_2Lexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:10:7: ( 'println' )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:10:9: 'println'
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:11:7: ( 'read(' )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:11:9: 'read('
             {
-            match("println"); 
+            match("read("); 
 
 
 
@@ -268,10 +290,10 @@ public class MiniP_2Lexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:11:7: ( 'read(' )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:11:9: 'read('
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:12:7: ( 'then' )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:12:9: 'then'
             {
-            match("read("); 
+            match("then"); 
 
 
 
@@ -291,29 +313,6 @@ public class MiniP_2Lexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:12:7: ( 'then' )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:12:9: 'then'
-            {
-            match("then"); 
-
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__38"
-
-    // $ANTLR start "T__39"
-    public final void mT__39() throws RecognitionException {
-        try {
-            int _type = T__39;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
             // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:13:7: ( 'while' )
             // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:13:9: 'while'
             {
@@ -330,37 +329,14 @@ public class MiniP_2Lexer extends Lexer {
         	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__39"
-
-    // $ANTLR start "DEF"
-    public final void mDEF() throws RecognitionException {
-        try {
-            int _type = DEF;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:19:5: ( ':=' )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:19:7: ':='
-            {
-            match(":="); 
-
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "DEF"
+    // $ANTLR end "T__38"
 
     // $ANTLR start "BOOL"
     public final void mBOOL() throws RecognitionException {
         try {
             int _type = BOOL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:61:6: ( 'true' | 'false' )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:20:6: ( 'true' | 'false' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -379,7 +355,7 @@ public class MiniP_2Lexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:61:8: 'true'
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:20:8: 'true'
                     {
                     match("true"); 
 
@@ -388,7 +364,7 @@ public class MiniP_2Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:61:17: 'false'
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:20:17: 'false'
                     {
                     match("false"); 
 
@@ -406,6 +382,29 @@ public class MiniP_2Lexer extends Lexer {
         }
     }
     // $ANTLR end "BOOL"
+
+    // $ANTLR start "DEF"
+    public final void mDEF() throws RecognitionException {
+        try {
+            int _type = DEF;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:62:5: ( ':=' )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:62:7: ':='
+            {
+            match(":="); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "DEF"
 
     // $ANTLR start "PUNKT_OP"
     public final void mPUNKT_OP() throws RecognitionException {
@@ -943,12 +942,12 @@ public class MiniP_2Lexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:100:5: ( '\\'' ( ESC_SEQ |~ ( '\\\\' | '\\'' ) )* '\\'' )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:100:8: '\\'' ( ESC_SEQ |~ ( '\\\\' | '\\'' ) )* '\\''
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:100:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:100:8: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
             {
-            match('\''); 
+            match('\"'); 
 
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:100:13: ( ESC_SEQ |~ ( '\\\\' | '\\'' ) )*
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:100:12: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
             loop7:
             do {
                 int alt7=3;
@@ -957,14 +956,14 @@ public class MiniP_2Lexer extends Lexer {
                 if ( (LA7_0=='\\') ) {
                     alt7=1;
                 }
-                else if ( ((LA7_0 >= '\u0000' && LA7_0 <= '&')||(LA7_0 >= '(' && LA7_0 <= '[')||(LA7_0 >= ']' && LA7_0 <= '\uFFFF')) ) {
+                else if ( ((LA7_0 >= '\u0000' && LA7_0 <= '!')||(LA7_0 >= '#' && LA7_0 <= '[')||(LA7_0 >= ']' && LA7_0 <= '\uFFFF')) ) {
                     alt7=2;
                 }
 
 
                 switch (alt7) {
             	case 1 :
-            	    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:100:15: ESC_SEQ
+            	    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:100:14: ESC_SEQ
             	    {
             	    mESC_SEQ(); 
 
@@ -972,9 +971,9 @@ public class MiniP_2Lexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:100:25: ~ ( '\\\\' | '\\'' )
+            	    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:100:24: ~ ( '\\\\' | '\"' )
             	    {
-            	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
+            	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
             	    }
             	    else {
@@ -993,7 +992,7 @@ public class MiniP_2Lexer extends Lexer {
             } while (true);
 
 
-            match('\''); 
+            match('\"'); 
 
             }
 
@@ -1219,102 +1218,10 @@ public class MiniP_2Lexer extends Lexer {
     }
     // $ANTLR end "LETTER"
 
-    // $ANTLR start "EXPONENT"
-    public final void mEXPONENT() throws RecognitionException {
-        try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:127:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:127:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
-            {
-            if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
-                input.consume();
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;
-            }
-
-
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:127:22: ( '+' | '-' )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
-
-            if ( (LA10_0=='+'||LA10_0=='-') ) {
-                alt10=1;
-            }
-            switch (alt10) {
-                case 1 :
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:
-                    {
-                    if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
-                        input.consume();
-                    }
-                    else {
-                        MismatchedSetException mse = new MismatchedSetException(null,input);
-                        recover(mse);
-                        throw mse;
-                    }
-
-
-                    }
-                    break;
-
-            }
-
-
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:127:33: ( '0' .. '9' )+
-            int cnt11=0;
-            loop11:
-            do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
-
-                if ( ((LA11_0 >= '0' && LA11_0 <= '9')) ) {
-                    alt11=1;
-                }
-
-
-                switch (alt11) {
-            	case 1 :
-            	    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:
-            	    {
-            	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
-            	        input.consume();
-            	    }
-            	    else {
-            	        MismatchedSetException mse = new MismatchedSetException(null,input);
-            	        recover(mse);
-            	        throw mse;
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt11 >= 1 ) break loop11;
-                        EarlyExitException eee =
-                            new EarlyExitException(11, input);
-                        throw eee;
-                }
-                cnt11++;
-            } while (true);
-
-
-            }
-
-
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "EXPONENT"
-
     // $ANTLR start "HEX_DIGIT"
     public final void mHEX_DIGIT() throws RecognitionException {
         try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:131:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:127:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
             // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -1340,11 +1247,11 @@ public class MiniP_2Lexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:136:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
-            int alt12=3;
-            int LA12_0 = input.LA(1);
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:132:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+            int alt10=3;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA12_0=='\\') ) {
+            if ( (LA10_0=='\\') ) {
                 switch ( input.LA(2) ) {
                 case '\"':
                 case '\'':
@@ -1355,12 +1262,12 @@ public class MiniP_2Lexer extends Lexer {
                 case 'r':
                 case 't':
                     {
-                    alt12=1;
+                    alt10=1;
                     }
                     break;
                 case 'u':
                     {
-                    alt12=2;
+                    alt10=2;
                     }
                     break;
                 case '0':
@@ -1372,12 +1279,12 @@ public class MiniP_2Lexer extends Lexer {
                 case '6':
                 case '7':
                     {
-                    alt12=3;
+                    alt10=3;
                     }
                     break;
                 default:
                     NoViableAltException nvae =
-                        new NoViableAltException("", 12, 1, input);
+                        new NoViableAltException("", 10, 1, input);
 
                     throw nvae;
 
@@ -1386,14 +1293,14 @@ public class MiniP_2Lexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 12, 0, input);
+                    new NoViableAltException("", 10, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt12) {
+            switch (alt10) {
                 case 1 :
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:136:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:132:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
 
@@ -1410,7 +1317,7 @@ public class MiniP_2Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:137:9: UNICODE_ESC
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:133:9: UNICODE_ESC
                     {
                     mUNICODE_ESC(); 
 
@@ -1418,7 +1325,7 @@ public class MiniP_2Lexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:138:9: OCTAL_ESC
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:134:9: OCTAL_ESC
                     {
                     mOCTAL_ESC(); 
 
@@ -1438,43 +1345,43 @@ public class MiniP_2Lexer extends Lexer {
     // $ANTLR start "OCTAL_ESC"
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:143:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
-            int alt13=3;
-            int LA13_0 = input.LA(1);
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:139:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            int alt11=3;
+            int LA11_0 = input.LA(1);
 
-            if ( (LA13_0=='\\') ) {
-                int LA13_1 = input.LA(2);
+            if ( (LA11_0=='\\') ) {
+                int LA11_1 = input.LA(2);
 
-                if ( ((LA13_1 >= '0' && LA13_1 <= '3')) ) {
-                    int LA13_2 = input.LA(3);
+                if ( ((LA11_1 >= '0' && LA11_1 <= '3')) ) {
+                    int LA11_2 = input.LA(3);
 
-                    if ( ((LA13_2 >= '0' && LA13_2 <= '7')) ) {
-                        int LA13_4 = input.LA(4);
+                    if ( ((LA11_2 >= '0' && LA11_2 <= '7')) ) {
+                        int LA11_4 = input.LA(4);
 
-                        if ( ((LA13_4 >= '0' && LA13_4 <= '7')) ) {
-                            alt13=1;
+                        if ( ((LA11_4 >= '0' && LA11_4 <= '7')) ) {
+                            alt11=1;
                         }
                         else {
-                            alt13=2;
+                            alt11=2;
                         }
                     }
                     else {
-                        alt13=3;
+                        alt11=3;
                     }
                 }
-                else if ( ((LA13_1 >= '4' && LA13_1 <= '7')) ) {
-                    int LA13_3 = input.LA(3);
+                else if ( ((LA11_1 >= '4' && LA11_1 <= '7')) ) {
+                    int LA11_3 = input.LA(3);
 
-                    if ( ((LA13_3 >= '0' && LA13_3 <= '7')) ) {
-                        alt13=2;
+                    if ( ((LA11_3 >= '0' && LA11_3 <= '7')) ) {
+                        alt11=2;
                     }
                     else {
-                        alt13=3;
+                        alt11=3;
                     }
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 13, 1, input);
+                        new NoViableAltException("", 11, 1, input);
 
                     throw nvae;
 
@@ -1482,14 +1389,14 @@ public class MiniP_2Lexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 13, 0, input);
+                    new NoViableAltException("", 11, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt13) {
+            switch (alt11) {
                 case 1 :
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:143:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:139:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -1526,7 +1433,7 @@ public class MiniP_2Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:144:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:140:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -1553,7 +1460,7 @@ public class MiniP_2Lexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:145:9: '\\\\' ( '0' .. '7' )
+                    // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:141:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -1582,8 +1489,8 @@ public class MiniP_2Lexer extends Lexer {
     // $ANTLR start "UNICODE_ESC"
     public final void mUNICODE_ESC() throws RecognitionException {
         try {
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:150:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:150:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:146:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+            // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:146:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
             {
             match('\\'); 
 
@@ -1612,118 +1519,118 @@ public class MiniP_2Lexer extends Lexer {
     // $ANTLR end "UNICODE_ESC"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:8: ( T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | DEF | BOOL | PUNKT_OP | STRICH_OP | RELOP | PROGRAM | BEGIN | END | TYPE | SEMICOL | COMMA | FLOAT | INT | STRING | ID | COMMENT | WS )
-        int alt14=29;
-        alt14 = dfa14.predict(input);
-        switch (alt14) {
+        // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:8: ( T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | BOOL | DEF | PUNKT_OP | STRICH_OP | RELOP | PROGRAM | BEGIN | END | TYPE | SEMICOL | COMMA | FLOAT | INT | STRING | ID | COMMENT | WS )
+        int alt12=29;
+        alt12 = dfa12.predict(input);
+        switch (alt12) {
             case 1 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:10: T__28
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:10: T__27
+                {
+                mT__27(); 
+
+
+                }
+                break;
+            case 2 :
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:16: T__28
                 {
                 mT__28(); 
 
 
                 }
                 break;
-            case 2 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:16: T__29
+            case 3 :
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:22: T__29
                 {
                 mT__29(); 
 
 
                 }
                 break;
-            case 3 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:22: T__30
+            case 4 :
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:28: T__30
                 {
                 mT__30(); 
 
 
                 }
                 break;
-            case 4 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:28: T__31
+            case 5 :
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:34: T__31
                 {
                 mT__31(); 
 
 
                 }
                 break;
-            case 5 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:34: T__32
+            case 6 :
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:40: T__32
                 {
                 mT__32(); 
 
 
                 }
                 break;
-            case 6 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:40: T__33
+            case 7 :
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:46: T__33
                 {
                 mT__33(); 
 
 
                 }
                 break;
-            case 7 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:46: T__34
+            case 8 :
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:52: T__34
                 {
                 mT__34(); 
 
 
                 }
                 break;
-            case 8 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:52: T__35
+            case 9 :
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:58: T__35
                 {
                 mT__35(); 
 
 
                 }
                 break;
-            case 9 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:58: T__36
+            case 10 :
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:64: T__36
                 {
                 mT__36(); 
 
 
                 }
                 break;
-            case 10 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:64: T__37
+            case 11 :
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:70: T__37
                 {
                 mT__37(); 
 
 
                 }
                 break;
-            case 11 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:70: T__38
+            case 12 :
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:76: T__38
                 {
                 mT__38(); 
 
 
                 }
                 break;
-            case 12 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:76: T__39
-                {
-                mT__39(); 
-
-
-                }
-                break;
             case 13 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:82: DEF
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:82: BOOL
                 {
-                mDEF(); 
+                mBOOL(); 
 
 
                 }
                 break;
             case 14 :
-                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:86: BOOL
+                // C:\\Users\\Swaneet\\github\\haw\\CI\\A1\\MiniP_2.g:1:87: DEF
                 {
-                mBOOL(); 
+                mDEF(); 
 
 
                 }
@@ -1854,17 +1761,17 @@ public class MiniP_2Lexer extends Lexer {
     }
 
 
-    protected DFA14 dfa14 = new DFA14(this);
-    static final String DFA14_eotS =
+    protected DFA12 dfa12 = new DFA12(this);
+    static final String DFA12_eotS =
         "\3\uffff\11\26\1\uffff\1\27\2\uffff\2\26\2\uffff\1\53\4\uffff\1"+
         "\54\2\26\1\57\1\26\1\61\1\26\1\63\5\26\1\uffff\3\26\3\uffff\1\26"+
         "\1\76\1\uffff\1\26\1\uffff\1\26\1\uffff\11\26\1\113\1\uffff\5\26"+
         "\1\121\1\122\1\123\4\26\1\uffff\1\123\1\26\1\132\1\26\4\uffff\1"+
         "\134\1\135\4\26\1\uffff\1\26\2\uffff\1\26\2\121\1\144\1\145\1\121"+
         "\2\uffff";
-    static final String DFA14_eofS =
+    static final String DFA12_eofS =
         "\146\uffff";
-    static final String DFA14_minS =
+    static final String DFA12_minS =
         "\1\11\2\uffff\1\157\1\154\1\141\1\146\1\144\1\162\1\145\2\150\1"+
         "\uffff\1\52\2\uffff\1\145\1\164\2\uffff\1\56\4\uffff\1\60\1\163"+
         "\1\144\1\60\1\154\1\60\1\164\1\60\1\151\1\141\1\145\1\165\1\151"+
@@ -1873,7 +1780,7 @@ public class MiniP_2Lexer extends Lexer {
         "\151\1\60\1\uffff\1\145\1\147\1\164\1\162\1\50\3\60\1\145\1\156"+
         "\1\145\1\156\1\uffff\1\60\1\145\1\60\1\141\4\uffff\2\60\1\141\1"+
         "\147\1\162\1\156\1\uffff\1\155\2\uffff\1\156\5\60\2\uffff";
-    static final String DFA14_maxS =
+    static final String DFA12_maxS =
         "\1\172\2\uffff\1\157\1\156\1\151\1\156\1\144\1\162\1\145\1\162\1"+
         "\150\1\uffff\1\52\2\uffff\1\157\1\164\2\uffff\1\71\4\uffff\1\172"+
         "\1\163\1\144\1\172\1\154\1\172\1\164\1\172\1\157\1\141\1\145\1\165"+
@@ -1883,19 +1790,19 @@ public class MiniP_2Lexer extends Lexer {
         "\145\1\156\1\145\1\156\1\uffff\1\172\1\145\1\172\1\141\4\uffff\2"+
         "\172\1\141\1\147\1\162\1\156\1\uffff\1\155\2\uffff\1\156\5\172\2"+
         "\uffff";
-    static final String DFA14_acceptS =
-        "\1\uffff\1\1\1\2\11\uffff\1\15\1\uffff\1\20\1\21\2\uffff\1\26\1"+
+    static final String DFA12_acceptS =
+        "\1\uffff\1\1\1\2\11\uffff\1\16\1\uffff\1\20\1\21\2\uffff\1\26\1"+
         "\27\1\uffff\1\32\1\33\1\17\1\35\15\uffff\1\34\3\uffff\1\30\1\31"+
         "\1\3\2\uffff\1\5\1\uffff\1\6\1\uffff\1\7\12\uffff\1\24\14\uffff"+
-        "\1\4\4\uffff\1\12\1\25\1\13\1\16\6\uffff\1\10\1\uffff\1\14\1\23"+
+        "\1\4\4\uffff\1\12\1\25\1\13\1\15\6\uffff\1\10\1\uffff\1\14\1\23"+
         "\6\uffff\1\11\1\22";
-    static final String DFA14_specialS =
+    static final String DFA12_specialS =
         "\146\uffff}>";
-    static final String[] DFA14_transitionS = {
-            "\2\30\2\uffff\1\30\22\uffff\1\30\6\uffff\1\25\1\1\1\2\1\27\1"+
-            "\16\1\23\1\16\1\uffff\1\15\12\24\1\14\1\22\3\17\2\uffff\32\26"+
-            "\6\uffff\1\26\1\20\1\26\1\3\1\4\1\5\2\26\1\6\5\26\1\7\1\10\1"+
-            "\26\1\11\1\21\1\12\2\26\1\13\3\26",
+    static final String[] DFA12_transitionS = {
+            "\2\30\2\uffff\1\30\22\uffff\1\30\1\uffff\1\25\5\uffff\1\1\1"+
+            "\2\1\27\1\16\1\23\1\16\1\uffff\1\15\12\24\1\14\1\22\3\17\2\uffff"+
+            "\32\26\6\uffff\1\26\1\20\1\26\1\3\1\4\1\5\2\26\1\6\5\26\1\7"+
+            "\1\10\1\26\1\11\1\21\1\12\2\26\1\13\3\26",
             "",
             "",
             "\1\31",
@@ -1999,37 +1906,37 @@ public class MiniP_2Lexer extends Lexer {
             ""
     };
 
-    static final short[] DFA14_eot = DFA.unpackEncodedString(DFA14_eotS);
-    static final short[] DFA14_eof = DFA.unpackEncodedString(DFA14_eofS);
-    static final char[] DFA14_min = DFA.unpackEncodedStringToUnsignedChars(DFA14_minS);
-    static final char[] DFA14_max = DFA.unpackEncodedStringToUnsignedChars(DFA14_maxS);
-    static final short[] DFA14_accept = DFA.unpackEncodedString(DFA14_acceptS);
-    static final short[] DFA14_special = DFA.unpackEncodedString(DFA14_specialS);
-    static final short[][] DFA14_transition;
+    static final short[] DFA12_eot = DFA.unpackEncodedString(DFA12_eotS);
+    static final short[] DFA12_eof = DFA.unpackEncodedString(DFA12_eofS);
+    static final char[] DFA12_min = DFA.unpackEncodedStringToUnsignedChars(DFA12_minS);
+    static final char[] DFA12_max = DFA.unpackEncodedStringToUnsignedChars(DFA12_maxS);
+    static final short[] DFA12_accept = DFA.unpackEncodedString(DFA12_acceptS);
+    static final short[] DFA12_special = DFA.unpackEncodedString(DFA12_specialS);
+    static final short[][] DFA12_transition;
 
     static {
-        int numStates = DFA14_transitionS.length;
-        DFA14_transition = new short[numStates][];
+        int numStates = DFA12_transitionS.length;
+        DFA12_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA14_transition[i] = DFA.unpackEncodedString(DFA14_transitionS[i]);
+            DFA12_transition[i] = DFA.unpackEncodedString(DFA12_transitionS[i]);
         }
     }
 
-    class DFA14 extends DFA {
+    class DFA12 extends DFA {
 
-        public DFA14(BaseRecognizer recognizer) {
+        public DFA12(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 14;
-            this.eot = DFA14_eot;
-            this.eof = DFA14_eof;
-            this.min = DFA14_min;
-            this.max = DFA14_max;
-            this.accept = DFA14_accept;
-            this.special = DFA14_special;
-            this.transition = DFA14_transition;
+            this.decisionNumber = 12;
+            this.eot = DFA12_eot;
+            this.eof = DFA12_eof;
+            this.min = DFA12_min;
+            this.max = DFA12_max;
+            this.accept = DFA12_accept;
+            this.special = DFA12_special;
+            this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | DEF | BOOL | PUNKT_OP | STRICH_OP | RELOP | PROGRAM | BEGIN | END | TYPE | SEMICOL | COMMA | FLOAT | INT | STRING | ID | COMMENT | WS );";
+            return "1:1: Tokens : ( T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | BOOL | DEF | PUNKT_OP | STRICH_OP | RELOP | PROGRAM | BEGIN | END | TYPE | SEMICOL | COMMA | FLOAT | INT | STRING | ID | COMMENT | WS );";
         }
     }
  

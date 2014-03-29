@@ -1,4 +1,4 @@
-grammar MiniP_1;
+grammar MiniP_2;
 
 main 	: PROGRAM declaration+ BEGIN statements END
 	;

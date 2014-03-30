@@ -1,6 +1,7 @@
 import scala.annotation.tailrec
 import scala.collection.mutable.ArrayBuffer
 
+// Collatz
 // Tail Recursive Optimized Array Version..
 def collatz(n: Int): Array[Int] = {
   @tailrec def collatz_tail(x: Int, accu: Array[Int]): Array[Int] = x match {
@@ -28,3 +29,93 @@ def collatz_rec(n: Int): List[Int] = n match {
     case _ => n :: collatz_rec(3 * x + 1)
   }
 }
+
+
+// A1
+abstract class Abstract {
+  val name: String
+  var i: Int
+  def nc = name.charAt(i)
+  def f[T, R](i: T): R
+  override def toString = "(" + name + ", " + i + ", " + nc + ", " + f _ + ")"
+}
+
+class Concrete extends Abstract {
+  val name = "Welt"
+  var i = 0
+  def f[T, R](i: T): R = f(i)
+  override def toString = "Concrete" + super.toString
+}
+
+object Test {
+  def main(args: Array[String]) {
+    println(new Concrete)
+  }
+}
+
+// A2
+trait Shape {
+  def basePoint: Point
+}
+trait ClosedShape extends Shape {
+  def area: Double
+  override def toString = "unbekanntes closed shape mit area = " + area
+}
+
+case class Point(x: Int, y: Int)
+case class Line(xy: Point, yy: Point) extends Shape {
+  val basePoint = xy
+}
+case class Circle(xy: Point, d: Int) extends ClosedShape {
+  override def toString = "circle mit r " + (if (d >= 5) ">=" else "<") + " 5"
+  val basePoint = xy;
+  val area = math.Pi * math.pow(d, 2)
+}
+
+// maximum Supertype allowed is Shape and T is Contravariant
+class UseShape[+T <: Shape](t: T) {
+  override def toString = "basepoint at: " + t.basePoint + " -> " +
+    (t match {
+      case t: ClosedShape => t.toString
+      case _ => "unbekanntes shape"
+    })
+}
+
+object Test2 {
+  def main(args: Array[String]) {
+    test01
+  }
+
+  def useAllShapes(u: UseShape[Shape]) {
+    println(u)
+  }
+
+  def test01 = {
+    val useLine = new UseShape(Line(Point(0, 0), Point(1, 1)))
+    val useCircle1 = new UseShape(Circle(Point(1, 2), 10))
+    val useCircle2 = new UseShape(Circle(Point(2, 1), 4))
+
+    val useClosedShape = new UseShape(
+      new ClosedShape {
+        def basePoint: Point = Point(1, 1);
+        def area: Double = 10D
+      })
+
+    useAllShapes(new UseShape(
+      new ClosedShape {
+        def basePoint: Point = Point(2, 2);
+        def area: Double = 20D
+      }))
+
+    useAllShapes(useClosedShape)
+    useAllShapes(useLine)
+    useAllShapes(useCircle1)
+    useAllShapes(useCircle2)
+  }
+
+}
+
+
+
+
+

@@ -6,15 +6,15 @@ import scala.annotation.tailrec
  */
 
 object StringGenerator {
-  def intG(from: Int, to: Int) = from + Random.nextInt(to - 1)
+  def intG(from: Int, to: Int) = from + Random.nextInt(math.abs(from - to + 1))
 
-  def intToChar(from: Int, to: Int) = intG(from, to).asInstanceOf[Char]
+  def intGToChar(from: Int, to: Int) = intG(from, to).asInstanceOf[Char]
 
   def rdmRange(min: Int, max: Int) = 0 to intG(min, max)
 
-  def generate(min: Int, max: Int, from: Int, to: Int) = (for (e <- rdmRange(min, max)) yield intToChar(from, to)).mkString("")
+  def generate(min: Int, max: Int, from: Int, to: Int) = (for (e <- rdmRange(min, max)) yield intGToChar(from, to)).mkString("")
 
-  def gFold(min: Int, max: Int, from: Int, to: Int) = rdmRange(min, max).foldLeft("")((a, _) => a + intToChar(from, to))
+  def gFold(min: Int, max: Int, from: Int, to: Int) = rdmRange(min, max).foldLeft("")((a, _) => a + intGToChar(from, to))
 
   def main(args: Array[String]) {
     println(StringGenerator.generate(min = 5, max = 15, from = 0, to = 128))

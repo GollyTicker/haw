@@ -10,3 +10,8 @@
 
 # CI
 output/
+
+# Idea
+.idea/
+*.iml
+*.iws

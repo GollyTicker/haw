@@ -1,4 +1,5 @@
 import scala.util.Random
+import scala.annotation.tailrec
 
 /**
  * Created by sacry on 01/04/14.
@@ -24,12 +25,19 @@ object StringGenerator {
 
 object sumProds {
 
-  def sumOfprods(l1: List[Int], l2: List[Int]) = {
+  def sumOfProds(l1: List[Int], l2: List[Int]) = {
     l1.zip(l2).foldLeft(0)((accu, t) => accu + (t._1 * t._2))
   }
 
-  def sumOfprods2(l1: List[Int], l2: List[Int]) = {
-    l1.foldLeft((l2, 0))((t3, e) => (t3._1.tail, t3._2 + (t3._1.head * e)))._2
+  def sumOfProds2(l1: List[Int], l2: List[Int]) = {
+    (1 to math.min(l1.size, l2.size))
+      .foldLeft((l1, l2, 0))(
+        (t3, _) => (t3._1.tail, t3._2.tail, t3._3 + (t3._1.head * t3._2.head))
+      )._3
+  }
+
+  def sumOfProds3(l1: List[Int], l2: List[Int]) = {
+    ZipFold.zipFoldLeft(l1, l2, 0)(_ * _ + _)
   }
 
   def product(l1: List[Int], l2: List[Int]) = {
@@ -37,17 +45,19 @@ object sumProds {
   }
 
   def main(args: Array[String]) {
-    val c = sumOfprods(List(1, 2, 3, 4), List(1, 2, 3, 4))
+    val c = sumOfProds(List(1, 2, 3, 4), List(1, 2, 3, 4))
     println(c)
-    val c2 = sumOfprods2(List(1, 2, 3, 4), List(1, 2, 3, 4, 4))
+    val c2 = sumOfProds2(List(1, 2, 3), List(1, 2, 3, 4, 4))
     println(c2)
+    val c3 = sumOfProds3(List(1, 2, 3), List(1, 2, 3, 4, 4))
+    println(c3)
     val d = product(List(1, 2, 3), List(1, 2, 3, 4))
     println(d)
   }
 
 }
 
-case class Person private(val name: String, var age: Int = 0, private val pw: String = StringGenerator.generate(min = 5, max = 15, 65, 90)) {
+case class Person private(val name: String, var age: Int = 0, private val pw: String = StringGenerator.gFold(5, 15, 65, 90)) {
   override def toString = "Person(" + name + ", " + age + ")"
 }
 
@@ -95,8 +105,57 @@ object CostumerTest {
 }
 
 
-object LambdaTest {
+object ZipFold {
+  // Types T and A shall be different for the Lists
+  // A Function f produces an Accumulator of Type U over Type T and A
+  @tailrec def zipFoldLeft[T, A, U](l1: List[T], l2: List[A], acc: U)(f: (T, A, U) => U): U = {
+    if (l1 == Nil || l2 == Nil)
+      acc
+    else
+      zipFoldLeft(l1.tail, l2.tail, f(l1.head, l2.head, acc))(f)
+  }
+
+  // Proper Naming for multi Zipping...
+  @tailrec def zip2FoldLeft[T, A, U](l1: List[T], l2: List[A], acc: U)(f: (T, A, U) => U): U = {
+    if (l1 == Nil || l2 == Nil)
+      acc
+    else
+      zip2FoldLeft(l1.tail, l2.tail, f(l1.head, l2.head, acc))(f)
+  }
+
+  // Proper Naming for multi Zipping...
+  @tailrec def zip3FoldLeft[T, A, B, U](l1: List[T], l2: List[A], l3: List[B], acc: U)(f: (T, A, B, U) => U): U = {
+    if (l1 == Nil || l2 == Nil || l3 == Nil)
+      acc
+    else
+      zip3FoldLeft(l1.tail, l2.tail, l3.tail, f(l1.head, l2.head, l3.head, acc))(f)
+  }
+}
+
+object ZipFoldTest {
+
+  // Object Functional
+  implicit class FancyList[T](val l1: List[T]) extends AnyVal {
+    def zipFoldLeft[A, U](l2: List[A], acc: U)(f: (T, A, U) => U): U = {
+      if (l1 == Nil || l2 == Nil)
+        acc
+      else
+        l1.tail.zipFoldLeft(l2.tail, f(l1.head, l2.head, acc))(f)
+    }
+  }
+
   def main(args: Array[String]) {
-    println("This")
+    val l1 = List(1, 2, 3, 4, 5)
+    val l2 = List(1, 2, 3, 4, 5)
+    val l3 = List(1, 2, 3, 4, 5)
+    val res1 = ZipFold.zipFoldLeft(l1, l2, 0)((a, b, acc) => acc + (a * b))
+    println(res1)
+    // Little more verbose? ;))
+    val res2 = ZipFold.zip2FoldLeft(l1, l2, 0)(_ * _ + _)
+    println(res2)
+    val res3 = ZipFold.zip3FoldLeft(l1, l2, l3, 0)(_ * _ * _ + _)
+    println(res3)
+    val res4 = l1.zipFoldLeft(l2, 0)((a, b, acc) => acc + (a * b))
+    println(res4)
   }
 }

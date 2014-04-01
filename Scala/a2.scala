@@ -3,7 +3,7 @@ import scala.collection.mutable.ArrayBuffer
 
 // Collatz
 // Tail Recursive Optimized Array Version..
-def collatz(n: Int): Array[Int] = {
+def collatz_arr(n: Int): Array[Int] = {
   @tailrec def collatz_tail(x: Int, accu: Array[Int]): Array[Int] = x match {
     case 1 => accu :+ 1 // O(?)
     case x if x % 2 == 0 => collatz_tail(x / 2, accu :+ x)
@@ -11,6 +11,14 @@ def collatz(n: Int): Array[Int] = {
   }
   collatz_tail(n, Array())
 }
+
+  def collatz_arr_short(n: Int): Array[Int] = {
+    @tailrec def collatz_tail(x: Int, accu: Array[Int]): Array[Int] = x match {
+      case 1 => accu :+ 1
+      case _ => collatz_tail(if (x % 2 == 0) x / 2 else 3 * x + 1, accu :+ x)
+    }
+    collatz_tail(n, Array())
+  }
 
 // Tail Recursive Optimized ArrayBuffer Version..
 def collatz_arr_buffer(n: Int): Array[Int] = {
@@ -22,6 +30,15 @@ def collatz_arr_buffer(n: Int): Array[Int] = {
   collatz_tail(n, ArrayBuffer()).toArray
 }
 
+ def collatz_arr_buffer_short(n: Int): Array[Int] = {
+    @tailrec def collatz_tail(x: Int, accu: ArrayBuffer[Int]): ArrayBuffer[Int] = x match {
+      case 1 => accu += 1 // O(1)
+      case _ => collatz_tail(if (x % 2 == 0) x / 2 else 3 * x + 1, accu += x)
+    }
+    collatz_tail(n, ArrayBuffer()).toArray
+  }
+
+
 // Simple List Recursion
 def collatz_rec(n: Int): List[Int] = n match {
     case 1 => List(1)
@@ -29,7 +46,6 @@ def collatz_rec(n: Int): List[Int] = n match {
     case _ => n :: collatz_rec(3 * x + 1)
   }
 }
-
 
 // A1
 abstract class Abstract {
@@ -48,6 +64,7 @@ class Concrete extends Abstract {
 }
 
 object Test {
+
   def main(args: Array[String]) {
     println(new Concrete)
   }
@@ -59,7 +76,6 @@ trait Shape {
 }
 trait ClosedShape extends Shape {
   def area: Double
-  override def toString = "unbekanntes closed shape mit area = " + area
 }
 
 case class Point(x: Int, y: Int)
@@ -76,7 +92,8 @@ case class Circle(xy: Point, d: Int) extends ClosedShape {
 class UseShape[+T <: Shape](t: T) {
   override def toString = "basepoint at: " + t.basePoint + " -> " +
     (t match {
-      case t: ClosedShape => t.toString
+      case t: Circle => t.toString
+      case n: ClosedShape => "unbekanntes closed shape mit area = " + n.area
       case _ => "unbekanntes shape"
     })
 }
@@ -114,8 +131,4 @@ object Test2 {
   }
 
 }
-
-
-
-
 

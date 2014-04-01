@@ -12,13 +12,13 @@ def collatz_arr(n: Int): Array[Int] = {
   collatz_tail(n, Array())
 }
 
-  def collatz_arr_short(n: Int): Array[Int] = {
-    @tailrec def collatz_tail(x: Int, accu: Array[Int]): Array[Int] = x match {
-      case 1 => accu :+ 1
-      case _ => collatz_tail(if (x % 2 == 0) x / 2 else 3 * x + 1, accu :+ x)
-    }
-    collatz_tail(n, Array())
+def collatz_arr_short(n: Int): Array[Int] = {
+  @tailrec def collatz_tail(x: Int, accu: Array[Int]): Array[Int] = x match {
+    case 1 => accu :+ 1 // O(n)
+    case _ => collatz_tail(if (x % 2 == 0) x / 2 else 3 * x + 1, accu :+ x)
   }
+  collatz_tail(n, Array())
+}
 
 // Tail Recursive Optimized ArrayBuffer Version..
 def collatz_arr_buffer(n: Int): Array[Int] = {
@@ -30,14 +30,13 @@ def collatz_arr_buffer(n: Int): Array[Int] = {
   collatz_tail(n, ArrayBuffer()).toArray
 }
 
- def collatz_arr_buffer_short(n: Int): Array[Int] = {
-    @tailrec def collatz_tail(x: Int, accu: ArrayBuffer[Int]): ArrayBuffer[Int] = x match {
-      case 1 => accu += 1 // O(1)
-      case _ => collatz_tail(if (x % 2 == 0) x / 2 else 3 * x + 1, accu += x)
-    }
-    collatz_tail(n, ArrayBuffer()).toArray
+def collatz_arr_buffer_short(n: Int): Array[Int] = {
+  @tailrec def collatz_tail(x: Int, accu: ArrayBuffer[Int]): ArrayBuffer[Int] = x match {
+    case 1 => accu += 1 // O(1)
+    case _ => collatz_tail(if (x % 2 == 0) x / 2 else 3 * x + 1, accu += x)
   }
-
+  collatz_tail(n, ArrayBuffer()).toArray
+}
 
 // Simple List Recursion
 def collatz_rec(n: Int): List[Int] = n match {

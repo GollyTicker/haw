@@ -9,9 +9,10 @@ import java.net.*;
 class TCPServer {
 
     private static final int N = 500;
+    private static volatile int currentUsers = 0;
 
     private static void serverRun(ServerSocket socket) {
-        int currentUsers = 0;
+        System.out.println("Welcome to My Server!");
         Socket connectionSocket = null;
         do {
             try {

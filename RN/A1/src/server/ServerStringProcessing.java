@@ -1,6 +1,7 @@
 package server;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by sacry on 05/04/14.
@@ -10,13 +11,19 @@ public class ServerStringProcessing {
     public static final String SHUTDOWN = "SHUTDOWN";
     public static final String CONNECTION_CLOSE = "CONNECTION_CLOSE";
     private static final String DEFAULT = "Please provide a reasonbale Operation!";
+    private static final String REVERSE = "REVERSE";
+    private static final String LOWERCASE = "LOWERCASE";
+    private static final String UPPERCASE = "UPPERCASE";
+
 
     private ServerStringProcessing() {
     }
 
     public static String work(String line) {
         line = normalize(line);
-        if (line == null) {
+        if (line.isEmpty() || line == null)
+            return "";
+        if (inputDoesNotMatch(line)) {
             return DEFAULT;
         }
         if (line.startsWith(SHUTDOWN)) {
@@ -25,24 +32,28 @@ public class ServerStringProcessing {
         if (line.startsWith(CONNECTION_CLOSE)) {
             return CONNECTION_CLOSE;
         }
-        if (line.startsWith("REVERSE")) {
-            return reverse(get(line, line.indexOf(' '), line.length()));
+        String scrappedLine = slice(line, line.indexOf(' '), line.length());
+        if (line.startsWith(REVERSE)) {
+            return reverse(scrappedLine);
         }
-        if (line.startsWith("LOWERCASE")) {
-            return get(line, line.indexOf(' '), line.length()).toLowerCase();
+        if (line.startsWith(LOWERCASE)) {
+            return scrappedLine.toLowerCase();
         }
-        if (line.startsWith("UPPERCASE")) {
-            return get(line, line.indexOf(' '), line.length()).toUpperCase();
-        } else {
-            return DEFAULT;
+        if (line.startsWith(UPPERCASE)) {
+            return scrappedLine.toUpperCase();
         }
+        return line;
+    }
+
+    private static boolean inputDoesNotMatch(String line) {
+        return !line.matches("^((REVERSE|LOWERCASE|UPPERCASE) .*|(SHUTDOWN|CONNECTION_CLOSE))");
     }
 
     private static String reverse(String line) {
         return new StringBuffer(line).reverse().toString();
     }
 
-    private static String get(String line, int i, int j) {
+    private static String slice(String line, int i, int j) {
         return line.trim().substring(i, j);
     }
 

@@ -7,33 +7,50 @@ import java.util.ArrayList;
  */
 public class ServerStringProcessing {
 
+    public static final String SHUTDOWN = "SHUTDOWN";
+    public static final String CONNECTION_CLOSE = "CONNECTION_CLOSE";
+    private static final String DEFAULT = "Please provide a reasonbale Operation!";
+
     private ServerStringProcessing() {
     }
 
     public static String work(String line) {
+        line = normalize(line);
         if (line == null) {
-            return line;
+            return DEFAULT;
         }
-        String command = get(line, 0, line.indexOf(' '));
-        String restLine = get(line, line.indexOf(' '), line.length());
-        if (command.equals("REVERSE")) {
-            return reverse(restLine);
+        if (line.startsWith(SHUTDOWN)) {
+            return SHUTDOWN;
         }
-        if (command.equals("LOWERCASE")) {
-            return restLine.toLowerCase();
+        if (line.startsWith(CONNECTION_CLOSE)) {
+            return CONNECTION_CLOSE;
         }
-        if (command.equals("UPPERCASE")) {
-            return restLine.toUpperCase();
+        if (line.startsWith("REVERSE")) {
+            return reverse(get(line, line.indexOf(' '), line.length()));
         }
-        return line;
+        if (line.startsWith("LOWERCASE")) {
+            return get(line, line.indexOf(' '), line.length()).toLowerCase();
+        }
+        if (line.startsWith("UPPERCASE")) {
+            return get(line, line.indexOf(' '), line.length()).toUpperCase();
+        } else {
+            return DEFAULT;
+        }
     }
 
-    public static String reverse(String line) {
+    private static String reverse(String line) {
         return new StringBuffer(line).reverse().toString();
     }
 
     private static String get(String line, int i, int j) {
         return line.trim().substring(i, j);
+    }
+
+    private static String normalize(String line) {
+        if (line != null) {
+            return line.trim();
+        }
+        return line;
     }
 
 }

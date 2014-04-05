@@ -12,9 +12,6 @@ public class TCPServerThread extends Thread {
     private InputStreamReader inputStream;
     private OutputStream outputStream;
 
-    public static final String SHUTDOWN = "SHUTDOWN";
-    public static final String CONNECTION_CLOSE = "CONNECTION_CLOSE";
-
     public TCPServerThread(Socket client) {
         this.client = client;
     }
@@ -25,6 +22,8 @@ public class TCPServerThread extends Thread {
         setUp();
 
         do {
+
+            if (client.isClosed()) break;
 
             String line = readFromClient();
             System.out.println("Thread:Read= " + line);
@@ -57,7 +56,7 @@ public class TCPServerThread extends Thread {
     }
 
     boolean isConnectionClosed(String resp) {
-        return resp.equals(CONNECTION_CLOSE) || resp.equals(SHUTDOWN);
+        return resp.equals(ServerStringProcessing.CONNECTION_CLOSE) || resp.equals(ServerStringProcessing.SHUTDOWN);
     }
 
     String readFromClient() {

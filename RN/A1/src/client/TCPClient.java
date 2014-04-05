@@ -4,6 +4,7 @@ package client;
  * Created by sacry on 05/04/14.
  */
 
+import server.ServerStringProcessing;
 import server.TCPServerThread;
 
 import java.io.*;
@@ -27,9 +28,13 @@ class TCPClient {
             serverResponse = inFromServer.readLine();
             System.out.println("FROM SERVER: " + serverResponse);
         }
-        while (!(serverResponse.equals(TCPServerThread.SHUTDOWN) ||
-                serverResponse.equals(TCPServerThread.CONNECTION_CLOSE)));
+        while (noInShutdown(serverResponse));
         clientSocket.close();
+    }
+
+    private static boolean noInShutdown(String serverResponse) {
+        return !(serverResponse.equals(ServerStringProcessing.SHUTDOWN) ||
+                serverResponse.equals(ServerStringProcessing.CONNECTION_CLOSE));
     }
 
 }

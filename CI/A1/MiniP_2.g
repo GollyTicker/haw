@@ -41,15 +41,11 @@ ar_term	:	ID |  numberconst | '(' ar_exp ')'
 cmp	:	ar_exp RELOP ar_exp
 ;
 
-statement
-:	ifStmt
-|	whileStmt
-| io_stmt
-| var_def
+statement :	ifStmt | whileStmt | io_stmt SEMICOL | var_def SEMICOL
 ;
 
 statements
-:	statement  (SEMICOL statement)*
+:	statement+
 ;
 
 numberconst

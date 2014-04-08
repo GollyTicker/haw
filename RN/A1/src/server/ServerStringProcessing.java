@@ -10,7 +10,7 @@ public class ServerStringProcessing {
 
     public static final String SHUTDOWN = "SHUTDOWN";
     public static final String CONNECTION_CLOSE = "CONNECTION_CLOSE";
-    private static final String DEFAULT = "Please provide a reasonbale Operation!";
+    private static final String DEFAULT = "ERROR! Unknown Operation!";
     private static final String REVERSE = "REVERSE";
     private static final String LOWERCASE = "LOWERCASE";
     private static final String UPPERCASE = "UPPERCASE";
@@ -45,6 +45,7 @@ public class ServerStringProcessing {
     }
 
     private static boolean inputDoesNotMatch(String line) {
+        if (line == null) return false;
         return !line.matches("^((REVERSE|LOWERCASE|UPPERCASE) .*|(SHUTDOWN|CONNECTION_CLOSE))");
     }
 

@@ -11,8 +11,6 @@ import java.util.concurrent.TimeUnit;
  */
 class TCPServer {
 
-    private static final int N = 400;
-
     private ServerSocket listener;
     private Socket clientSocket;
 
@@ -20,14 +18,15 @@ class TCPServer {
         this.listener = listener;
     }
 
-    private void serverRun() {
+    private void run() {
         System.out.println("Welcome to My Server!");
 
-        while (ThreadMonitor.serverShouldBeRunning(N)) {
+        while (ThreadMonitor.serverShouldBeRunning()) {
             try {
+
                 clientSocket = listener.accept();
-                ThreadMonitor.increase();
-                new TCPServerThread(clientSocket).run();
+                ThreadMonitor.execute(clientSocket);
+
             } catch (Exception e) {
                 closeConnection();
             }
@@ -46,7 +45,7 @@ class TCPServer {
 
     public static void main(String args[]) throws Exception {
         ServerSocket socket = new ServerSocket(6789);
-        TCPServer s = new TCPServer(socket);
-        s.serverRun();
+        TCPServer tcpServer = new TCPServer(socket);
+        tcpServer.run();
     }
 }

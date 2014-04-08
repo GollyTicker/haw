@@ -52,6 +52,7 @@ public class TCPServerThread extends Thread {
             inputStream.close();
             outputStream.close();
             client.close();
+            ThreadMonitor.decrease();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,6 +81,7 @@ public class TCPServerThread extends Thread {
                 }
             } catch (IOException e) {
                 keepGo = false;
+                return null;
             }
         }
 

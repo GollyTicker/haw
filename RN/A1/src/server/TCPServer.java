@@ -18,20 +18,21 @@ class TCPServer {
         this.listener = listener;
     }
 
-    private void run() {
+    public void run() {
         System.out.println("Welcome to My Server!");
 
-        while (ThreadMonitor.serverShouldBeRunning()) {
+        while (ThreadMonitor.isRunning) {
             try {
-
-                clientSocket = listener.accept();
-                ThreadMonitor.execute(clientSocket);
-
-            } catch (Exception e) {
+                if (ThreadMonitor.canCreateMoreThreads()) {
+                    clientSocket = listener.accept();
+                    ThreadMonitor.execute(clientSocket);
+                }
+            } catch (IOException e) {
                 closeConnection();
             }
         }
-        closeConnection();
+
+        if (!ThreadMonitor.isRunning) closeConnection();
     }
 
     private void closeConnection() {

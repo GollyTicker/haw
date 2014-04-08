@@ -12,20 +12,27 @@ import socket
 import time
 import sys
 
-N = 512
+N = 200
 HOST = sys.argv[1]    # The remote host
 PORT = int(sys.argv[2]) # The port used by the server
 
 
 s=range(0,N)
 for i in range(0,N):
-  s[i] = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s[i] = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-  for i in range(0,N):
+for i in range(0,N):
     s[i].connect((HOST, PORT))
     print "Connected " + repr(i)
     time.sleep(0.1)
 
+time.sleep(5)
+
+#for i in range(0,N):
+        #s[i].send("GET")
+        #print "Send Data "+ repr(i)
+
+
 for i in range(0,N):
-  s[i].close()
-  print "Closed " + repr(i)
+    s[i].close()
+    print "Closed " + repr(i)

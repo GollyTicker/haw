@@ -11,9 +11,6 @@ import java.net.*;
 
 class TCPClient {
 
-    private String ip;
-    private int port;
-
     private Socket clientSocket;
     private BufferedReader inFromUser;
     private PrintWriter outToServer;
@@ -26,8 +23,6 @@ class TCPClient {
     }
 
     public TCPClient(String ip, int port) {
-        this.ip = ip;
-        this.port = port;
         try {
             this.clientSocket = new Socket(ip, port);
             initializeBuffers();

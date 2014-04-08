@@ -8,33 +8,34 @@ import java.util.Iterator;
  */
 public class ThreadMonitor {
 
-    private static final int N = 400;
+    private static final int N = 50;
     private static volatile int count = 0;
-    private static volatile boolean isRunning = true;
+    public static volatile boolean isRunning = true;
 
     private ThreadMonitor() {
     }
 
     public static void execute(Socket clientSocket) {
-        if (count < N) {
-            increase();
-            new TCPServerThread(clientSocket).run();
-        }
+        ThreadMonitor.increase();
+        TCPServerThread t = new TCPServerThread(clientSocket);
+        System.out.println("Thread created: " + t.getId());
+        t.start();
     }
 
     public static void increase() {
         count += 1;
     }
 
-    public static void decrease() {
-        count -= 1;
+    public static boolean canCreateMoreThreads() {
+        return count < N;
     }
 
-    public static boolean serverShouldBeRunning() {
-        return count < N && isRunning;
+    public static void decrease() {
+        count -= 1;
     }
 
     public static void shutdownSignal() {
         isRunning = false;
     }
+
 }

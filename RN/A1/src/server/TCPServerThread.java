@@ -23,7 +23,6 @@ public class TCPServerThread extends Thread {
 
         if (!client.isClosed()) {
             do {
-
                 String line = readFromClient();
                 if (line == null)
                     break;
@@ -35,7 +34,8 @@ public class TCPServerThread extends Thread {
 
             closeAll();
         }
-        System.out.println("Thread Killed");
+        ThreadMonitor.decrease();
+        System.out.println("Thread Killed: " + this.getId());
     }
 
     private void setUp() {
@@ -52,7 +52,6 @@ public class TCPServerThread extends Thread {
             inputStream.close();
             outputStream.close();
             client.close();
-            ThreadMonitor.decrease();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,7 +79,6 @@ public class TCPServerThread extends Thread {
                     byteArray[i] = (byte) read;
                 }
             } catch (IOException e) {
-                keepGo = false;
                 return null;
             }
         }

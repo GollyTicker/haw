@@ -28,7 +28,7 @@ case class Polynom private(cs: List[Pair[Int, Int]]) {
   }
 
   def °(p: Polynom): Polynom = {
-    this.cs.foldLeft(Polynom.ZERO)((acc, t) => acc + (Polynom(t) + (p ^ t._2)))
+    this.cs.foldLeft(Polynom.ZERO)((acc, t) => Polynom(t) + p * acc)
   }
 
   def ^(exp: Int): Polynom = exp match {

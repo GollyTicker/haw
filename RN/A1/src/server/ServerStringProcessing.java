@@ -21,12 +21,11 @@ public class ServerStringProcessing {
 
     public static String work(String line) {
         line = normalize(line);
-        if (line.isEmpty() || line == null)
-            return "";
         if (inputDoesNotMatch(line)) {
             return DEFAULT;
         }
         if (line.startsWith(SHUTDOWN)) {
+            ThreadMonitor.shutdownSignal();
             return SHUTDOWN;
         }
         if (line.startsWith(CONNECTION_CLOSE)) {

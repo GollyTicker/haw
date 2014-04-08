@@ -2,53 +2,51 @@ package server;
 
 import java.io.*;
 import java.net.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by sacry on 05/04/14.
  */
 class TCPServer {
 
-    private static final int N = 500;
-    private static volatile int currentUsers = 0;
+    private static final int N = 400;
 
-    private static void serverRun(ServerSocket socket) {
+    private ServerSocket listener;
+    private Socket clientSocket;
+
+    public TCPServer(ServerSocket listener) {
+        this.listener = listener;
+    }
+
+    private void serverRun() {
         System.out.println("Welcome to My Server!");
-        Socket connectionSocket = null;
-        do {
+
+        while (ThreadMonitor.serverShouldBeRunning(N)) {
             try {
-                if (currentUsers < N) {
-                    connectionSocket = socket.accept();
-                    new TCPServerThread(connectionSocket).run();
-                    currentUsers += 1;
-                } else {
-                    break;
-                }
+                clientSocket = listener.accept();
+                ThreadMonitor.increase();
+                new TCPServerThread(clientSocket).run();
             } catch (Exception e) {
-                closeConnection(connectionSocket);
+                closeConnection();
             }
-        } while (true);
-
-        closeServerConnection(socket);
-    }
-
-    private static void closeConnection(Socket connectionSocket) {
-        try {
-            connectionSocket.close();
-        } catch (IOException e) {
-
         }
+        closeConnection();
     }
 
-    private static void closeServerConnection(ServerSocket serverSocket) {
+    private void closeConnection() {
         try {
-            serverSocket.close();
+            listener.close();
+            clientSocket.close();
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
     }
 
     public static void main(String args[]) throws Exception {
         ServerSocket socket = new ServerSocket(6789);
-        serverRun(socket);
+        TCPServer s = new TCPServer(socket);
+        s.serverRun();
     }
 }

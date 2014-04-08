@@ -21,18 +21,20 @@ public class TCPServerThread extends Thread {
         String clientSentence = "";
         setUp();
 
-        do {
+        if (!client.isClosed()) {
+            do {
 
-            String line = readFromClient();
-            if (client.isClosed())
-                break;
-            System.out.println("Thread:Read= " + line);
-            clientSentence = ServerStringProcessing.work(line);
-            sendToClient(clientSentence);
+                String line = readFromClient();
+                if (line == null)
+                    break;
+                System.out.println("Thread:Read= " + line);
+                clientSentence = ServerStringProcessing.work(line);
+                sendToClient(clientSentence);
 
-        } while (!isConnectionClosed(clientSentence));
+            } while (!isConnectionClosed(clientSentence));
 
-        closeAll();
+            closeAll();
+        }
         System.out.println("Thread Killed");
     }
 
@@ -56,7 +58,10 @@ public class TCPServerThread extends Thread {
     }
 
     private boolean isConnectionClosed(String resp) {
-        return resp.equals(ServerStringProcessing.CONNECTION_CLOSE) || resp.equals(ServerStringProcessing.SHUTDOWN);
+        return resp.equals(ServerStringProcessing.CONNECTION_CLOSE) ||
+                resp.equals(ServerStringProcessing.SHUTDOWN) ||
+                client.isClosed() ||
+                !client.isConnected();
     }
 
     private String readFromClient() {
@@ -87,8 +92,10 @@ public class TCPServerThread extends Thread {
 
     private void sendToClient(String message) {
         try {
-            byte[] byteArray = (message + "\n").getBytes("UTF-8");
-            outputStream.write(byteArray, 0, byteArray.length);
+            if (!client.isClosed()) {
+                byte[] byteArray = (message + "\n").getBytes("UTF-8");
+                outputStream.write(byteArray, 0, byteArray.length);
+            }
         } catch (IOException e) {
             closeAll();
         }

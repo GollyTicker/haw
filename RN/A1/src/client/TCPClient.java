@@ -16,7 +16,7 @@ class TCPClient {
 
     private Socket clientSocket;
     private BufferedReader inFromUser;
-    private DataOutputStream outToServer;
+    private PrintWriter outToServer;
     private BufferedReader inFromServer;
 
     public static void main(String argv[]) {
@@ -36,12 +36,16 @@ class TCPClient {
     }
 
     public void start() {
-        String sentence = "";
+
         String serverResponse = "";
         do {
             try {
-                sentence = inFromUser.readLine();
-                outToServer.writeBytes(sentence + '\n');
+                String line = inFromUser.readLine();
+                outToServer.println(line);
+                outToServer.flush();
+
+                if(clientSocket.isClosed()) break;
+
                 serverResponse = inFromServer.readLine();
                 System.out.println("FROM SERVER: " + serverResponse);
             } catch (IOException e) {
@@ -59,7 +63,7 @@ class TCPClient {
     private void initializeBuffers() {
         try {
             this.inFromUser = new BufferedReader(new InputStreamReader(System.in));
-            this.outToServer = new DataOutputStream(clientSocket.getOutputStream());
+            this.outToServer = new PrintWriter(clientSocket.getOutputStream());
             this.inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         } catch (IOException e) {
 

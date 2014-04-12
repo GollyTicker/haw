@@ -33,6 +33,25 @@ object ShortestRound {
 // A2
 object RunLengthEncoding {
 
+  implicit class FancyList[A](val xs: List[A]) extends AnyVal {
+    def group = {
+      def group_acc[A](xs: List[A], acc: List[List[A]], tmp_acc: List[A], last: A): List[List[A]] = xs match {
+        case xs if (xs.isEmpty) => tmp_acc :: acc
+        case xs if (last == xs.head) => group_acc(xs.tail, acc, xs.head :: tmp_acc, last)
+        case _ => group_acc(xs.tail, tmp_acc :: acc, xs.head :: List(), xs.head)
+      }
+      group_acc(xs, List(), List(), xs.head).reverse
+    }
+  }
+
+  // cmp to Haskell version...
+  // encode :: (Eq a) => [a] -> [(a, Int)]
+  // encode [] = []
+  // encode xs = map (\x -> (head x, length x)) (group xs)
+  def encode(xs: List[Int]) = {
+    xs.group.map(p => (p.head, p.size))
+  }
+
   def rle_string(token: String): String = {
     token.foldLeft((new StringBuilder, 0, token(0)))((acc, c) => acc match {
       case (str, count, last) if (last == c) => (str, count + 1, last)
@@ -52,6 +71,7 @@ object RunLengthEncoding {
     val test2 = "110111000110001010101010010"
     println(rle_list(test1))
     println(rle_string(test2))
+    println(encode(test1))
   }
 }
 

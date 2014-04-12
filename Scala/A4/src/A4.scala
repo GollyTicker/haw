@@ -9,11 +9,14 @@ object ShortestRound {
 
   def distance(c1: Int, c2: Int) = 100 / (if (c1 > c2) (c1 - c2) else (c2 - c1))
 
-  def shortestRound(cities: List[Int]) = cities.permutations.map(city =>
-    (city, (1 to (city.size - 1)).foldLeft((city, 0)) {
-      (acc, _) =>
-        (acc._1.tail, acc._2 + distance(acc._1.head, acc._1.tail.head))
-    }._2)
+  def shortestRound(cities: List[Int]) = cities.permutations.map(city_list =>
+    (city_list,
+      (1 to (city_list.size - 1)).foldLeft((city_list, 0)) {
+        (acc, _) =>
+          val (rest_cities, curr_city, next_city) = (acc._1.tail, acc._1.head, acc._1.tail.head)
+          val new_distance = acc._2 + distance(curr_city, next_city);
+          (rest_cities, new_distance)
+      }._2)
   ).minBy(_._2)
 
   def main(args: Array[String]) {

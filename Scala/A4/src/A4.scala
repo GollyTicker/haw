@@ -7,17 +7,28 @@ import scala.collection.mutable.ArrayBuffer
 // A1
 object ShortestRound {
 
-  def distance(c1: Int, c2: Int) = 100 / (if (c1 > c2) (c1 - c2) else (c2 - c1))
+  def shortestRound(cities: List[Int]) = {
 
-  def shortestRound(cities: List[Int]) = cities.permutations.map(city_list =>
-    (city_list,
+    def distance(c1: Int, c2: Int) = 100 / (if (c1 > c2) (c1 - c2) else (c2 - c1))
+
+    def calculateDistanceFor(city_list: List[Int]): Int = {
+      def unwrap(acc: Pair[List[Int], Int]) = (acc._1.tail, acc._1.head, acc._1.tail.head, acc._2)
       (1 to (city_list.size - 1)).foldLeft((city_list, 0)) {
         (acc, _) =>
-          val (rest_cities, curr_city, next_city) = (acc._1.tail, acc._1.head, acc._1.tail.head)
-          val new_distance = acc._2 + distance(curr_city, next_city);
+          val (rest_cities, curr_city, next_city, tmp_distance) = unwrap(acc)
+          val new_distance = tmp_distance + distance(curr_city, next_city);
           (rest_cities, new_distance)
-      }._2)
-  ).minBy(_._2)
+      }._2
+    }
+
+    def determineCurrentMinimum(city_list: List[Int], winner: Pair[List[Int], Int]) = {
+      val permutation = (city_list, calculateDistanceFor(city_list))
+      List(permutation, winner).minBy(_._2)
+    }
+
+    val winner = (List[Int](), Integer.MAX_VALUE)
+    cities.permutations.foldRight(winner)(determineCurrentMinimum)
+  }
 
   def main(args: Array[String]) {
     val cities1 = (1 to 4).toList
@@ -65,7 +76,7 @@ object RunLengthEncoding {
   }
 
   def rle_list(token: List[Int]) = {
-    val(result, count, last) = token.foldLeft((ArrayBuffer[(Int, Int)](), 0, token(0)))((acc, c) => acc match {
+    val (result, count, last) = token.foldLeft((ArrayBuffer[(Int, Int)](), 0, token(0)))((acc, c) => acc match {
       case (xs, count, last) if (last == c) => (xs, count + 1, last)
       case (xs, count, last) => (xs.+=((count, last)), 1, c)
     })

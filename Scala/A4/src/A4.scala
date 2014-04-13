@@ -41,7 +41,7 @@ object RunLengthEncoding {
       def group_acc[A](xs: List[A], acc: ArrayBuffer[List[A]]): ArrayBuffer[List[A]] = {
         val (intermediate, new_list) = xs.span(_ == xs.head)
         new_list match {
-          case new_list if (new_list.isEmpty) => acc += intermediate
+          case Nil => acc += intermediate
           case _ => group_acc(new_list, acc += intermediate)
         }
       }
@@ -54,7 +54,7 @@ object RunLengthEncoding {
   // encode [] = []
   // encode xs = map (\x -> (head x, length x)) (group xs)
   def encode(xs: List[Int]) = {
-    xs.group.map(p => (p.head, p.size))
+    xs.group.map(p => (p.size, p.head))
   }
 
   def rle_string(token: String): String = {
@@ -65,10 +65,11 @@ object RunLengthEncoding {
   }
 
   def rle_list(token: List[Int]) = {
-    token.foldLeft((ArrayBuffer[(Int, Int)](), 0, token(0)))((acc, c) => acc match {
+    val(result, count, last) = token.foldLeft((ArrayBuffer[(Int, Int)](), 0, token(0)))((acc, c) => acc match {
       case (xs, count, last) if (last == c) => (xs, count + 1, last)
       case (xs, count, last) => (xs.+=((count, last)), 1, c)
-    })._1.toList
+    })
+    result.+=((count, last)).toList
   }
 
   def main(args: Array[String]) {

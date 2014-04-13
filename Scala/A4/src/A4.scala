@@ -38,12 +38,14 @@ object RunLengthEncoding {
 
   implicit class FancyList[A](val xs: List[A]) extends AnyVal {
     def group = {
-      def group_acc[A](xs: List[A], acc: List[List[A]], tmp_acc: List[A], last: A): List[List[A]] = xs match {
-        case xs if (xs.isEmpty) => tmp_acc :: acc
-        case xs if (last == xs.head) => group_acc(xs.tail, acc, xs.head :: tmp_acc, last)
-        case _ => group_acc(xs.tail, tmp_acc :: acc, xs.head :: List(), xs.head)
+      def group_acc[A](xs: List[A], acc: ArrayBuffer[List[A]]): ArrayBuffer[List[A]] = {
+        val (intermediate, new_list) = xs.span(_ == xs.head)
+        new_list match {
+          case new_list if (new_list.isEmpty) => acc += intermediate
+          case _ => group_acc(new_list, acc += intermediate)
+        }
       }
-      group_acc(xs, List(), List(), xs.head).reverse
+      group_acc(xs, ArrayBuffer[List[A]]()).toList
     }
   }
 

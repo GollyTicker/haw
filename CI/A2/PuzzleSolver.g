@@ -14,7 +14,13 @@ options {
 prog    :   row NL! op_row  NL! row  NL! eq_row  NL! row
     ;
 
-row     :   grouped_ids OP^ grouped_ids EQ! grouped_ids
+row     :   fst=grouped_ids op=OP^ snd=grouped_ids EQ! thr=grouped_ids
+		{
+			int minLen = 1;
+			for(int i=0; i<=minLen; i++) {
+				System.out.println($op.text + $fst.ids.get(i).text + $snd.ids.get(i).text + " = " + $thr.ids.get(i).text);
+			}
+		}
     ;
 
 op_row
@@ -25,9 +31,9 @@ eq_row
     :    EQ! EQ! EQ!
     ;
 
-grouped_ids returns[List vars]
-	:	(ids+=ID)+
-	{$vars=$ids;}
+grouped_ids returns[List ids]
+	:	(myIds+=ID)+
+	{$ids=$myIds;}
 	;
     
 NL	:	('\n' 

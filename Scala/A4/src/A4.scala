@@ -148,9 +148,7 @@ class Person2(name: String) extends Person(name) with Lecturer with Student {
 object A4 {
   def main(args: Array[String]) {
     val pers3 = new Person("Müller") with Student with Lecturer with Worker {
-      override def work = super[Student].work
-
-      override val act = work + " I am working"
+      override def work = super[Student].work + " and " + super[Lecturer].work
     }
     println(pers3 + ", " + pers3.act)
   }

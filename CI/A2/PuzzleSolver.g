@@ -11,29 +11,34 @@ options {
 // Siehe Folien:
 // https://pub.informatik.haw-hamburg.de/home/pub/prof/neitzke/Compiler%20und%20Interpreter/Vorlesungsfolien/CI04%20-%20Zwischencode%20alt.pdf#page=65&zoom=page-fit,0,540
 
-prog    :   row NL! op_row  NL! row  NL! eq_row  NL! row
+prog    :   fstRow=row NL opRow=op_row  NL sndRow=row  NL eq_row  NL thrRow=row
+			-> ^($opRow $fstRow $sndRow $thrRow)// AST knows the conditions of the rows. however the other conditions are still missing
     ;
 
-row     :   fst=grouped_ids op=OP^ snd=grouped_ids EQ! thr=grouped_ids
-		{
-			int minLen = 1;
-			for(int i=0; i < minLen; i++) {
-				System.out.println("Cond: " + $fst.ids.get(i).toString() + $op.text + $snd.ids.get(i).toString() + " = " + $thr.ids.get(i).toString());
-			}
+row     returns [String cond]	// each row returns a string representation of its condition
+	:   
+		fst=grouped_ids op=OP snd=grouped_ids EQ thr=grouped_ids
+		{	// trying to print the first conditions
+			$cond = "Cond: " + $fst.text + $op.text + $snd.text + " = " + $thr.text;
 		}
+		-> ^($op $fst $snd $thr)
     ;
 
-op_row
-    :   OP! OP! OP!
+// die operatoren nach oben delegieren (synth. Attribute)
+op_row	returns[List ops]
+    :   ops_+=OP ops_+=OP ops_+=OP
+	{$ops=$ops_;}
     ;
 
 eq_row
-    :    EQ! EQ! EQ!
+    :    EQ! EQ! EQ!	// ignorieren aller '='
     ;
 
+// die einzellnen Ids nach oben delegieren
 grouped_ids returns[List ids]
 	:	(myIds+=ID)+
-	{$ids=$myIds;}
+		{$ids=$myIds;}
+		-> ^($myIds)
 	;
     
 NL	:	('\n' 

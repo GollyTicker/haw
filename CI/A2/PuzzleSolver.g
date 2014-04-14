@@ -1,4 +1,8 @@
 grammar PuzzleSolver;
+options {
+	output=AST;
+	ASTLabelType=CommonTree;
+}
 
 prog    :   row NL op_row  NL row  NL eq_row  NL row
     ;

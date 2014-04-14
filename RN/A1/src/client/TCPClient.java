@@ -17,8 +17,8 @@ class TCPClient {
     private BufferedReader inFromServer;
 
     public static void main(String argv[]) {
-        String ip = "localhost"; // argv[0]
-        int port = 6789; // argv[1]
+        String ip = argv[0]; // "localhost";
+        int port = Integer.valueOf(argv[1]); // 6789;
         new TCPClient(ip, port).start();
     }
 
@@ -44,7 +44,7 @@ class TCPClient {
                 serverResponse = inFromServer.readLine();
                 System.out.println("FROM SERVER: " + serverResponse);
             } catch (IOException e) {
-                e.printStackTrace();
+                closeAll();
             }
         } while (noInShutdown(serverResponse));
         closeAll();

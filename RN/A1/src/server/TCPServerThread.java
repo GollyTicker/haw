@@ -1,6 +1,7 @@
 package server;
 
 import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
@@ -11,9 +12,11 @@ public class TCPServerThread extends Thread {
     private Socket client;
     private InputStreamReader inputStream;
     private OutputStream outputStream;
+    private ServerSocket listener;
 
-    public TCPServerThread(Socket client) {
+    public TCPServerThread(Socket client, ServerSocket listener) {
         this.client = client;
+        this.listener = listener;
     }
 
     public void run() {
@@ -28,13 +31,31 @@ public class TCPServerThread extends Thread {
                     break;
                 System.out.println("Thread:Read= " + line);
                 clientSentence = ServerStringProcessing.work(line);
+
                 sendToClient(clientSentence);
+                shutdownIfRequested(clientSentence);
 
             } while (!isConnectionClosed(clientSentence));
             closeAll();
         }
+
         ThreadMonitor.decrease();
-        System.out.println("Thread Killed: " + this.getId());
+        System.out.println("Thread Killed: " + this.
+
+                getId()
+
+        );
+    }
+
+    private void shutdownIfRequested(String clientSentence) {
+        if (clientSentence.equals(ServerStringProcessing.SHUTDOWN)) {
+            ThreadMonitor.shutdownSignal();
+            try {
+                listener.close();
+            } catch (IOException e) {
+
+            }
+        }
     }
 
     private void setUp() {
@@ -81,10 +102,6 @@ public class TCPServerThread extends Thread {
             }
         }
 
-        return utf8encodedString(byteArray);
-    }
-
-    private String utf8encodedString(byte[] byteArray) {
         try {
             return (new String(byteArray, "UTF-8")).trim();
         } catch (UnsupportedEncodingException e) {

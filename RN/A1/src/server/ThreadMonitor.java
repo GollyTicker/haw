@@ -1,5 +1,6 @@
 package server;
 
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Iterator;
 
@@ -15,9 +16,9 @@ public class ThreadMonitor {
     private ThreadMonitor() {
     }
 
-    public static void execute(Socket clientSocket) {
+    public static void execute(Socket clientSocket, ServerSocket listener) {
         ThreadMonitor.increase();
-        TCPServerThread t = new TCPServerThread(clientSocket);
+        TCPServerThread t = new TCPServerThread(clientSocket, listener);
         System.out.println("Thread created: " + t.getId());
         t.start();
     }
@@ -27,7 +28,7 @@ public class ThreadMonitor {
     }
 
     public static boolean canCreateMoreThreads() {
-        return count < N;
+        return count < N && isRunning;
     }
 
     public static void decrease() {

@@ -18,21 +18,23 @@ class TCPServer {
         this.listener = listener;
     }
 
-    public void run() {
+    public void start() {
         System.out.println("Welcome to My Server!");
 
         while (ThreadMonitor.isRunning) {
+            System.out.println(ThreadMonitor.isRunning);
             try {
                 if (ThreadMonitor.canCreateMoreThreads()) {
                     clientSocket = listener.accept();
-                    ThreadMonitor.execute(clientSocket);
+                    ThreadMonitor.execute(clientSocket, listener);
                 }
             } catch (IOException e) {
                 closeConnection();
             }
         }
 
-        if (!ThreadMonitor.isRunning) closeConnection();
+        System.out.println("Goodbye!");
+        closeConnection();
     }
 
     private void closeConnection() {
@@ -45,6 +47,7 @@ class TCPServer {
     }
 
     public static void main(String args[]) throws Exception {
-        new TCPServer(new ServerSocket(6789)).run(); // args[0]
+        int port = Integer.valueOf(args[0]); // 6789
+        new TCPServer(new ServerSocket(port)).start();
     }
 }

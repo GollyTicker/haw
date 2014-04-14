@@ -1,5 +1,7 @@
 package server;
 
+import java.io.IOException;
+import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -25,7 +27,6 @@ public class ServerStringProcessing {
             return DEFAULT;
         }
         if (line.startsWith(SHUTDOWN)) {
-            ThreadMonitor.shutdownSignal();
             return SHUTDOWN;
         }
         if (line.startsWith(CONNECTION_CLOSE)) {

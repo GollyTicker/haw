@@ -1,4 +1,4 @@
-grammar PuzzleSolver_1;
+grammar PuzzleSolver;
 
 prog    :   row NL op_row  NL row  NL eq_row  NL row
     ;
@@ -11,21 +11,21 @@ op_row
     ;
 
 eq_row
-    :   EQ EQ EQ
+    :   {System.out.println("Hallo " + $eq_row.text + "!");} EQ EQ EQ
     ;
 
 grouped_ids :	ID+
 	;
     
 NL	:	('\n' 
-        | '\r')
+        | 	'\r')
 	;
 
-OP : ('+'|'-')	
+OP 	: ('+'|'-')	
 	;
 
-ID  :	('A'..'Z')
-    ;
+ID  	:	('A'..'Z')
+    	;
     
 EQ 	:	'='
 	;

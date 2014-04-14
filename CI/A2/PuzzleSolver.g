@@ -11,7 +11,7 @@ op_row
     ;
 
 eq_row
-    :   {System.out.println("Hallo " + $eq_row.text + "!");} EQ EQ EQ
+    :    EQ EQ EQ
     ;
 
 grouped_ids :	ID+

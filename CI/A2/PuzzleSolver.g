@@ -6,6 +6,10 @@ options {
 
 // mit ^ kann man den root des Unterbaums festlegen.
 // mit ! sagt man, was fuer den AST ignoriert werden soll
+// mit -> kann man Tree Rewrites machen und die Stuktur ganz selber vorgeben
+
+// Siehe Folien:
+// https://pub.informatik.haw-hamburg.de/home/pub/prof/neitzke/Compiler%20und%20Interpreter/Vorlesungsfolien/CI04%20-%20Zwischencode%20alt.pdf#page=65&zoom=page-fit,0,540
 
 prog    :   row NL! op_row  NL! row  NL! eq_row  NL! row
     ;
@@ -21,7 +25,9 @@ eq_row
     :    EQ! EQ! EQ!
     ;
 
-grouped_ids :	ID+
+grouped_ids returns[List vars]
+	:	(ids+=ID)+
+	{$vars=$ids;}
 	;
     
 NL	:	('\n' 
@@ -67,3 +73,4 @@ fragment
 UNICODE_ESC
     :   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
     ;
+

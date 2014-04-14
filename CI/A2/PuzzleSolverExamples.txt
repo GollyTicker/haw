@@ -1,0 +1,34 @@
+Working1:
+A + C = BD
++   -  +
+AHF + C = B
+=  =   =
+A +         CUH = B
+
+Working2:
+A + C = BD
++   -  +
+AHF + C = B
+=  =   =
+A + C UH = B
+
+Error1:
+A + C = 
+ BD
++   -  
+ +
+AHF + C = B
+=  
+ =   =
+A +
+   CUH = B
+
+Error2:
+A + C = 
++   -  +
+AHF + C = B
+=  =   =
+A + C UH = B
+
+Error3:
+A + C = Z +   -  + AHF + C = B =  =   = A + C UH = B

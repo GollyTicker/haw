@@ -1,0 +1,65 @@
+
+
+ar_exp
+((14+(ssde*23+12*1234)*23))
+
+
+
+if 4 < 5 then statement fi
+
+if 4 < 5 > 5 then statement fi
+
+
+
+
+main:
+
+program
+integer a, b, c;
+string s, z;
+begin
+if 4 < 5 then blubb fi;
+if 4 < 5 then blubb fi
+end
+
+program
+integer a, b, c;
+string s, z;
+begin
+if 4 < 5 then blubb fi;
+if 4 < 5 then blubb fi;
+end
+
+program
+  integer a, b, c;
+  string s, z;
+begin
+  while true do
+    a := 0;
+    if 4 < 5 then read(a) fi;
+    if 4 < 5 then print((a+4)) fi;
+  od;
+  /*
+  read(sd_e)
+  test
+  */
+  println(a*2);
+end
+
+program
+  integer a, b, c;
+  string s, z;
+begin
+  c := ((14+(ssde*23+12*1234)*23));
+  while a < 5 do
+    a := 0;
+    r := "matze semikolon";
+    if 4 < 5 then read(a); fi
+    if 2 = e then print((a+4)); fi
+  od
+  /*
+  read(sd_e)
+  test
+  */
+  println(a*2);
+end

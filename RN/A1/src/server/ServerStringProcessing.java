@@ -31,7 +31,7 @@ public class ServerStringProcessing {
         if (line.startsWith(CONNECTION_CLOSE)) {
             return CONNECTION_CLOSE;
         }
-        String scrappedLine = slice(line, line.indexOf(' '), line.length());
+        String scrappedLine = line.substring(line.indexOf(' '), line.length());
         if (line.startsWith(REVERSE)) {
             return reverse(scrappedLine);
         }
@@ -44,6 +44,14 @@ public class ServerStringProcessing {
         return line;
     }
 
+    private static String splitOnNewline(String line) {
+        int nl = line.indexOf('\\');
+        if (nl == -1) {
+            return line;
+        }
+        return line.substring(0, nl - 1);
+    }
+
     private static boolean inputDoesNotMatch(String line) {
         if (line == null) return false;
         return !line.matches("^((REVERSE|LOWERCASE|UPPERCASE) .*|(SHUTDOWN|CONNECTION_CLOSE))");
@@ -53,13 +61,9 @@ public class ServerStringProcessing {
         return new StringBuffer(line).reverse().toString();
     }
 
-    private static String slice(String line, int i, int j) {
-        return line.trim().substring(i, j);
-    }
-
     private static String normalize(String line) {
         if (line != null) {
-            return line.trim();
+            return splitOnNewline(line.trim());
         }
         return line;
     }

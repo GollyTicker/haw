@@ -31,7 +31,6 @@ public class TCPServerThread extends Thread {
                 sendToClient(clientSentence);
 
             } while (!isConnectionClosed(clientSentence));
-
             closeAll();
         }
         ThreadMonitor.decrease();
@@ -68,13 +67,12 @@ public class TCPServerThread extends Thread {
 
         int read;
         byte[] byteArray = new byte[255];
-        boolean keepGo = true;
 
-        for (int i = 0; i < byteArray.length && keepGo; i++) {
+        for (int i = 0; i < byteArray.length; i++) {
             try {
                 read = inputStream.read();
-                if (read == -1 || read == 10) {
-                    keepGo = false;
+                if (read == -1 || read == 10) { // EOF and Newline
+                    break;
                 } else {
                     byteArray[i] = (byte) read;
                 }
@@ -83,6 +81,10 @@ public class TCPServerThread extends Thread {
             }
         }
 
+        return utf8encodedString(byteArray);
+    }
+
+    private String utf8encodedString(byte[] byteArray) {
         try {
             return (new String(byteArray, "UTF-8")).trim();
         } catch (UnsupportedEncodingException e) {

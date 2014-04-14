@@ -45,8 +45,6 @@ class TCPServer {
     }
 
     public static void main(String args[]) throws Exception {
-        ServerSocket socket = new ServerSocket(6789);
-        TCPServer tcpServer = new TCPServer(socket);
-        tcpServer.run();
+        new TCPServer(new ServerSocket(6789)).run(); // args[0]
     }
 }

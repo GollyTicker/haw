@@ -17,8 +17,8 @@ class TCPClient {
     private BufferedReader inFromServer;
 
     public static void main(String argv[]) {
-        String ip = "localhost";
-        int port = 6789;
+        String ip = "localhost"; // argv[0]
+        int port = 6789; // argv[1]
         new TCPClient(ip, port).start();
     }
 

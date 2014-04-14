@@ -17,8 +17,8 @@ prog    :   row NL! op_row  NL! row  NL! eq_row  NL! row
 row     :   fst=grouped_ids op=OP^ snd=grouped_ids EQ! thr=grouped_ids
 		{
 			int minLen = 1;
-			for(int i=0; i<=minLen; i++) {
-				System.out.println($op.text + $fst.ids.get(i).text + $snd.ids.get(i).text + " = " + $thr.ids.get(i).text);
+			for(int i=0; i < minLen; i++) {
+				System.out.println("Cond: " + $fst.ids.get(i).toString() + $op.text + $snd.ids.get(i).toString() + " = " + $thr.ids.get(i).toString());
 			}
 		}
     ;

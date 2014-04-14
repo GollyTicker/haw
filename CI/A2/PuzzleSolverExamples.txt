@@ -5,12 +5,12 @@ AHF + C = B
 =  =   =
 A +         CUH = B
 
-Working2:
-A + C = BD
-+   -  +
-AHF + C = B
-=  =   =
-A + C UH = B
+Working2:           // TAKE THIS HERE!
+ACE + DAC = JFD
+ -     +     -
+AAA - HFC =  GI
+ =     =     =
+ AH + III = JBJ
 
 Error1:
 A + C = 

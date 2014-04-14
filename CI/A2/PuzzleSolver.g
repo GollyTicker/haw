@@ -4,18 +4,21 @@ options {
 	ASTLabelType=CommonTree;
 }
 
-prog    :   row NL op_row  NL row  NL eq_row  NL row
+// mit ^ kann man den root des Unterbaums festlegen.
+// mit ! sagt man, was fuer den AST ignoriert werden soll
+
+prog    :   row NL! op_row  NL! row  NL! eq_row  NL! row
     ;
 
-row     :   grouped_ids OP grouped_ids EQ grouped_ids
+row     :   grouped_ids OP^ grouped_ids EQ! grouped_ids
     ;
 
 op_row
-    :   OP OP OP
+    :   OP! OP! OP!
     ;
 
 eq_row
-    :    EQ EQ EQ
+    :    EQ! EQ! EQ!
     ;
 
 grouped_ids :	ID+

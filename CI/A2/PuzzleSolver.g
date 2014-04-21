@@ -18,20 +18,26 @@ tokens {
 // https://pub.informatik.haw-hamburg.de/home/pub/prof/neitzke/Compiler%20und%20Interpreter/Vorlesungsfolien/CI04%20-%20Zwischencode%20alt.pdf#page=65&zoom=page-fit,0,540
 
 prog    :   c1=row NL opRow=op_row  NL c2=row  NL eq_row  NL c3=row
-	{System.out.println("Ops:" + $opRow.tree.toStringTree());
+	{
+	//System.out.println("Ops:" + $opRow.tree.toStringTree());
+	System.out.println("OpLeft:" + $opRow.opLeft + "; OpMid:" + $opRow.opMid + "; OpRight:" + $opRow.opRight);
 	System.out.println("c1: " + $c1.tree.toStringTree());
 	System.out.println("c2: " + $c2.tree.toStringTree());
 	System.out.println("c3: " + $c3.tree.toStringTree());}
 			-> ^(CONDS row row row)
     ;
 
-row	:	
+row	:
 	fst=grouped_ids op=OP snd=grouped_ids EQ thr=grouped_ids
 	-> ^($op $fst $snd $thr)
 ;
 
-// die operatoren nach oben delegieren (synth. Attribute)
-op_row	:   OP OP OP
+
+op_row	returns[String opLeft, String opMid, String opRight]
+	:   opl=OP opm=OP opr=OP
+	{$opLeft=$opl.text;}
+	{$opMid=$opm.text; }
+	{$opRight=$opr.text;}
     	-> ^(OPS OP OP OP)
 	;
 

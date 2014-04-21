@@ -7,6 +7,7 @@ options {
 tokens {
 	BLOCK;
 	CONDS;
+	OPS;
 }
 
 // mit ^ kann man den root des Unterbaums festlegen.
@@ -17,18 +18,21 @@ tokens {
 // https://pub.informatik.haw-hamburg.de/home/pub/prof/neitzke/Compiler%20und%20Interpreter/Vorlesungsfolien/CI04%20-%20Zwischencode%20alt.pdf#page=65&zoom=page-fit,0,540
 
 prog    :   c1=row NL opRow=op_row  NL c2=row  NL eq_row  NL c3=row
-			-> ^(CONDS $c1 $c2 $c3)
+	{System.out.println("Ops:" + $opRow.tree.toStringTree());
+	System.out.println("c1: " + $c1.text);}
+			-> ^(CONDS row row row)
     ;
 
-row	:	fst=grouped_ids op=OP snd=grouped_ids EQ thr=grouped_ids
+row	returns[Tree fst_ids]
+	:	fst=grouped_ids op=OP snd=grouped_ids EQ thr=grouped_ids
+		{$fst_ids=$fst.tree;}
 		-> ^($op $fst $snd $thr)
     ;
 
 // die operatoren nach oben delegieren (synth. Attribute)
-op_row	returns[List ops]
-    :   ops_+=OP ops_+=OP ops_+=OP
-	{$ops=$ops_;}
-    ;
+op_row	:   OP OP OP
+    	-> ^(OPS OP OP OP)
+	;
 
 eq_row
     :    EQ! EQ! EQ!	// ignorieren aller '='

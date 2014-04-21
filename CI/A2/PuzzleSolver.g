@@ -19,15 +19,16 @@ tokens {
 
 prog    :   c1=row NL opRow=op_row  NL c2=row  NL eq_row  NL c3=row
 	{System.out.println("Ops:" + $opRow.tree.toStringTree());
-	System.out.println("c1: " + $c1.text);}
+	System.out.println("c1: " + $c1.tree.toStringTree());
+	System.out.println("c2: " + $c2.tree.toStringTree());
+	System.out.println("c3: " + $c3.tree.toStringTree());}
 			-> ^(CONDS row row row)
     ;
 
-row	returns[Tree fst_ids]
-	:	fst=grouped_ids op=OP snd=grouped_ids EQ thr=grouped_ids
-		{$fst_ids=$fst.tree;}
-		-> ^($op $fst $snd $thr)
-    ;
+row	:	
+	fst=grouped_ids op=OP snd=grouped_ids EQ thr=grouped_ids
+	-> ^($op $fst $snd $thr)
+;
 
 // die operatoren nach oben delegieren (synth. Attribute)
 op_row	:   OP OP OP

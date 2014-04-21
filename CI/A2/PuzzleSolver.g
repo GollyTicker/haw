@@ -20,7 +20,7 @@ prog    :   fstRow=row NL opRow=op_row  NL sndRow=row  NL eq_row  NL thrRow=row
     ;
 
 row	:	fst=grouped_ids op=OP snd=grouped_ids EQ thr=grouped_ids
-		-> ^($op /*$fst $snd $thr*/)
+		-> ^($op $fst $snd $thr)
     ;
 
 // die operatoren nach oben delegieren (synth. Attribute)

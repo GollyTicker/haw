@@ -23,19 +23,9 @@ import org.antlr.stringtemplate.*;
 // mit -> kann man Tree Rewrites machen und die Stuktur ganz selber vorgeben
 
 // Siehe Folien:
-// https://pub.informatik.haw-hamburg.de/home/pub/prof/neitzke/Compiler%20und%20Interpreter/Vorlesungsfolien/CI04%20-%20Zwischencode%20alt.pdf#page=65&zoom=page-fit,0,540
+// https://pub.informatik.haw-hamburg.de/home/pub/prof/neitzke/Compiler%20und%20Interpreter/Vorlesungsfolien/CI04%20-%20Zwischencode%20alt.pdf#page=65&zoom=page-fit,0,540	
 
-/*start	:	p=prog
-		{
-		CommonTree finalTree = new CommonTree(p.tree);
-
-		finalTree.addChild(p.lVert);
-		}
-		-> {finalTree}
-	;*/
-	
-
-prog    //returns[Tree lVert, Tree mVert, Tree rVert]
+prog
 	:   	c1=row NL
 		opRow=op_row NL
 		c2=row NL
@@ -61,8 +51,12 @@ prog    //returns[Tree lVert, Tree mVert, Tree rVert]
 	rightVertical.addChild(c3.right);
 	//System.out.println("leftVertical: " + leftVertical.toStringTree());	// demonstration
 	System.out.println(c2.tree.toStringTree());
+	
+	// http://www.docjar.com/docs/api/org/antlr/runtime/tree/Tree.html
+	
 	}
-		-> ^(CONDS row row row /*{new Tree(leftVertical)}*/)// it is also possible to insert java code here, to create the AST. See. Antlr Reference p.170
+		-> ^(CONDS row row row {leftVertical})  // merging simply wont work....
+		// it is also possible to insert java code here, to create the AST. See. Antlr Reference p.170
     ;
 
 row	returns[Tree left, Tree mid, Tree right]

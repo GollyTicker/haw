@@ -32,7 +32,10 @@ prog    :   c1=row NL opRow=op_row  NL c2=row  NL eq_row  NL c3=row
 	System.out.println("c1.first: " + $c1.first.toStringTree());
 	System.out.println("c2.first: " + $c2.first.toStringTree());
 	System.out.println("c3.first: " + $c3.first.toStringTree());
-	CommonTree myTree = new CommonTree(new CommonToken(BLOCK, "hallo")); 
+	CommonTree myTree = new CommonTree(new CommonToken(OP, opRow.opLeft)); 
+	myTree.addChild(c1.first);
+	myTree.addChild(c2.first);
+	myTree.addChild(c3.first);
 	System.out.println("myTree: " + myTree.toStringTree());
 	}
 			-> ^(CONDS row row row)// it is also possible to insert java code here, to create the AST. See. Antlr Reference p.170

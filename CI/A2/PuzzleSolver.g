@@ -60,8 +60,9 @@ prog    //returns[Tree lVert, Tree mVert, Tree rVert]
 	rightVertical.addChild(c2.right);
 	rightVertical.addChild(c3.right);
 	//System.out.println("leftVertical: " + leftVertical.toStringTree());	// demonstration
+	System.out.println(c2.tree.toStringTree());
 	}
-		-> ^(CONDS row row row /*{leftVertical}*/)// it is also possible to insert java code here, to create the AST. See. Antlr Reference p.170
+		-> ^(CONDS row row row /*{new Tree(leftVertical)}*/)// it is also possible to insert java code here, to create the AST. See. Antlr Reference p.170
     ;
 
 row	returns[Tree left, Tree mid, Tree right]

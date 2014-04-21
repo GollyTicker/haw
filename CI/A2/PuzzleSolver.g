@@ -25,22 +25,23 @@ import org.antlr.stringtemplate.*;
 // Siehe Folien:
 // https://pub.informatik.haw-hamburg.de/home/pub/prof/neitzke/Compiler%20und%20Interpreter/Vorlesungsfolien/CI04%20-%20Zwischencode%20alt.pdf#page=65&zoom=page-fit,0,540
 
-start	:	p=prog
+/*start	:	p=prog
 		{
-		Tree finalTree = p.tree;
-//		finalTree.addChild(p.leftVertical);
+		CommonTree finalTree = new CommonTree(p.tree);
+
+		finalTree.addChild(p.lVert);
 		}
 		-> {finalTree}
-	;
+	;*/
 	
 
-prog    returns[Tree leftVertical, Tree midVertical, Tree rightVertical]
+prog    //returns[Tree lVert, Tree mVert, Tree rVert]
 	:   	c1=row NL
 		opRow=op_row NL
 		c2=row NL
 		eq_row NL
 		c3=row
-	{	
+	{
 	// First Vertical Condition
 	CommonTree leftVertical = new CommonTree(new CommonToken(OP, opRow.left)); 
 	leftVertical.addChild(c1.left);
@@ -60,7 +61,7 @@ prog    returns[Tree leftVertical, Tree midVertical, Tree rightVertical]
 	rightVertical.addChild(c3.right);
 	//System.out.println("leftVertical: " + leftVertical.toStringTree());	// demonstration
 	}
-			-> ^(CONDS row row row)// it is also possible to insert java code here, to create the AST. See. Antlr Reference p.170
+		-> ^(CONDS row row row /*{leftVertical}*/)// it is also possible to insert java code here, to create the AST. See. Antlr Reference p.170
     ;
 
 row	returns[Tree left, Tree mid, Tree right]

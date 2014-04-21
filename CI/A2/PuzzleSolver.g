@@ -4,6 +4,10 @@ options {
 	ASTLabelType=CommonTree;
 }
 
+tokens {
+	IDLIST;
+}
+
 // mit ^ kann man den root des Unterbaums festlegen.
 // mit ! sagt man, was fuer den AST ignoriert werden soll
 // mit -> kann man Tree Rewrites machen und die Stuktur ganz selber vorgeben
@@ -12,16 +16,11 @@ options {
 // https://pub.informatik.haw-hamburg.de/home/pub/prof/neitzke/Compiler%20und%20Interpreter/Vorlesungsfolien/CI04%20-%20Zwischencode%20alt.pdf#page=65&zoom=page-fit,0,540
 
 prog    :   fstRow=row NL opRow=op_row  NL sndRow=row  NL eq_row  NL thrRow=row
-			-> ^($opRow $fstRow $sndRow $thrRow)// AST knows the conditions of the rows. however the other conditions are still missing
+			-> ^($opRow /*$fstRow $sndRow $thrRow*/)
     ;
 
-row     returns [String cond]	// each row returns a string representation of its condition
-	:   
-		fst=grouped_ids op=OP snd=grouped_ids EQ thr=grouped_ids
-		{	// trying to print the first conditions
-			$cond = "Cond: " + $fst.text + $op.text + $snd.text + " = " + $thr.text;
-		}
-		-> ^($op $fst $snd $thr)
+row	:	fst=grouped_ids op=OP snd=grouped_ids EQ thr=grouped_ids
+		-> ^($op /*$fst $snd $thr*/)
     ;
 
 // die operatoren nach oben delegieren (synth. Attribute)
@@ -35,17 +34,15 @@ eq_row
     ;
 
 // die einzellnen Ids nach oben delegieren
-grouped_ids returns[List ids]
-	:	(myIds+=ID)+
-		{$ids=$myIds;}
-		-> ^($myIds)
+grouped_ids
+	:	ID+ -> ^(IDLIST ID+)
 	;
     
 NL	:	('\n' 
         | 	'\r')
 	;
 
-OP 	: ('+'|'-')	
+OP 	: 	('+'|'-')
 	;
 
 ID  	:	('A'..'Z')

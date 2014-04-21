@@ -29,18 +29,21 @@ prog    :   c1=row NL opRow=op_row  NL c2=row  NL eq_row  NL c3=row
 	{
 	//System.out.println("Ops:" + $opRow.tree.toStringTree());
 	System.out.println("OpLeft:" + $opRow.opLeft + "; OpMid:" + $opRow.opMid + "; OpRight:" + $opRow.opRight);
-	System.out.println("c1: " + $c1.tree.toStringTree());
-	System.out.println("c2: " + $c2.tree.toStringTree());
-	System.out.println("c3: " + $c3.tree.toStringTree());
+	System.out.println("c1.first: " + $c1.first.toStringTree());
+	System.out.println("c2.first: " + $c2.first.toStringTree());
+	System.out.println("c3.first: " + $c3.first.toStringTree());
 	CommonTree myTree = new CommonTree(new CommonToken(BLOCK, "hallo")); 
 	System.out.println("myTree: " + myTree.toStringTree());
 	}
 			-> ^(CONDS row row row)// it is also possible to insert java code here, to create the AST. See. Antlr Reference p.170
     ;
 
-row	//returns[Tree first, Tree second, Tree third]
+row	returns[Tree first, Tree second, Tree third]
 	:
 	fst=grouped_ids op=OP snd=grouped_ids EQ thr=grouped_ids
+	{$first=$fst.tree;}
+	{$second=$snd.tree;}
+	{$third=$thr.tree;}
 	-> ^($op $fst $snd $thr)
 ;
 

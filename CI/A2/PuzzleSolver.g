@@ -25,37 +25,59 @@ import org.antlr.stringtemplate.*;
 // Siehe Folien:
 // https://pub.informatik.haw-hamburg.de/home/pub/prof/neitzke/Compiler%20und%20Interpreter/Vorlesungsfolien/CI04%20-%20Zwischencode%20alt.pdf#page=65&zoom=page-fit,0,540
 
-prog    :   c1=row NL opRow=op_row  NL c2=row  NL eq_row  NL c3=row
-	{
-	//System.out.println("Ops:" + $opRow.tree.toStringTree());
-	System.out.println("OpLeft:" + $opRow.opLeft + "; OpMid:" + $opRow.opMid + "; OpRight:" + $opRow.opRight);
-	System.out.println("c1.first: " + $c1.first.toStringTree());
-	System.out.println("c2.first: " + $c2.first.toStringTree());
-	System.out.println("c3.first: " + $c3.first.toStringTree());
-	CommonTree myTree = new CommonTree(new CommonToken(OP, opRow.opLeft)); 
-	myTree.addChild(c1.first);
-	myTree.addChild(c2.first);
-	myTree.addChild(c3.first);
-	System.out.println("myTree: " + myTree.toStringTree());
+start	:	p=prog
+		{
+		Tree finalTree = p.tree;
+//		finalTree.addChild(p.leftVertical);
+		}
+		-> {finalTree}
+	;
+	
+
+prog    returns[Tree leftVertical, Tree midVertical, Tree rightVertical]
+	:   	c1=row NL
+		opRow=op_row NL
+		c2=row NL
+		eq_row NL
+		c3=row
+	{	
+	// First Vertical Condition
+	CommonTree leftVertical = new CommonTree(new CommonToken(OP, opRow.left)); 
+	leftVertical.addChild(c1.left);
+	leftVertical.addChild(c2.left);
+	leftVertical.addChild(c3.left);
+	
+	// Second Vertical Condition
+	CommonTree midVertical = new CommonTree(new CommonToken(OP, opRow.mid)); 
+	midVertical.addChild(c1.mid);
+	midVertical.addChild(c2.mid);
+	midVertical.addChild(c3.mid);
+	
+	// Third Vertical Condition
+	CommonTree rightVertical = new CommonTree(new CommonToken(OP, opRow.right)); 
+	rightVertical.addChild(c1.right);
+	rightVertical.addChild(c2.right);
+	rightVertical.addChild(c3.right);
+	//System.out.println("leftVertical: " + leftVertical.toStringTree());	// demonstration
 	}
 			-> ^(CONDS row row row)// it is also possible to insert java code here, to create the AST. See. Antlr Reference p.170
     ;
 
-row	returns[Tree first, Tree second, Tree third]
+row	returns[Tree left, Tree mid, Tree right]
 	:
-	fst=grouped_ids op=OP snd=grouped_ids EQ thr=grouped_ids
-	{$first=$fst.tree;}
-	{$second=$snd.tree;}
-	{$third=$thr.tree;}
-	-> ^($op $fst $snd $thr)
+	l=grouped_ids op=OP m=grouped_ids EQ r=grouped_ids
+	{$left=$l.tree;}
+	{$mid=$m.tree;}
+	{$right=$r.tree;}
+	-> ^($op grouped_ids grouped_ids grouped_ids)
 ;
 
 
-op_row	returns[String opLeft, String opMid, String opRight]
-	:   opl=OP opm=OP opr=OP
-	{$opLeft=$opl.text;}
-	{$opMid=$opm.text; }
-	{$opRight=$opr.text;}
+op_row	returns[String left, String mid, String right]
+	:   l=OP m=OP r=OP
+	{$left=$l.text;}
+	{$mid=$m.text; }
+	{$right=$r.text;}
     	-> ^(OPS OP OP OP)
 	;
 

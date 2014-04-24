@@ -56,15 +56,15 @@ cmp : ar_exp RELOP^ ar_exp
 ;
 
 statement
-: ifStmt
-| whileStmt
-| io_stmt
-| var_def
+: ifStmt -> ifStmt
+| whileStmt -> whileStmt
+| io_stmt -> io_stmt
+| var_def -> var_def
 ;
 
 statements
-	: statement SEMICOL (statements)*
-//	-> ^(SLIST statement statement*)
+	: statement SEMICOL statements?
+	-> ^(SLIST statement*)
 ;
 
 numberconst

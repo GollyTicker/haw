@@ -8,9 +8,11 @@ options {
 tokens {
 	SLIST;
 	IDLIST;
+	MAIN;
+	DECLS;
 }
 
-main : PROGRAM declaration+ BEGIN statements END
+main : PROGRAM decls=declaration+ BEGIN statements END -> ^(MAIN ^(DECLS $decls) statements)
 ;
 
 declaration: TYPE^ ids SEMICOL!
@@ -56,15 +58,15 @@ cmp : ar_exp RELOP^ ar_exp
 ;
 
 statement
-: ifStmt -> ifStmt
-| whileStmt -> whileStmt
-| io_stmt -> io_stmt
-| var_def -> var_def
+: ifStmt
+| whileStmt
+| io_stmt
+| var_def
 ;
 
 statements
-	: statement SEMICOL statements?
-	-> ^(SLIST statement*)
+	: (statement SEMICOL)+
+	-> ^(SLIST statement+)
 ;
 
 numberconst

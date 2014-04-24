@@ -12,7 +12,10 @@ tokens {
 	DECLS;
 }
 
-main : PROGRAM decls=declaration+ BEGIN statements END -> ^(MAIN ^(DECLS $decls) statements)
+main : PROGRAM declarations BEGIN statements END -> ^(MAIN declarations statements)
+;
+
+declarations:	declaration+ -> ^(DECLS declaration+)
 ;
 
 declaration: TYPE^ ids SEMICOL!

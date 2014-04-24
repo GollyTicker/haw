@@ -3,53 +3,59 @@ grammar MiniP;
 main : PROGRAM declaration+ BEGIN statements END
 ;
 
-declaration 
-:	TYPE ids SEMICOL
+declaration: TYPE ids SEMICOL
 ;
 
-ids :	ID  (COMMA ID)*
+ids : ID (COMMA ID)*
 ;
 
 var_def : ID DEF expression
 ;
 
-expression :  BOOL | STRING | ar_exp
-;
-BOOL	:	'true' | 'false'
+expression : BOOL | STRING | ar_exp
 ;
 
 
-ifStmt	:	'if' (BOOL | cmp ) 'then' statements ('else' statements)? 'fi'
+BOOL : 'true' | 'false'
+;
+
+
+ifStmt : 'if' (BOOL | cmp ) 'then' statements ('else' statements)? 'fi'
 ;
 
 whileStmt
-:	'while' (BOOL | cmp) 'do' statements 'od'
+: 'while' (BOOL | cmp) 'do' statements 'od'
 ;
 
-io_stmt	:	('print' | 'println') '(' expression ')'
+io_stmt : ('print' | 'println') '(' expression ')'
 | 'read(' expression ')'
 ;
 ar_exp
-:	product (STRICH_OP product)*
-;
-product	:	ar_term (PUNKT_OP ar_term)*
+: product (STRICH_OP product)*
 ;
 
-ar_term	:	ID |  numberconst | '(' ar_exp ')'
+product : ar_term (PUNKT_OP ar_term)*
 ;
 
-cmp	:	ar_exp RELOP ar_exp
+ar_term : ID | numberconst | '(' ar_exp ')'
 ;
 
-statement :	ifStmt | whileStmt | io_stmt SEMICOL | var_def SEMICOL
+cmp : ar_exp RELOP ar_exp
+;
+
+statement
+: ifStmt
+| whileStmt
+| io_stmt
+| var_def
 ;
 
 statements
-:	statement+
+: statement SEMICOL (statements)*
 ;
 
 numberconst
-:	INT | FLOAT
+: INT | FLOAT
 ;
 
 DEF : ':='
@@ -64,43 +70,43 @@ STRICH_OP : ('+' | '-')
 RELOP : ('=' | '<>' | '<' | '<=' | '>' | '>=')
     ;
 
-PROGRAM :	'program'
+PROGRAM : 'program'
 ;
 
-BEGIN :	'begin'
+BEGIN : 'begin'
 ;
 
-END :	'end'
+END : 'end'
 ;
 
-TYPE :	('integer' | 'string' | 'real' | 'boolean')
+TYPE : ('integer' | 'string' | 'real' | 'boolean')
 ;
 
-SEMICOL :     ';'
+SEMICOL : ';'
     ;
 
-COMMA    :     ','
+COMMA : ','
     ;
 
 FLOAT
-    :   ('0'..'9')+ '.' ('0'..'9')*
+    : ('0'..'9')+ '.' ('0'..'9')*
     ;
     
-INT :	('0'..'9')+
+INT : ('0'..'9')+
     ;
 
 STRING
-    :  '"' ('a'..'z' | 'A'..'Z' | '0'..'9' | ' ')* '"'//'"' ( ESC_SEQ | ~('\\'|'"') )* '"'
+    : '"' ('a'..'z'|'A'..'Z' | ' ' | '0'..'9')* '"'
     ;
 
-ID  :	('a'..'z' | 'A'..'Z') ('0'..'9' | ('a'..'z' | 'A'..'Z') |'_')*
+ID : ('a'..'z' | 'A'..'Z') ('0'..'9' | ('a'..'z' | 'A'..'Z') |'_')*
     ;
 
 COMMENT
-    :   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
+    : '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
     ;
 
-WS  :   ( ' '
+WS : ( ' '
         | '\t'
         | '\r'
         | '\n'
@@ -108,32 +114,32 @@ WS  :   ( ' '
     ;
 
 fragment
-DIGIT	:	('0'..'9')
+DIGIT : ('0'..'9')
 ;
 
 fragment
-LETTER :    ('a'..'z' | 'A'..'Z')
+LETTER : ('a'..'z' | 'A'..'Z')
     ;
 
 fragment
-HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') 
+HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F')
 ;
 
 fragment
 ESC_SEQ
-    :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
-    |   UNICODE_ESC
-    |   OCTAL_ESC
+    : '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
+    | UNICODE_ESC
+    | OCTAL_ESC
     ;
 
 fragment
 OCTAL_ESC
-    :   '\\' ('0'..'3') ('0'..'7') ('0'..'7')
-    |   '\\' ('0'..'7') ('0'..'7')
-    |   '\\' ('0'..'7')
+    : '\\' ('0'..'3') ('0'..'7') ('0'..'7')
+    | '\\' ('0'..'7') ('0'..'7')
+    | '\\' ('0'..'7')
     ;
 
 fragment
 UNICODE_ESC
-    :   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+    : '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
     ;

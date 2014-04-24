@@ -19,6 +19,18 @@ import org.antlr.runtime.tree.*;
 import org.antlr.stringtemplate.*;
 }
 
+@members {
+
+public static CommonTree buildFromBILD(String operator, Tree first, Tree second, Tree third) {
+	CommonTree vertical = new CommonTree(new CommonToken(OP, operator));
+	vertical.addChild(first);
+	vertical.addChild(second);
+	vertical.addChild(third);
+	return vertical;
+}
+
+}
+
 // mit ^ kann man den root des Unterbaums festlegen.
 // mit ! sagt man, was fuer den AST ignoriert werden soll
 // mit -> kann man Tree Rewrites machen und die Stuktur ganz selber vorgeben
@@ -26,32 +38,25 @@ import org.antlr.stringtemplate.*;
 // Siehe Folien:
 // https://pub.informatik.haw-hamburg.de/home/pub/prof/neitzke/Compiler%20und%20Interpreter/Vorlesungsfolien/CI04%20-%20Zwischencode%20alt.pdf#page=65&zoom=page-fit,0,540	
 
-prog
-	:   	c1=row NL
+prog	:   	c1=row NL
 		opRow=op_row NL
 		c2=row NL
 		eq_row NL
 		c3=row
 	{
+	
 	// First Vertical Condition
-	CommonTree leftVertical = new CommonTree(new CommonToken(OP, opRow.left)); 
-	leftVertical.addChild(c1.left);
-	leftVertical.addChild(c2.left);
-	leftVertical.addChild(c3.left);
+	CommonTree leftVertical = buildFromBILD(opRow.left, c1.left, c2.left, c3.left);
 	
 	// Second Vertical Condition
-	CommonTree midVertical = new CommonTree(new CommonToken(OP, opRow.mid)); 
-	midVertical.addChild(c1.mid);
-	midVertical.addChild(c2.mid);
-	midVertical.addChild(c3.mid);
+	CommonTree midVertical = buildFromBILD(opRow.mid, c1.mid, c2.mid, c3.mid);
 	
 	// Third Vertical Condition
-	CommonTree rightVertical = new CommonTree(new CommonToken(OP, opRow.right)); 
-	rightVertical.addChild(c1.right);
-	rightVertical.addChild(c2.right);
-	rightVertical.addChild(c3.right);
+	CommonTree rightVertical = buildFromBILD(opRow.right, c1.right, c2.right, c3.right);
+	
         System.out.println("leftVertical: " + leftVertical.toStringTree());	// demonstration
-	// System.out.println(c2.tree.toStringTree());
+        System.out.println("midVertical: " + midVertical.toStringTree());	// demonstration
+        //System.out.println(c2.tree.toStringTree());
 	
 	// http://www.docjar.com/docs/api/org/antlr/runtime/tree/Tree.html
 	}

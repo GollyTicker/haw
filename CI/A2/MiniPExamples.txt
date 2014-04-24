@@ -5,7 +5,7 @@ begin
   while a < 5 do
     a := 0;
     r := "matze semikolon";
-    if 4 < 5 then read(a); fi;
+    if 4 < 5 then read(a); else println(42*3); fi;
     if 2 = e then print((a+4)); fi;
   od;
   /*

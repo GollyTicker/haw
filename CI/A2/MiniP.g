@@ -1,18 +1,31 @@
 grammar MiniP;
 
+options {
+	output=AST;
+	ASTLabelType=CommonTree;
+}
+
+tokens {
+	SLIST;
+	IDLIST;
+}
+
 main : PROGRAM declaration+ BEGIN statements END
 ;
 
-declaration: TYPE ids SEMICOL
+declaration: TYPE^ ids SEMICOL!
 ;
 
-ids : ID (COMMA ID)*
+ids : ID (COMMA ID)*	-> ^(IDLIST ID*)
 ;
 
-var_def : ID DEF expression
+var_def : ID DEF expression -> ^(DEF ID expression)
 ;
 
-expression : BOOL | STRING | ar_exp
+expression
+	: BOOL -> BOOL
+	| STRING -> STRING
+	| ar_exp -> ar_exp
 ;
 
 
@@ -20,27 +33,26 @@ BOOL : 'true' | 'false'
 ;
 
 
-ifStmt : 'if' (BOOL | cmp ) 'then' statements ('else' statements)? 'fi'
+ifStmt : 'if'^ (BOOL | cmp ) 'then'! statements ('else'! statements)? 'fi'!
 ;
 
 whileStmt
-: 'while' (BOOL | cmp) 'do' statements 'od'
+: 'while'^ (BOOL | cmp) 'do'! statements 'od'!
 ;
 
-io_stmt : ('print' | 'println') '(' expression ')'
-| 'read(' expression ')'
+io_stmt : ('print' | 'println' | 'read')^ '('! expression ')'!
 ;
 ar_exp
-: product (STRICH_OP product)*
+: product (STRICH_OP^ product)* 
 ;
 
-product : ar_term (PUNKT_OP ar_term)*
+product : ar_term (PUNKT_OP^ ar_term)*
 ;
 
-ar_term : ID | numberconst | '(' ar_exp ')'
+ar_term : ID | numberconst | '('! ar_exp ')'!
 ;
 
-cmp : ar_exp RELOP ar_exp
+cmp : ar_exp RELOP^ ar_exp
 ;
 
 statement
@@ -51,11 +63,13 @@ statement
 ;
 
 statements
-: statement SEMICOL (statements)*
+	: statement SEMICOL (statements)*
+//	-> ^(SLIST statement statement*)
 ;
 
 numberconst
-: INT | FLOAT
+	: INT -> INT
+	| FLOAT -> FLOAT
 ;
 
 DEF : ':='

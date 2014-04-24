@@ -22,10 +22,17 @@ import org.antlr.stringtemplate.*;
 @members {
 
 public static CommonTree buildFromBILD(String operator, Tree first, Tree second, Tree third) {
-	CommonTree vertical = new CommonTree(new CommonToken(OP, operator));
-	vertical.addChild(first);
-	vertical.addChild(second);
-	vertical.addChild(third);
+	CommonTree vertical = new CommonTree(new CommonToken(PLUS,"PLUS"));
+	if(operator.trim().equals("-")) {
+		vertical.addChild(second);
+		vertical.addChild(third);
+		vertical.addChild(first);
+	}
+	else {
+		vertical.addChild(first);
+		vertical.addChild(second);
+		vertical.addChild(third);
+	}
 	return vertical;
 }
 
@@ -44,7 +51,6 @@ prog	:   	c1=row NL
 		eq_row NL
 		c3=row
 	{
-	
 	// First Vertical Condition
 	CommonTree leftVertical = buildFromBILD(opRow.left, c1.left, c2.left, c3.left);
 	
@@ -56,7 +62,7 @@ prog	:   	c1=row NL
 	
         System.out.println("leftVertical: " + leftVertical.toStringTree());	// demonstration
         System.out.println("midVertical: " + midVertical.toStringTree());	// demonstration
-        //System.out.println(c2.tree.toStringTree());
+        System.out.println(c2.tree.toStringTree());
 	
 	// http://www.docjar.com/docs/api/org/antlr/runtime/tree/Tree.html
 	}
@@ -79,8 +85,7 @@ op_row	returns[String left, String mid, String right]
 	:   l=OP m=OP r=OP
 	{$left=$l.text;}
 	{$mid=$m.text; }
-	{$right=$r.text;}
-    	-> ^(OPS OP OP OP)
+	{$right=$r.text;} 
 	;
 
 eq_row

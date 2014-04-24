@@ -9,6 +9,7 @@ tokens {
 	BLOCK;
 	CONDS;
 	OPS;
+	PLUS;
 }
 
 @header {
@@ -49,11 +50,10 @@ prog
 	rightVertical.addChild(c1.right);
 	rightVertical.addChild(c2.right);
 	rightVertical.addChild(c3.right);
-	//System.out.println("leftVertical: " + leftVertical.toStringTree());	// demonstration
-	System.out.println(c2.tree.toStringTree());
+        System.out.println("leftVertical: " + leftVertical.toStringTree());	// demonstration
+	// System.out.println(c2.tree.toStringTree());
 	
 	// http://www.docjar.com/docs/api/org/antlr/runtime/tree/Tree.html
-	
 	}
 		-> ^(CONDS row row row {leftVertical})  // merging simply wont work....
 		// it is also possible to insert java code here, to create the AST. See. Antlr Reference p.170
@@ -65,7 +65,8 @@ row	returns[Tree left, Tree mid, Tree right]
 	{$left=$l.tree;}
 	{$mid=$m.tree;}
 	{$right=$r.tree;}
-	-> ^($op grouped_ids grouped_ids grouped_ids)
+	-> { $op.text.trim().equals("-") }? ^(PLUS $m $r $l)	// case "-"
+	->  ^(PLUS grouped_ids grouped_ids grouped_ids)	// general case "+"
 ;
 
 
